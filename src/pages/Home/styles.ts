@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  flex: 1;
+export const Container = styled.main`
+  background-color: red;
+  width: 100%;
   display: flex;
-  align-items: center;
-  height: 6.5rem;
-  justify-content: space-between;
-  padding: 0 2.5rem;
-`;
-
-export const Header = styled.div`
-  display: flex;
+  justify-content: center;
+  div {
+    width: 85%;
+    background-color: blue;
+  }
 `;

@@ -1,16 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { Container, Header } from "./styles";
-import { ShoppingCart } from "phosphor-react";
-import logo from "./../../assets/Logo.svg";
+import { Header } from "../../components/Header";
+import { Container } from "./styles";
 
 export function Home() {
   return (
-    <Container>
-      <Header>
-        <img src={logo} alt="Logo"></img>
-        <ShoppingCart />
-      </Header>
-    </Container>
+    <>
+      <Header />
+      <Container>
+        <div>teste</div>
+      </Container>
+    </>
   );
 }
