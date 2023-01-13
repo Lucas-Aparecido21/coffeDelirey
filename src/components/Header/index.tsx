@@ -22,7 +22,7 @@ export function Header() {
           <img src={Icon} alt="LocaleIcon" />
           São Paulo, SP
         </Locale>
-        <Checkout>
+        <Checkout title="Checkout">
           <img src={CheckoutIcon} alt="CheckoutIcon" />
         </Checkout>
       </ContainerCheckout>

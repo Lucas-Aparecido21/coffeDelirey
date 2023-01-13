@@ -27,7 +27,7 @@ export const ContainerCheckout = styled.div`
 
 export const ContainerLogo = styled.div`
   img {
-    padding: 0 10rem;
+    padding: 0 6rem;
   }
 
   @media (max-width: 700px) {
@@ -44,7 +44,7 @@ export const Locale = styled.button`
   cursor: pointer;
   height: 38px;
   font-size: 12px;
-  width: 150px;
+  width: 145px;
   background-color: ${(props) => props.theme["purple-light"]};
   color: ${(props) => props.theme["purple-dark"]};
   border-radius: 8px;
