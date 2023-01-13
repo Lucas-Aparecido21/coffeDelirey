@@ -4,6 +4,7 @@ export const Container = styled.main`
   width: 100%;
   display: flex;
   justify-content: center;
+
   font-family: "Baloo 2", sans-serif;
   section {
     display: grid;
@@ -16,20 +17,27 @@ export const Container = styled.main`
   }
 
   h1 {
-    padding: 0 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 80%;
     color: ${(props) => props.theme["base-title"]};
-    font-size: 28px;
+    font-size: 52px;
     font-weight: 800;
   }
-  span {
-    padding: 0 2rem;
+  p {
+    width: 90%;
     color: ${(props) => props.theme["base-subtitle"]};
     font-family: "Roboto", sans-serif;
   }
 
+  span {
+    font-family: "Roboto", sans-serif;
+    width: 80%;
+    color: ${(props) => props.theme["base-subtitle"]};
+  }
   img {
-    width: 380px;
-    height: 300px;
+    width: 550px;
+    height: 400px;
   }
 
   div {
@@ -57,7 +65,8 @@ export const DivInfo = styled.section`
     font-family: "Roboto", sans-serif;
     align-items: center;
     color: ${(props) => props.theme["base-text"]};
-    font-size: 11px;
+    font-size: 14px;
+    padding: 0 2.5rem;
   }
 `;
 
@@ -70,8 +79,8 @@ export const CoffeListContainer = styled.div`
   section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    width: 95%;
-    margin-top: 2rem;
+    width: 81%;
+    margin-top: 4rem;
   }
 
   h1 {

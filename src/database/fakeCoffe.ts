@@ -10,6 +10,7 @@ import Expresso from "../assets/Expresso.svg";
 import Havaiano from "../assets/Havaiano.svg";
 import Irlandes from "../assets/Irlandes.svg";
 import Latte from "../assets/Latte.svg";
+import Macchiato from "../assets/Macchiato.svg";
 import Mochaccino from "../assets/Mochaccino.svg";
 
 export const dataFake = [
@@ -73,6 +74,68 @@ export const dataFake = [
     name: "Capuccino",
     description:
       "Bebida com canela feita de doses iguais de café, leite e espuma",
+    price: 9.9,
+  },
+  {
+    id: 8,
+    image: Macchiato,
+    tag: ["Tradicional", "Com Leite"],
+    name: "Macchiato",
+    description:
+      "Café expresso misturado com um pocuo de leite quente e espuma",
+    price: 9.9,
+  },
+  {
+    id: 9,
+    image: Mochaccino,
+    tag: ["Tradicional", "Com Leite"],
+    name: "Mocaccino",
+    description: "Café expresso com calda de chocolate, pouco leite e espuma",
+    price: 9.9,
+  },
+  {
+    id: 10,
+    image: ChocolateQuente,
+    tag: ["Especial", "Com Leite"],
+    name: "Chocolate Quente",
+    description: "Bebida feita com chocolate dissolvido no leite quente e café",
+    price: 9.9,
+  },
+
+  {
+    id: 11,
+    image: Cuabano,
+    tag: ["Especial", "Alcoólico", "Gelado"],
+    name: "Cubano",
+    description:
+      "Drink gelado de café expresso com rum, creme de leite e hortelã",
+    price: 9.9,
+  },
+
+  {
+    id: 12,
+    image: Havaiano,
+    tag: ["Especial"],
+    name: "Havaiano",
+    description: "Bebida adocicada preparada com café e leite de coco",
+    price: 9.9,
+  },
+
+  {
+    id: 13,
+    image: Arabe,
+    tag: ["Especial"],
+    name: "Árabe",
+    description: "Bebida preparada com grãos de café árabe e especiarias",
+    price: 9.9,
+  },
+
+  {
+    id: 14,
+    image: Irlandes,
+    tag: ["Especial", "Alcoólico"],
+    name: "Irlandês",
+    description: "Bebida a base de café, uísque irlandês, açúcar e chantilly",
     price: 9.9,
   },
 ];

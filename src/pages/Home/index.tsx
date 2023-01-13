@@ -6,6 +6,7 @@ import coffeIcon from "../../assets/coffeIcon.svg";
 import checkoutIcon from "../../assets/checkoutIcon.svg";
 import timerIcon from "../../assets/timerIcon.svg";
 import embIcon from "../../assets/embIcon.svg";
+// import dataFake from "../../database/fakeCoffe";
 
 export function Home() {
   return (
@@ -47,6 +48,10 @@ export function Home() {
       <CoffeListContainer>
         <section>
           <h1>Nossos Cafés</h1>
+
+          {/* {dataFake.map((coffee)=> (<Card key={coffe.id}/>
+          coffee={coffee}
+          ))} */}
         </section>
       </CoffeListContainer>
     </>

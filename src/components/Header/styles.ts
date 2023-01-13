@@ -25,14 +25,18 @@ export const ContainerCheckout = styled.div`
   }
 `;
 
-export const ContainerLogo = styled.div`
+export const ContainerLogo = styled.main`
+  display: flex;
+  width: 575px;
+  justify-self: center;
+
   img {
-    padding: 0 6rem;
+    display: flex;
+    align-items: center;
   }
 
   @media (max-width: 700px) {
     img {
-      padding: 0 3rem;
     }
   }
 `;
