@@ -27,13 +27,20 @@ export const Container = styled.main`
 `;
 
 export const CardOrder = styled.div`
-  width: 80%;
-  height: 10rem;
+  width: 600px;
+  height: 15rem;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-content: center;
   flex-direction: column;
   margin-top: 3rem;
-  /* border: 1px solid ${(props) => props.theme["purple-dark"]};
-  border-radius: 8px; */
+  border: 1px solid ${(props) => props.theme["purple-dark"]};
+  border-radius: 8px;
+`;
+
+export const CardOrder2 = styled.div`
+  width: 500px;
+
+  img {
+  }
 `;

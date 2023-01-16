@@ -77,8 +77,6 @@ export const CoffeListContainer = styled.div`
   font-family: "Baloo 2", sans-serif;
 
   section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 81%;
     margin-top: 4rem;
   }
