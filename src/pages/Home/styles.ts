@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
   width: 100%;
   display: flex;
   justify-content: center;
@@ -73,12 +78,17 @@ export const DivInfo = styled.section`
 export const CoffeListContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  align-self: start;
   font-family: "Baloo 2", sans-serif;
+  margin-top: 4rem;
 
   section {
-    width: 81%;
     margin-top: 4rem;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 2rem;
   }
 
   h1 {
