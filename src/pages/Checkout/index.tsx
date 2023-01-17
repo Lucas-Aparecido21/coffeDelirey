@@ -5,6 +5,13 @@ import {
   ContainerCep,
   ContainerFpg,
   ContainerCheckout,
+  CepInput,
+  RuaInput,
+  NumeroInput,
+  ComplementoInput,
+  BairroInput,
+  CidadeInput,
+  UFInput,
 } from "./styles";
 import {
   MapPinLine,
@@ -27,14 +34,19 @@ export function Checkout() {
               Endereço de entrega
             </h2>
             <p>Informe o endereço de entrega onde deseja receber seu pedido</p>
-
-            <input placeholder="CEP"></input>
-            <input placeholder="Rua"></input>
-            <input placeholder="Número"></input>
-            <input placeholder="Complemento"></input>
-            <input placeholder="Bairro"></input>
-            <input placeholder="Cidade"></input>
-            <input placeholder="UF"></input>
+            <form action="">
+              <CepInput placeholder="CEP"></CepInput>
+              <RuaInput placeholder="Rua"></RuaInput>
+              <div className="teste">
+                <NumeroInput placeholder="Número"></NumeroInput>
+                <ComplementoInput placeholder="Complemento"></ComplementoInput>
+              </div>
+              <div className="teste2">
+                <BairroInput placeholder="Bairro"></BairroInput>
+                <CidadeInput placeholder="Cidade"></CidadeInput>
+                <UFInput placeholder="UF"></UFInput>
+              </div>
+            </form>
           </ContainerCep>
 
           <ContainerFpg>

@@ -20,7 +20,7 @@ export function Sucess() {
               <CardOrder2>
                 <p>
                   <img src={LocaleIcon} alt="Icone Localização" />
-                  Entrega em Rua João Daniel Martinelli, 102{" "}
+                  Entrega em Rua João Daniel Martinelli, 102
                   <p>Farrapos - Porto Alegre, RS</p>
                 </p>
 

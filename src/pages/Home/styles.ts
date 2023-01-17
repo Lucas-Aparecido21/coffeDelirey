@@ -6,7 +6,7 @@ export const Container = styled.main`
     margin: 0;
     box-sizing: border-box;
   }
-  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
 

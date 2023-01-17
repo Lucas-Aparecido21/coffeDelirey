@@ -8,7 +8,7 @@ export const Container = styled.main`
 `;
 
 export const Container2 = styled.div`
-  width: 100%;
+  max-width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -68,12 +68,13 @@ export const Price = styled.div`
   }
 
   div {
-    width: 70px;
+    width: 75px;
     height: 45px;
     display: flex;
     align-items: center;
     background-color: ${(props) => props.theme["base-button"]};
     justify-content: center;
+    border-radius: 8px;
 
     span {
       background-color: ${(props) => props.theme["base-button"]};
@@ -89,7 +90,13 @@ export const Price = styled.div`
       cursor: pointer;
     }
   }
-  gap: 1.5rem;
+  gap: 1rem;
+  .value {
+    font-size: 26px;
+    font-family: "Baloo 2", sans-serif;
+    font-weight: 700;
+    color: ${(props) => props.theme["base-subtitle"]};
+  }
 `;
 
 export const DivTag = styled.div`
@@ -99,6 +106,7 @@ export const DivTag = styled.div`
 
 export const ButtonCart = styled.button`
   all: unset;
+
   width: 45px;
   height: 45px;
   display: flex;

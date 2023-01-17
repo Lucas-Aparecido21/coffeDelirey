@@ -29,8 +29,12 @@ export const Card = ({ coffee }: CardProps) => {
           <h2>{coffee.name}</h2>
           <Description>{coffee.description}</Description>
           <Price>
-            <p> RS </p>
-            {coffee.price}
+            <p className="value">
+              {coffee.price.toLocaleString("pt-br", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            </p>
             <div>
               <button>
                 <Minus />
