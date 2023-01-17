@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   width: 100%;
+  margin-top: 108px;
   font-family: "Baloo 2", sans-serif;
   display: grid;
 
@@ -10,21 +11,59 @@ export const Container = styled.main`
     font-family: "Roboto", sans-serif;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 80%;
+    align-items: end;
+    margin-top: 16px;
+    width: 90%;
+  }
+  div h1 {
+    width: 730px;
+    position: relative;
+    display: flex;
+    font-size: 20px;
+    font-family: "Baloo 2", sans-serif;
+    color: ${(props) => props.theme["base-subtitle"]};
+    margin-bottom: 18px;
   }
 `;
 
 export const ContainerCep = styled.nav`
   width: 85%;
   height: 400px;
-
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border-radius: 8px;
   background-color: ${(props) => props.theme["base-card"]};
 
-  h2,
+  .Separador1 {
+    display: flex;
+    gap: 20px;
+  }
+
+  .Separador2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  div {
+    width: 90%;
+    height: 80%;
+  }
+
   p {
     color: ${(props) => props.theme["base-text"]};
+    font-size: 20px;
     font-weight: 100;
+    font-family: "Roboto", sans-serif;
+  }
+
+  h2 {
+    color: ${(props) => props.theme["base-subtitle"]};
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
   }
 
   svg {
@@ -38,14 +77,16 @@ export const ContainerCep = styled.nav`
 `;
 
 export const BaseInput = styled.input`
-  background-color: ${(props) => props.theme["base-input"]};
-  color: ${(props) => props.theme["base-label"]};
-  height: 30px;
   all: unset;
-  padding-left: 12px;
+  background-color: ${(props) => props.theme["base-button"]};
+  color: ${(props) => props.theme["base-text"]};
+  height: 40px;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-style: normal;
+  padding-left: 12px;
+  height: 40px;
+  border-radius: 8px;
   ::placeholder {
     color: ${(props) => props.theme["base-label"]};
 
@@ -63,31 +104,30 @@ export const CepInput = styled(BaseInput)`
 
 export const RuaInput = styled(BaseInput)`
   grid-area: "rua";
-  margin-top: 24px;
-  width: 480px;
+  margin-top: 18px;
 `;
 
 export const NumeroInput = styled(BaseInput)`
   grid-area: "numero";
-  margin-top: 24px;
+  margin-top: 18px;
   width: 140px;
 `;
 
 export const ComplementoInput = styled(BaseInput)`
   grid-area: "complemento";
-  margin-top: 24px;
+  margin-top: 18px;
   width: 250px;
 `;
 
 export const BairroInput = styled(BaseInput)`
   grid-area: "bairro";
-  margin-top: 24px;
-  width: 180px;
+  margin-top: 18px;
+  width: 280px;
 `;
 
 export const CidadeInput = styled(BaseInput)`
   grid-area: "cidade";
-  width: 180px;
+  width: 250px;
 `;
 
 export const UFInput = styled(BaseInput)`
@@ -95,12 +135,63 @@ export const UFInput = styled(BaseInput)`
   width: 50px;
 `;
 export const ContainerFpg = styled.div`
-  width: 80%;
-  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  height: 200px;
+  margin-top: 1rem;
+  border-radius: 8px;
   background-color: ${(props) => props.theme["base-card"]};
 `;
 
+export const DivFpg = styled.div`
+  width: 90%;
+  height: 80%;
+
+  svg {
+    color: ${(props) => props.theme["purple-dark"]};
+  }
+
+  div h2 {
+    display: flex;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    color: ${(props) => props.theme["base-subtitle"]};
+  }
+
+  div p {
+    display: flex;
+    font-family: "Roboto", sans-serif;
+    color: ${(props) => props.theme["base-text"]};
+  }
+
+  div button {
+    width: 90%;
+    margin-top: 3rem;
+    gap: 1.5rem;
+  }
+
+  button {
+    all: unset;
+    width: 80px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: ${(props) => props.theme["base-button"]};
+    color: ${(props) => props.theme["base-text"]};
+    text-align: center;
+    border: 1px solid transparent;
+  }
+
+  button:hover {
+    /* border: solid 1px ${(props) => props.theme["purple-dark"]}; */
+    background-color: ${(props) => props.theme["base-hover"]};
+    transition: all 0.3s;
+  }
+`;
+
 export const ContainerCheckout = styled.div`
+  margin-top: 108px;
   width: 500px;
   height: 300px;
   background-color: ${(props) => props.theme["base-card"]};

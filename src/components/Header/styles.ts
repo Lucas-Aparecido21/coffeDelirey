@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
 export const ContainerGrid = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 8rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  background: #fafafa;
   div {
     width: 13rem;
     align-items: center;

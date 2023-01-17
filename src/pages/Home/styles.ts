@@ -6,7 +6,9 @@ export const Container = styled.main`
     margin: 0;
     box-sizing: border-box;
   }
-  max-width: 100%;
+
+  margin-top: 108px;
+
   display: flex;
   justify-content: center;
 
@@ -76,19 +78,14 @@ export const DivInfo = styled.section`
 `;
 
 export const CoffeListContainer = styled.div`
-  width: 100%;
+  height: 1550px;
   display: flex;
-  justify-content: start;
-  align-self: start;
+  justify-content: center;
+  align-self: center;
   font-family: "Baloo 2", sans-serif;
   margin-top: 4rem;
 
   section {
-    margin-top: 4rem;
-    width: 80%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 2rem;
   }
 
   h1 {
@@ -96,4 +93,12 @@ export const CoffeListContainer = styled.div`
     font-size: 28px;
     font-weight: 800;
   }
+`;
+
+export const DivCoffee = styled.div`
+  margin-top: 4rem;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 4rem;
 `;

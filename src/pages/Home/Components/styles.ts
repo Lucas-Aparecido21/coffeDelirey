@@ -1,22 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const Container2 = styled.div`
-  max-width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
   img {
-    display: flex;
-    width: 100px;
     bottom: 1.5rem;
     position: relative;
   }

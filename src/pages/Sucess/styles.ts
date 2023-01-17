@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   width: 100%;
+  margin-top: 108px;
   display: flex;
   justify-content: center;
   font-family: "Baloo 2", sans-serif;
@@ -42,5 +43,6 @@ export const CardOrder2 = styled.div`
   width: 500px;
 
   img {
+    justify-content: baseline;
   }
 `;

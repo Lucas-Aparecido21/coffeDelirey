@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "../../components/Header";
-import { CoffeListContainer, Container, DivInfo } from "./styles";
+import { CoffeListContainer, Container, DivCoffee, DivInfo } from "./styles";
 import Imagem from "../../assets/Imagem.svg";
 import coffeIcon from "../../assets/coffeIcon.svg";
 import checkoutIcon from "../../assets/checkoutIcon.svg";
@@ -48,11 +48,13 @@ export function Home() {
         </section>
       </Container>
       <CoffeListContainer>
-        <h1>Nossos Cafés</h1>
         <section>
-          {dataFake.map((coffee) => (
-            <Card key={coffee.id} coffee={coffee} />
-          ))}
+          <h1>Nossos Cafés</h1>
+          <DivCoffee>
+            {dataFake.map((coffee) => (
+              <Card key={coffee.id} coffee={coffee} />
+            ))}
+          </DivCoffee>
         </section>
       </CoffeListContainer>
     </>
