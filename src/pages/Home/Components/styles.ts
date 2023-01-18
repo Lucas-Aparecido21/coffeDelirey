@@ -13,7 +13,8 @@ export const Container2 = styled.div`
   justify-content: center;
 
   img {
-    bottom: 1.5rem;
+    width: 35%;
+    bottom: 1.7rem;
     position: relative;
   }
 
@@ -30,6 +31,7 @@ export const Container2 = styled.div`
 
 export const CardDiv = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   width: 300px;
   height: 300px;
@@ -46,15 +48,17 @@ export const Description = styled.p`
   font-family: "Roboto", sans-serif;
   color: ${(props) => props.theme["base-label"]};
   width: 80%;
+  height: 30px;
+  margin-top: 10px;
   font-size: 16px;
   align-self: center;
 `;
 
 export const Price = styled.div`
   display: flex;
+  position: absolute;
+  bottom: 20px;
   align-items: center;
-  justify-content: flex-end;
-  height: 99px;
 
   p {
     font-family: "Roboto", sans-serif;
@@ -74,6 +78,7 @@ export const Price = styled.div`
 
     span {
       background-color: ${(props) => props.theme["base-button"]};
+      color: #000000;
       font-size: 18px;
       padding: 0 3px;
     }
@@ -84,6 +89,7 @@ export const Price = styled.div`
       all: unset;
       display: flex;
       cursor: pointer;
+      color: ${(props) => props.theme["purple-dark"]};
     }
   }
   gap: 1rem;
@@ -97,6 +103,8 @@ export const Price = styled.div`
 
 export const DivTag = styled.div`
   display: flex;
+  position: relative;
+  bottom: 8px;
   gap: 10px;
 `;
 

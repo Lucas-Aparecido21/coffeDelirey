@@ -78,6 +78,7 @@ export const DivInfo = styled.section`
 `;
 
 export const CoffeListContainer = styled.div`
+  width: 100%;
   height: 1550px;
   display: flex;
   justify-content: center;

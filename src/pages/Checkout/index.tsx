@@ -1,4 +1,4 @@
-import React from "react";
+// import { useState } from "react";
 import { Header } from "../../components/Header";
 import {
   Container,
@@ -21,11 +21,28 @@ import {
   Bank,
   Money,
 } from "phosphor-react";
-
+import { useForm } from "react-hook-form";
 import { CartListCheckout } from "./Components/Cart";
-import { useForm } from "react-hook-form/dist/useForm";
 
 export function Checkout() {
+  const { register, handleSubmit, setValue } = useForm();
+
+  const onSubmit = (event: any) => {};
+
+  const chekCEP = (event: any) => {
+    const cep = event.target.value;
+    console.log(cep);
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setValue("logradouro", data.logradouro);
+        setValue("bairro", data.bairro);
+        setValue("cidade", data.localidade);
+        setValue("uf", data.uf);
+      });
+  };
+
   return (
     <>
       <Header />
@@ -43,19 +60,40 @@ export function Checkout() {
               <p>
                 Informe o endereço de entrega onde deseja receber seu pedido
               </p>
-              <form action="">
-                <CepInput placeholder="CEP" type="text"></CepInput>
-                <RuaInput placeholder="Rua" type="text"></RuaInput>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <CepInput
+                  placeholder="CEP"
+                  type="text"
+                  onBlur={chekCEP}
+                ></CepInput>
+                <RuaInput
+                  placeholder="Rua"
+                  type="text"
+                  {...register("logradouro")}
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput placeholder="Número" type="text"></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento"
-                    type="text"></ComplementoInput>
+                    type="text"
+                  ></ComplementoInput>
                 </div>
                 <div className="Separador2">
-                  <BairroInput placeholder="Bairro" type="text"></BairroInput>
-                  <CidadeInput placeholder="Cidade" type="text"></CidadeInput>
-                  <UFInput placeholder="UF" type="text"></UFInput>
+                  <BairroInput
+                    placeholder="Bairro"
+                    type="text"
+                    {...register("bairro")}
+                  ></BairroInput>
+                  <CidadeInput
+                    placeholder="Cidade"
+                    type="text"
+                    {...register("cidade")}
+                  ></CidadeInput>
+                  <UFInput
+                    placeholder="UF"
+                    type="text"
+                    {...register("uf")}
+                  ></UFInput>
                 </div>
               </form>
             </div>

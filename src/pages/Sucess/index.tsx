@@ -1,6 +1,6 @@
 import React from "react";
 import { Header } from "../../components/Header";
-import { Container, CardOrder, CardOrder2 } from "./styles";
+import { Container, CardOrder, CardOrder2, DivHome } from "./styles";
 import SucessImagem from "../../assets/Sucess.svg";
 import LocaleIcon from "../../assets/Local.svg";
 import TimerIcon from "../../assets/timerIcon.svg";
@@ -37,7 +37,10 @@ export function Sucess() {
               </CardOrder2>
             </CardOrder>
           </div>
-          <img src={SucessImagem} alt="Imagem Motoboy" />
+          <DivHome>
+            <img src={SucessImagem} alt="Imagem Motoboy" />
+            <button>Continuar comprando</button>
+          </DivHome>
         </section>
       </Container>
     </>

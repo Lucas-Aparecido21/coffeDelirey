@@ -17,6 +17,7 @@ export const Container = styled.main`
   div h1 {
     color: ${(props) => props.theme["yellow-dark"]};
     font-size: 48px;
+    margin-top: 2rem;
   }
 
   div span {
@@ -44,5 +45,33 @@ export const CardOrder2 = styled.div`
 
   img {
     justify-content: baseline;
+  }
+`;
+
+export const DivHome = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 800px;
+    height: 420px;
+  }
+
+  button {
+    margin-top: 18px;
+    width: 400px;
+    height: 70px;
+    background-color: ${(props) => props.theme["yellow-dark"]};
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+    color: #fafafa;
+    border: none;
+    border-radius: 12px;
+  }
+
+  button:hover {
+    background-color: hsl(35, 68%, 43%);
+    transition: all 0.3s;
   }
 `;
