@@ -1,5 +1,7 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
-import { CoffeeProps } from "../../../@types/Coffe";
+import { useState } from "react";
+import { CartProps, CoffeeProps } from "../../../@types/Coffe";
+
 import {
   Description,
   Price,
@@ -13,7 +15,25 @@ interface CardProps {
   coffee: CoffeeProps;
 }
 
-export const Card = ({ coffee }: CardProps) => {
+interface CheckProps {
+  cart: CartProps;
+}
+
+export const Card = ({ coffee }: CardProps, { cart }: CheckProps) => {
+  const [quantity, setQuantity] = useState(0);
+
+  function handleAddQuantity() {
+    setQuantity((state) => state + 1);
+  }
+
+  function handleRemoveQuantity() {
+    setQuantity((state) => Math.max(state - 1, 0));
+  }
+
+  function handleAddToCart() {
+    setQuantity(0);
+  }
+
   return (
     <Container2>
       <CardDiv>
@@ -24,7 +44,7 @@ export const Card = ({ coffee }: CardProps) => {
           ))}
         </DivTag>
 
-        <h2>{coffee.name}</h2>
+        <h2>{coffee.name} </h2>
         <Description>{coffee.description}</Description>
         <Price>
           <p className="value">
@@ -34,15 +54,15 @@ export const Card = ({ coffee }: CardProps) => {
             })}
           </p>
           <div>
-            <button>
+            <button onClick={handleRemoveQuantity}>
               <Minus />
             </button>
-            <span>1</span>
-            <button>
+            <span>{quantity}</span>
+            <button onClick={handleAddQuantity}>
               <Plus />
             </button>
           </div>
-          <ButtonCart>
+          <ButtonCart onClick={handleAddToCart}>
             <ShoppingCart />
           </ButtonCart>
         </Price>

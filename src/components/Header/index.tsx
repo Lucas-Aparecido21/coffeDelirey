@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ContainerGrid,
   ContainerCheckout,
@@ -9,12 +9,16 @@ import {
 import Logo from "../../assets/Logo.svg";
 import Icon from "../../assets/Locale.svg";
 import CheckoutIcon from "../../assets/Checkout.svg";
+import { NavLink } from "react-router-dom";
 
 export function Header() {
+  const [cartQuantity] = useState(0);
   return (
     <ContainerGrid>
       <ContainerLogo>
-        <img src={Logo} alt="Logo" />
+        <NavLink to="/" title="Home">
+          <img src={Logo} alt="Logo" />
+        </NavLink>
       </ContainerLogo>
 
       <ContainerCheckout>
@@ -23,7 +27,10 @@ export function Header() {
           São Paulo, SP
         </Locale>
         <Checkout title="Checkout">
-          <img src={CheckoutIcon} alt="CheckoutIcon" />
+          <span>{cartQuantity}</span>
+          <NavLink to="/Checkout" title="Checkout">
+            <img src={CheckoutIcon} alt="CheckoutIcon" />
+          </NavLink>
         </Checkout>
       </ContainerCheckout>
     </ContainerGrid>

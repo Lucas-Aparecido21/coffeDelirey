@@ -38,7 +38,7 @@ export const ContainerCep = styled.nav`
 
   .Separador1 {
     display: flex;
-    gap: 20px;
+    gap: 1rem;
   }
 
   .Separador2 {
@@ -85,7 +85,7 @@ export const BaseInput = styled.input`
   font-size: 16px;
   font-style: normal;
   padding-left: 12px;
-  height: 40px;
+  height: 50px;
   border-radius: 8px;
   ::placeholder {
     color: ${(props) => props.theme["base-label"]};
@@ -104,24 +104,24 @@ export const CepInput = styled(BaseInput)`
 
 export const RuaInput = styled(BaseInput)`
   grid-area: "rua";
-  margin-top: 18px;
+  margin-top: 10px;
 `;
 
 export const NumeroInput = styled(BaseInput)`
   grid-area: "numero";
-  margin-top: 18px;
+  margin-top: 10px;
   width: 140px;
 `;
 
 export const ComplementoInput = styled(BaseInput)`
   grid-area: "complemento";
-  margin-top: 18px;
+  margin-top: 10px;
   width: 250px;
 `;
 
 export const BairroInput = styled(BaseInput)`
   grid-area: "bairro";
-  margin-top: 18px;
+  margin-top: 10px;
   width: 280px;
 `;
 

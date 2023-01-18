@@ -22,6 +22,9 @@ import {
   Money,
 } from "phosphor-react";
 
+import { CartListCheckout } from "./Components/Cart";
+import { useForm } from "react-hook-form/dist/useForm";
+
 export function Checkout() {
   return (
     <>
@@ -41,16 +44,18 @@ export function Checkout() {
                 Informe o endereço de entrega onde deseja receber seu pedido
               </p>
               <form action="">
-                <CepInput placeholder="CEP"></CepInput>
-                <RuaInput placeholder="Rua"></RuaInput>
+                <CepInput placeholder="CEP" type="text"></CepInput>
+                <RuaInput placeholder="Rua" type="text"></RuaInput>
                 <div className="Separador1">
-                  <NumeroInput placeholder="Número"></NumeroInput>
-                  <ComplementoInput placeholder="Complemento"></ComplementoInput>
+                  <NumeroInput placeholder="Número" type="text"></NumeroInput>
+                  <ComplementoInput
+                    placeholder="Complemento"
+                    type="text"></ComplementoInput>
                 </div>
                 <div className="Separador2">
-                  <BairroInput placeholder="Bairro"></BairroInput>
-                  <CidadeInput placeholder="Cidade"></CidadeInput>
-                  <UFInput placeholder="UF"></UFInput>
+                  <BairroInput placeholder="Bairro" type="text"></BairroInput>
+                  <CidadeInput placeholder="Cidade" type="text"></CidadeInput>
+                  <UFInput placeholder="UF" type="text"></UFInput>
                 </div>
               </form>
             </div>
@@ -83,11 +88,7 @@ export function Checkout() {
           </ContainerFpg>
         </section>
         <ContainerCheckout>
-          <h2>Cafés selecionados</h2>
-          <p>Total de itens</p>
-          <p>Entrega</p>
-          <p>Total</p>
-          <button>CONFIRMAR PEDIDO</button>
+          <CartListCheckout />
         </ContainerCheckout>
       </Container>
     </>

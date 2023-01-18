@@ -38,6 +38,11 @@ export const ContainerLogo = styled.main`
     align-items: center;
   }
 
+  button {
+    all: unset;
+    cursor: pointer;
+  }
+
   @media (max-width: 700px) {
     img {
     }
@@ -72,7 +77,25 @@ export const Checkout = styled.button`
   color: ${(props) => props.theme["yellow-base"]};
   border-radius: 8px;
 
+  span {
+    all: unset;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background: ${(props) => props.theme["yellow-dark"]};
+    color: #fafafa;
+    align-content: center;
+    font-style: normal;
+    align-items: center;
+    bottom: 8px;
+    left: 24px;
+    width: 16px;
+    border-radius: 999px;
+  }
+
   img {
-    padding: 0 8px;
+    position: relative;
+    bottom: 10px;
+    left: 8px;
   }
 `;
