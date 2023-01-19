@@ -42,6 +42,10 @@ export const CardOrder = styled.div`
 
 export const CardOrder2 = styled.div`
   width: 500px;
+  div {
+    display: flex;
+    gap: 1rem;
+  }
 
   img {
     justify-content: baseline;
@@ -62,7 +66,7 @@ export const DivHome = styled.div`
     margin-top: 18px;
     width: 400px;
     height: 70px;
-    background-color: ${(props) => props.theme["yellow-dark"]};
+    background-color: ${(props) => props.theme["yellow-base"]};
     font-size: 18px;
     font-family: "Roboto", sans-serif;
     color: #fafafa;
@@ -71,7 +75,7 @@ export const DivHome = styled.div`
   }
 
   button:hover {
-    background-color: hsl(35, 68%, 43%);
+    background-color: ${(props) => props.theme["yellow-dark"]};
     transition: all 0.3s;
   }
 `;

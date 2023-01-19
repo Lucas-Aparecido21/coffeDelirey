@@ -13,6 +13,10 @@ import {
   CidadeInput,
   UFInput,
   DivFpg,
+  DivInicial,
+  DivValor,
+  DivNav,
+  DivButton,
 } from "./styles";
 import {
   MapPinLine,
@@ -23,6 +27,8 @@ import {
 } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import { CartListCheckout } from "./Components/Cart";
+import { dataList } from "../../database/fakeList";
+import { NavLink } from "react-router-dom";
 
 export function Checkout() {
   const { register, handleSubmit, setValue } = useForm();
@@ -49,7 +55,9 @@ export function Checkout() {
       <Container>
         <section>
           <div>
-            <h1>Complete seu pedido</h1>
+            <h1 style={{ display: "flex", top: "14px", left: "42px" }}>
+              Complete seu pedido
+            </h1>
           </div>
           <ContainerCep>
             <div>
@@ -64,36 +72,30 @@ export function Checkout() {
                 <CepInput
                   placeholder="CEP"
                   type="text"
-                  onBlur={chekCEP}
-                ></CepInput>
+                  onBlur={chekCEP}></CepInput>
                 <RuaInput
                   placeholder="Rua"
                   type="text"
-                  {...register("logradouro")}
-                ></RuaInput>
+                  {...register("logradouro")}></RuaInput>
                 <div className="Separador1">
                   <NumeroInput placeholder="Número" type="text"></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento"
-                    type="text"
-                  ></ComplementoInput>
+                    type="text"></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
                     type="text"
-                    {...register("bairro")}
-                  ></BairroInput>
+                    {...register("bairro")}></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     type="text"
-                    {...register("cidade")}
-                  ></CidadeInput>
+                    {...register("cidade")}></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     type="text"
-                    {...register("uf")}
-                  ></UFInput>
+                    {...register("uf")}></UFInput>
                 </div>
               </form>
             </div>
@@ -125,8 +127,35 @@ export function Checkout() {
             </DivFpg>
           </ContainerFpg>
         </section>
+
         <ContainerCheckout>
-          <CartListCheckout />
+          <DivInicial>
+            <h1>Cafés Selecionados</h1>
+          </DivInicial>
+          {dataList.map((cart) => (
+            <CartListCheckout key={cart.id} cart={cart} />
+          ))}
+          <DivNav>
+            <DivValor>
+              <div className="div1">
+                <p>Total de itens</p>
+                <span>R$ 38,00</span>
+              </div>
+              <div className="div2">
+                <p>Entrega</p>
+                <span>R$ 5,00</span>
+              </div>
+              <div className="div3">
+                <h2>Total</h2>
+                <span>R$ 43,00</span>
+              </div>
+            </DivValor>
+          </DivNav>
+          <DivButton>
+            <NavLink to="/Sucess">
+              <button>CONFIRMAR PEDIDO</button>
+            </NavLink>
+          </DivButton>
         </ContainerCheckout>
       </Container>
     </>

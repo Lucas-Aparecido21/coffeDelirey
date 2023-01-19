@@ -190,9 +190,86 @@ export const DivFpg = styled.div`
   }
 `;
 
-export const ContainerCheckout = styled.div`
-  margin-top: 108px;
-  width: 500px;
-  height: 300px;
+export const ContainerCheckout = styled.nav`
+  margin-top: 66px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 12px;
+  width: 600px;
+  height: 620px;
   background-color: ${(props) => props.theme["base-card"]};
+`;
+
+export const DivInicial = styled.div`
+  display: flex;
+  height: 10px;
+  h1 {
+    bottom: 38px;
+  }
+`;
+
+export const DivNav = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+`;
+
+export const DivValor = styled.nav`
+  width: 80%;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .div1 {
+    display: flex;
+    height: 40px;
+
+    justify-content: space-between;
+    align-items: end;
+    font-family: "Roboto", sans-serif;
+
+    font-size: 24px;
+  }
+  .div2 {
+    display: flex;
+    color: ${(props) => props.theme["base-subtitle"]};
+    height: 40px;
+    justify-content: space-between;
+    align-items: end;
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+  }
+  .div3 {
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 30px;
+  }
+`;
+
+export const DivButton = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    width: 480px;
+    height: 60px;
+    background-color: ${(props) => props.theme["yellow-base"]};
+    color: #fafafa;
+    font-size: 18px;
+    border: none;
+    border-radius: 14px;
+  }
+
+  button:hover {
+    background-color: ${(props) => props.theme["yellow-dark"]};
+    transition: all 0.2s;
+  }
 `;

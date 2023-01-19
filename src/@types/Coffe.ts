@@ -8,6 +8,16 @@ export interface CoffeeProps {
   price: number;
 }
 
+export interface CartListCoffee {
+  id: number;
+  image: string;
+  tag: string[];
+  name: string;
+  //quantity: number;
+  description: string;
+  price: number;
+}
+
 export interface CartItem extends CoffeeProps {
   quantity: number;
   item?: void;

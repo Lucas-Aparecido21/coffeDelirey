@@ -5,6 +5,7 @@ import SucessImagem from "../../assets/Sucess.svg";
 import LocaleIcon from "../../assets/Local.svg";
 import TimerIcon from "../../assets/timerIcon.svg";
 import CashIcon from "../../assets/CashIcon.svg";
+import { NavLink } from "react-router-dom";
 
 export function Sucess() {
   return (
@@ -18,28 +19,35 @@ export function Sucess() {
 
             <CardOrder>
               <CardOrder2>
-                <p>
+                <div>
                   <img src={LocaleIcon} alt="Icone Localização" />
-                  Entrega em Rua João Daniel Martinelli, 102
-                  <p>Farrapos - Porto Alegre, RS</p>
-                </p>
-
-                <p>
+                  <p>
+                    Entrega em Rua João Daniel Martinelli, 102
+                    <p>Farrapos - Porto Alegre, RS</p>
+                  </p>
+                </div>
+                <div>
                   <img src={TimerIcon} alt="Icone Temporizador" />
-                  Previsão de entrega
-                  <p>20 min - 30 min</p>
-                </p>
-                <p>
+                  <p style={{ marginTop: "12px" }}>
+                    Previsão de entrega
+                    <p>20 min - 30 min</p>
+                  </p>
+                </div>
+                <div>
                   <img src={CashIcon} alt="Icone Dinheiro" />
-                  Pagamento na entrega
-                  <p>Cartão de Crédito</p>
-                </p>
+                  <p style={{ marginTop: "12px" }}>
+                    Pagamento na entrega
+                    <p>Cartão de Crédito</p>
+                  </p>
+                </div>
               </CardOrder2>
             </CardOrder>
           </div>
           <DivHome>
             <img src={SucessImagem} alt="Imagem Motoboy" />
-            <button>Continuar comprando</button>
+            <NavLink to="/">
+              <button>Continuar comprando</button>
+            </NavLink>
           </DivHome>
         </section>
       </Container>
