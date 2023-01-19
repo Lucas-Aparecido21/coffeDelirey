@@ -3,7 +3,7 @@ export interface CoffeeProps {
   image: string;
   tag: string[];
   name: string;
-  //quantity: number;
+  quantity: number;
   description: string;
   price: number;
 }
@@ -13,7 +13,7 @@ export interface CartListCoffee {
   image: string;
   tag: string[];
   name: string;
-  //quantity: number;
+  quantity: number;
   description: string;
   price: number;
 }

@@ -27,14 +27,18 @@ import {
 } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import { CartListCheckout } from "./Components/Cart";
-import { dataList } from "../../database/fakeList";
+
 import { NavLink } from "react-router-dom";
+
+import { useCart } from "../../hooks/useCart";
 
 export function Checkout() {
   const { register, handleSubmit, setValue } = useForm();
 
   const onSubmit = (event: any) => {};
-
+  const DELIVERY_PRICE = 3.5;
+  const { cartItems, cartItemsTotal, cartQuantity } = useCart()
+  const cartTotal = DELIVERY_PRICE + cartItemsTotal
   const chekCEP = (event: any) => {
     const cep = event.target.value;
     console.log(cep);
@@ -132,8 +136,8 @@ export function Checkout() {
           <DivInicial>
             <h1>Cafés Selecionados</h1>
           </DivInicial>
-          {dataList.map((cart) => (
-            <CartListCheckout key={cart.id} cart={cart} />
+          {cartItems.map((item) => (
+            <CartListCheckout key={item.id} coffee={item} />
           ))}
           <DivNav>
             <DivValor>

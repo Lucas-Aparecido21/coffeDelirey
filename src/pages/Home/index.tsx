@@ -9,8 +9,11 @@ import embIcon from "../../assets/embIcon.svg";
 //
 import { dataFake } from "../../database/fakeCoffe";
 import { Card } from "./Components/Card";
+import { useCart } from "../../hooks/useCart";
 
 export function Home() {
+  const { cartItems } = useCart()
+
   return (
     <>
       <Header />

@@ -1,4 +1,4 @@
-import { CartListCoffee } from "../../../@types/Coffe";
+import { CoffeeProps } from "../../../@types/Coffe";
 import {
   DivCart,
   ContainerGeral,
@@ -10,29 +10,45 @@ import {
 } from "./styles";
 import { Minus, Plus, Trash } from "phosphor-react";
 import { useState } from "react";
+import { useCart } from "../../../hooks/useCart";
 
 interface CartListProps {
-  cart: CartListCoffee;
+  coffee: CoffeeProps;
 }
 
-export function CartListCheckout({ cart }: CartListProps) {
+
+
+export function CartListCheckout({ coffee}: CartListProps) {
   const [quantity, setQuantity] = useState(0);
   function handleAddQuantity() {
-    setQuantity((state) => state + 1);
+    changeCartItemQuantity(coffee.id, 'increase')
   }
 
   function handleRemoveQuantity() {
-    setQuantity((state) => Math.max(state - 1, 0));
+    if (coffee.quantity === 1) return
+
+    changeCartItemQuantity(coffee.id, 'decrease')
   }
+
+  const { cartItems, changeCartItemQuantity, removeCartItem } = useCart()
+
+
+
+
+
+  const coffeeTotal = coffee.price * coffee.quantity
+
+  //const formattedPrice = formatMoney(coffeeTotal)
+
   return (
     <>
       <ContainerGeral>
         <DivCart>
           <div>
-            <img src={cart.image} alt="Imagem Café" />
+            <img src={coffee.image} alt="Imagem Café" />
           </div>
           <DivInfo>
-            <p>{cart.name}</p>
+            <p>{coffee.name}</p>
             <div>
               <DivButton>
                 <DivMinusPlus>
@@ -53,7 +69,7 @@ export function CartListCheckout({ cart }: CartListProps) {
           </DivInfo>
           <DivPrice>
             <p>
-              {cart.price.toLocaleString("pt-br", {
+              {coffee.price.toLocaleString("pt-br", {
                 style: "currency",
                 currency: "BRL",
               })}

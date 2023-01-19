@@ -15,11 +15,9 @@ interface CardProps {
   coffee: CoffeeProps;
 }
 
-interface CheckProps {
-  cart: CartProps;
-}
 
-export const Card = ({ coffee }: CardProps, { cart }: CheckProps) => {
+
+export const Card = ({ coffee }: CardProps) => {
   const [quantity, setQuantity] = useState(0);
 
   function handleAddQuantity() {
