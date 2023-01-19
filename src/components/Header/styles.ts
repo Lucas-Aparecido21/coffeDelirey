@@ -43,9 +43,8 @@ export const ContainerLogo = styled.main`
     cursor: pointer;
   }
 
-  @media (max-width: 700px) {
-    img {
-    }
+  @media (max-width: 1300) {
+    width: 0px;
   }
 `;
 

@@ -11,14 +11,15 @@ import Icon from "../../assets/Locale.svg";
 import CheckoutIcon from "../../assets/Checkout.svg";
 import { NavLink } from "react-router-dom";
 
-interface AdressProps {
-  cidade: string;
-  uf: string;
-}
+// interface AdressProps {
+//   cidade: string;
+//   uf: string;
+// }
 
 export function Header() {
-  const [adress] = useState<AdressProps>();
+  //const [adress] = useState<AdressProps>();
   const [cartQuantity] = useState(0);
+
   return (
     <ContainerGrid>
       <ContainerLogo>
@@ -31,10 +32,11 @@ export function Header() {
         <NavLink
           to="/Checkout"
           title="Insira seu endereço"
-          style={{ textDecoration: "none" }}>
+          style={{ textDecoration: "none" }}
+        >
           <Locale>
             <img src={Icon} alt="LocaleIcon" />
-            {adress?.cidade} {adress?.uf}
+            Santo André, SP
           </Locale>
         </NavLink>
         <Checkout title="Checkout">

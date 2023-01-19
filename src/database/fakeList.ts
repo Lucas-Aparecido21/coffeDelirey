@@ -1,6 +1,6 @@
 import Expresso from "../assets/Expresso.svg";
 import Arabe from "../assets/Arabe.svg";
-import Havaiano from "../assets/Havaiano.svg";
+//import Havaiano from "../assets/Havaiano.svg";
 
 export const dataList = [
   {

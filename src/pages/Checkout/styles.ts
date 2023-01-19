@@ -230,8 +230,8 @@ export const DivValor = styled.nav`
     justify-content: space-between;
     align-items: end;
     font-family: "Roboto", sans-serif;
-
-    font-size: 24px;
+    color: ${(props) => props.theme["base-subtitle"]};
+    font-size: 18px;
   }
   .div2 {
     display: flex;
@@ -240,15 +240,16 @@ export const DivValor = styled.nav`
     justify-content: space-between;
     align-items: end;
     font-family: "Roboto", sans-serif;
-    font-size: 24px;
+    font-size: 18px;
   }
   .div3 {
     display: flex;
     height: 80px;
     justify-content: space-between;
     align-items: baseline;
-    font-family: "Baloo 2", sans-serif;
-    font-size: 30px;
+    font-family: "Roboto", sans-serif;
+    font-size: 22px;
+    margin-top: 8px;
   }
 `;
 

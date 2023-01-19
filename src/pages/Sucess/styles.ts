@@ -12,19 +12,19 @@ export const Container = styled.main`
     grid-template-columns: 1fr 1fr;
     width: 80%;
     margin-top: 4rem;
+
+    @media (max-width: 1554px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   div h1 {
     color: ${(props) => props.theme["yellow-dark"]};
     font-size: 48px;
     margin-top: 2rem;
-  }
-
-  div span {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    color: ${(props) => props.theme["base-subtitle"]};
-    font-size: 22px;
   }
 `;
 
@@ -38,6 +38,13 @@ export const CardOrder = styled.div`
   margin-top: 3rem;
   border: 1px solid ${(props) => props.theme["purple-dark"]};
   border-radius: 8px;
+  border-top-right-radius: 32px;
+  border-bottom-left-radius: 32px;
+
+  @media (max-width: 1554px) {
+    /* width: 1000px; */
+    justify-content: center;
+  }
 `;
 
 export const CardOrder2 = styled.div`
@@ -49,6 +56,20 @@ export const CardOrder2 = styled.div`
 
   img {
     justify-content: baseline;
+  }
+
+  p {
+    font-family: "Roboto", sans-serif;
+    color: ${(props) => props.theme["base-text"]};
+  }
+
+  span {
+    font-family: "Roboto", sans-serif;
+    color: ${(props) => props.theme["base-text"]};
+  }
+
+  @media (max-width: 1554px) {
+    /* width: 800px; */
   }
 `;
 
@@ -77,5 +98,15 @@ export const DivHome = styled.div`
   button:hover {
     background-color: ${(props) => props.theme["yellow-dark"]};
     transition: all 0.3s;
+
+    @media (max-width: 1554px) {
+      width: 600px;
+    }
+  }
+
+  @media (max-width: 1554px) {
+    #teste {
+      display: none;
+    }
   }
 `;
