@@ -17,6 +17,9 @@ import {
   DivValor,
   DivNav,
   DivButton,
+  ButtonConfirm,
+  ButtonHome,
+  DivTeste,
 } from "./styles";
 import {
   MapPinLine,
@@ -33,12 +36,12 @@ import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 
 export function Checkout() {
-  const { register, handleSubmit, setValue } = useForm();
-
-  const onSubmit = (event: any) => {};
+  const { register, setValue } = useForm();
+  const { handleConfirmOrder } = useCart();
+  //const onSubmit = (event: any) => {};
   const DELIVERY_PRICE = 3.5;
-  const { cartItems, cartItemsTotal, cartQuantity } = useCart()
-  const cartTotal = DELIVERY_PRICE + cartItemsTotal
+  const { cartItems, cartItemsTotal } = useCart();
+  const cartTotal = DELIVERY_PRICE + cartItemsTotal;
   const chekCEP = (event: any) => {
     const cep = event.target.value;
     console.log(cep);
@@ -52,6 +55,8 @@ export function Checkout() {
         setValue("uf", data.uf);
       });
   };
+
+  function CepValidator() {}
 
   return (
     <>
@@ -72,8 +77,9 @@ export function Checkout() {
               <p>
                 Informe o endereço de entrega onde deseja receber seu pedido
               </p>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={CepValidator}>
                 <CepInput
+                  id="teste"
                   placeholder="CEP"
                   type="text"
                   onBlur={chekCEP}></CepInput>
@@ -136,28 +142,39 @@ export function Checkout() {
           <DivInicial>
             <h1>Cafés Selecionados</h1>
           </DivInicial>
-          {cartItems.map((item) => (
-            <CartListCheckout key={item.id} coffee={item} />
-          ))}
+          <DivTeste>
+            {cartItems.map((item) => (
+              <CartListCheckout key={item.id} coffee={item} />
+            ))}
+          </DivTeste>
           <DivNav>
             <DivValor>
               <div className="div1">
                 <p>Total de itens</p>
-                <span>R$ 38,00</span>
+                <span>R${cartItemsTotal.toFixed(2)}</span>
               </div>
               <div className="div2">
                 <p>Entrega</p>
-                <span>R$ 5,00</span>
+                <span>R${DELIVERY_PRICE.toFixed(2)}</span>
               </div>
               <div className="div3">
                 <h2>Total</h2>
-                <span>R$ 43,00</span>
+                <span>R$ {cartTotal.toFixed(2)}</span>
               </div>
             </DivValor>
           </DivNav>
           <DivButton>
+            <NavLink to="/">
+              <ButtonHome> CONTINUAR COMPRANDO</ButtonHome>
+            </NavLink>
             <NavLink to="/Sucess">
-              <button>CONFIRMAR PEDIDO</button>
+              <ButtonConfirm
+                onClick={handleConfirmOrder}
+                onInvalid={CepValidator}
+                type="submit"
+                onSubmit={CepValidator}>
+                CONFIRMAR PEDIDO
+              </ButtonConfirm>
             </NavLink>
           </DivButton>
         </ContainerCheckout>

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   ContainerGrid,
   ContainerCheckout,
@@ -10,15 +9,10 @@ import Logo from "../../assets/Logo.svg";
 import Icon from "../../assets/Locale.svg";
 import CheckoutIcon from "../../assets/Checkout.svg";
 import { NavLink } from "react-router-dom";
-
-// interface AdressProps {
-//   cidade: string;
-//   uf: string;
-// }
+import { useCart } from "../../hooks/useCart";
 
 export function Header() {
-  //const [adress] = useState<AdressProps>();
-  const [cartQuantity] = useState(0);
+  const { cartQuantity } = useCart();
 
   return (
     <ContainerGrid>
@@ -32,8 +26,7 @@ export function Header() {
         <NavLink
           to="/Checkout"
           title="Insira seu endereço"
-          style={{ textDecoration: "none" }}
-        >
+          style={{ textDecoration: "none" }}>
           <Locale>
             <img src={Icon} alt="LocaleIcon" />
             Santo André, SP

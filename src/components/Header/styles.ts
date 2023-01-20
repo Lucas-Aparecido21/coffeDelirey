@@ -15,6 +15,10 @@ export const ContainerGrid = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+
+  @media (max-width: 640px) {
+    width: 90%;
+  }
 `;
 
 export const ContainerCheckout = styled.div`
@@ -43,8 +47,8 @@ export const ContainerLogo = styled.main`
     cursor: pointer;
   }
 
-  @media (max-width: 1300) {
-    width: 0px;
+  @media (max-width: 1554px) {
+    width: 100px;
   }
 `;
 

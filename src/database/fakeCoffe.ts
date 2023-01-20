@@ -20,7 +20,8 @@ export const dataFake = [
     tag: ["Tradicional"],
     name: "Expresso Tradicional",
     description: "O tradicional café feito com água quente e grãos moídos",
-    price: 9.9,
+    quantity: 0,
+    price: 2.5,
   },
 
   {
@@ -29,7 +30,8 @@ export const dataFake = [
     tag: ["Tradicional"],
     name: "Expresso Americano",
     description: "Expresso diluído, menos intenso que o tradicional ",
-    price: 9.9,
+    quantity: 0,
+    price: 4.9,
   },
 
   {
@@ -38,7 +40,8 @@ export const dataFake = [
     tag: ["Tradicional"],
     name: "Expresso Cremoso",
     description: "Café expresso tradicional com espuma cremosa",
-    price: 9.9,
+    quantity: 0,
+    price: 4.9,
   },
 
   {
@@ -47,7 +50,8 @@ export const dataFake = [
     tag: ["Tradicional", "Gelado"],
     name: "Expresso Gelado",
     description: "Bebida preparada com café expresso e cubos de gelo",
-    price: 9.9,
+    quantity: 0,
+    price: 5.9,
   },
 
   {
@@ -56,7 +60,8 @@ export const dataFake = [
     tag: ["Tradicional", "Com Leite"],
     name: "Café com Leite",
     description: "Meio a meio de expresso tradicional com leite vaporizado",
-    price: 9.9,
+    quantity: 0,
+    price: 4.9,
   },
   {
     id: 6,
@@ -65,7 +70,8 @@ export const dataFake = [
     name: "Latte",
     description:
       "Uma dose de café expresso com o dobro de leite e espuma cremosa",
-    price: 9.9,
+    quantity: 0,
+    price: 4.9,
   },
   {
     id: 7,
@@ -74,7 +80,8 @@ export const dataFake = [
     name: "Capuccino",
     description:
       "Bebida com canela feita de doses iguais de café, leite e espuma",
-    price: 9.9,
+    quantity: 0,
+    price: 8.0,
   },
   {
     id: 8,
@@ -83,7 +90,8 @@ export const dataFake = [
     name: "Macchiato",
     description:
       "Café expresso misturado com um pocuo de leite quente e espuma",
-    price: 9.9,
+    quantity: 0,
+    price: 6.9,
   },
   {
     id: 9,
@@ -91,7 +99,8 @@ export const dataFake = [
     tag: ["Tradicional", "Com Leite"],
     name: "Mocaccino",
     description: "Café expresso com calda de chocolate, pouco leite e espuma",
-    price: 9.9,
+    quantity: 0,
+    price: 6.9,
   },
   {
     id: 10,
@@ -99,7 +108,8 @@ export const dataFake = [
     tag: ["Especial", "Com Leite"],
     name: "Chocolate Quente",
     description: "Bebida feita com chocolate dissolvido no leite quente e café",
-    price: 9.9,
+    quantity: 0,
+    price: 8.9,
   },
 
   {
@@ -109,6 +119,7 @@ export const dataFake = [
     name: "Cubano",
     description:
       "Drink gelado de café expresso com rum, creme de leite e hortelã",
+    quantity: 0,
     price: 9.9,
   },
 
@@ -118,7 +129,8 @@ export const dataFake = [
     tag: ["Especial"],
     name: "Havaiano",
     description: "Bebida adocicada preparada com café e leite de coco",
-    price: 9.9,
+    quantity: 0,
+    price: 12.9,
   },
 
   {
@@ -127,7 +139,8 @@ export const dataFake = [
     tag: ["Especial"],
     name: "Árabe",
     description: "Bebida preparada com grãos de café árabe e especiarias",
-    price: 9.9,
+    quantity: 0,
+    price: 12.9,
   },
 
   {
@@ -136,6 +149,7 @@ export const dataFake = [
     tag: ["Especial", "Alcoólico"],
     name: "Irlandês",
     description: "Bebida a base de café, uísque irlandês, açúcar e chantilly",
-    price: 9.9,
+    quantity: 0,
+    price: 12.9,
   },
 ];

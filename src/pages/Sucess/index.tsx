@@ -21,8 +21,7 @@ export function Sucess() {
                 fontWeight: "400",
                 fontSize: "22px",
                 color: "#403937",
-              }}
-            >
+              }}>
               Agora é só aguardar que logo o café chegará até você
             </span>
 

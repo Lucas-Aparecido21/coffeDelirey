@@ -1,6 +1,7 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import { useState } from "react";
-import { CartProps, CoffeeProps } from "../../../@types/Coffe";
+import { CoffeeProps } from "../../../@types/Coffe";
+import { useCart } from "../../../hooks/useCart";
 
 import {
   Description,
@@ -15,11 +16,9 @@ interface CardProps {
   coffee: CoffeeProps;
 }
 
-
-
 export const Card = ({ coffee }: CardProps) => {
   const [quantity, setQuantity] = useState(0);
-
+  const { addCoffeeToCart } = useCart();
   function handleAddQuantity() {
     setQuantity((state) => state + 1);
   }
@@ -29,7 +28,12 @@ export const Card = ({ coffee }: CardProps) => {
   }
 
   function handleAddToCart() {
-    setQuantity(0);
+    const coffeeToAdd = {
+      ...coffee,
+      quantity,
+    };
+    addCoffeeToCart(coffeeToAdd);
+    setQuantity((state) => (state = 0));
   }
 
   return (

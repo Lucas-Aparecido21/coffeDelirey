@@ -197,7 +197,8 @@ export const ContainerCheckout = styled.nav`
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 12px;
   width: 600px;
-  height: 620px;
+  min-height: 400px;
+  max-height: 900px;
   background-color: ${(props) => props.theme["base-card"]};
 `;
 
@@ -255,22 +256,64 @@ export const DivValor = styled.nav`
 
 export const DivButton = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: center;
   align-items: center;
+`;
 
-  button {
-    width: 480px;
-    height: 60px;
-    background-color: ${(props) => props.theme["yellow-base"]};
-    color: #fafafa;
-    font-size: 18px;
-    border: none;
-    border-radius: 14px;
-  }
+export const ButtonConfirm = styled.button`
+  margin-top: 1rem;
+  width: 480px;
+  height: 60px;
+  background-color: ${(props) => props.theme["yellow-base"]};
+  color: #fafafa;
+  font-size: 18px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
 
-  button:hover {
+  :hover {
     background-color: ${(props) => props.theme["yellow-dark"]};
     transition: all 0.2s;
+  }
+`;
+
+export const ButtonHome = styled.button`
+  cursor: pointer;
+  width: 480px;
+  height: 8px;
+  background-color: transparent;
+  color: ${(props) => props.theme["yellow-base"]};
+  font-size: 18px;
+  border: none;
+  border-radius: 14px;
+`;
+
+export const DivTeste = styled.div`
+  overflow-y: scroll;
+  width: 590px;
+  min-height: 10px;
+  max-height: 400px;
+  border-top-right-radius: 80px;
+  scrollbar-color: red;
+
+  ::-webkit-scrollbar-track {
+    background-color: ${(props) => props.theme["base-card"]};
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 8px;
+    border-radius: 8px;
+    // background-color: ${(props) => props.theme["base-card"]};
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    padding: 2px;
+    height: 8px;
   }
 `;

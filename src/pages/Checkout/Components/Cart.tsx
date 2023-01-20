@@ -9,36 +9,28 @@ import {
   DivPrice,
 } from "./styles";
 import { Minus, Plus, Trash } from "phosphor-react";
-import { useState } from "react";
 import { useCart } from "../../../hooks/useCart";
 
 interface CartListProps {
   coffee: CoffeeProps;
 }
 
-
-
-export function CartListCheckout({ coffee}: CartListProps) {
-  const [quantity, setQuantity] = useState(0);
+export function CartListCheckout({ coffee }: CartListProps) {
+  const { changeCartItemQuantity, removeCartItem } = useCart();
+  const coffeeTotal = coffee.price * coffee.quantity;
   function handleAddQuantity() {
-    changeCartItemQuantity(coffee.id, 'increase')
+    changeCartItemQuantity(coffee.id, "increase");
   }
 
   function handleRemoveQuantity() {
-    if (coffee.quantity === 1) return
+    if (coffee.quantity === 1) return;
 
-    changeCartItemQuantity(coffee.id, 'decrease')
+    changeCartItemQuantity(coffee.id, "decrease");
   }
 
-  const { cartItems, changeCartItemQuantity, removeCartItem } = useCart()
-
-
-
-
-
-  const coffeeTotal = coffee.price * coffee.quantity
-
-  //const formattedPrice = formatMoney(coffeeTotal)
+  function handleDeleteItem() {
+    removeCartItem(coffee.id);
+  }
 
   return (
     <>
@@ -55,12 +47,12 @@ export function CartListCheckout({ coffee}: CartListProps) {
                   <button onClick={handleRemoveQuantity}>
                     <Minus />
                   </button>
-                  <span>{quantity}</span>
+                  <span>{coffee.quantity}</span>
                   <button onClick={handleAddQuantity}>
                     <Plus />
                   </button>
                 </DivMinusPlus>
-                <DivTrash>
+                <DivTrash onClick={handleDeleteItem}>
                   <Trash />
                   Remover
                 </DivTrash>
@@ -69,7 +61,7 @@ export function CartListCheckout({ coffee}: CartListProps) {
           </DivInfo>
           <DivPrice>
             <p>
-              {coffee.price.toLocaleString("pt-br", {
+              {coffeeTotal.toLocaleString("pt-br", {
                 style: "currency",
                 currency: "BRL",
               })}

@@ -19,6 +19,9 @@ export const Container = styled.main`
       justify-content: center;
       align-items: center;
     }
+    @media (max-width: 640px) {
+      text-align: -webkit-center;
+    }
   }
 
   div h1 {
@@ -45,6 +48,10 @@ export const CardOrder = styled.div`
     /* width: 1000px; */
     justify-content: center;
   }
+
+  @media (max-width: 640px) {
+    width: 400px;
+  }
 `;
 
 export const CardOrder2 = styled.div`
@@ -70,6 +77,13 @@ export const CardOrder2 = styled.div`
 
   @media (max-width: 1554px) {
     /* width: 800px; */
+  }
+  @media (max-width: 640px) {
+    width: 300px;
+    text-align: justify;
+    div {
+      font-size: 13px;
+    }
   }
 `;
 
