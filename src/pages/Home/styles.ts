@@ -21,42 +21,46 @@ export const Container = styled.main`
 
     //    background-color: rgba(235, 229, 249, 0.3);
     //  border-radius: 88px;
-  }
 
-  h1 {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    width: 80%;
-    color: ${(props) => props.theme["base-title"]};
-    font-size: 52px;
-    font-weight: 800;
-  }
-  p {
-    width: 90%;
-    color: ${(props) => props.theme["base-subtitle"]};
-    font-family: "Roboto", sans-serif;
-  }
+    @media (max-width: 1554px) {
+      display: flex;
+    }
 
-  span {
-    font-family: "Roboto", sans-serif;
-    width: 80%;
-    color: ${(props) => props.theme["base-subtitle"]};
-  }
-  img {
-    width: 550px;
-    height: 400px;
-  }
+    h1 {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      width: 80%;
+      color: ${(props) => props.theme["base-title"]};
+      font-size: 52px;
+      font-weight: 800;
+    }
+    p {
+      width: 90%;
+      color: ${(props) => props.theme["base-subtitle"]};
+      font-family: "Roboto", sans-serif;
+    }
 
-  div {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
+    span {
+      font-family: "Roboto", sans-serif;
+      width: 80%;
+      color: ${(props) => props.theme["base-subtitle"]};
+    }
+    img {
+      width: 550px;
+      height: 400px;
+    }
 
-  p img {
-    width: 28px;
-    height: 28px;
+    div {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    p img {
+      width: 28px;
+      height: 28px;
+    }
   }
 `;
 
@@ -77,8 +81,14 @@ export const DivInfo = styled.section`
   }
 `;
 
+export const ImagemCafe = styled.img`
+  @media (max-width: 1300px) {
+    display: none;
+  }
+`;
+
 export const CoffeListContainer = styled.div`
-  width: 100%;
+  width: 90%;
   height: 1550px;
   display: flex;
   justify-content: center;

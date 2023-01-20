@@ -9,14 +9,9 @@ import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 
 export function Sucess() {
-  const { setFormaPagamento } = useCart();
+  const { formPag } = useCart();
 
-  // function testePag(){
-  //  setFormaPagamento{
-  //  ...formaPagamento
-  // }
-  // }
-
+  console.log(formPag);
   return (
     <>
       <Header />
@@ -30,7 +25,8 @@ export function Sucess() {
                 fontWeight: "400",
                 fontSize: "22px",
                 color: "#403937",
-              }}>
+              }}
+            >
               Agora é só aguardar que logo o café chegará até você
             </span>
 
@@ -58,7 +54,9 @@ export function Sucess() {
                   <img src={CashIcon} alt="Icone Dinheiro" />
                   <p style={{ marginTop: "12px" }}>
                     Pagamento na entrega
-                    <p style={{ color: "#272221", fontWeight: "600" }}></p>
+                    <p style={{ color: "#272221", fontWeight: "600" }}>
+                      {formPag}
+                    </p>
                   </p>
                 </div>
               </CardOrder2>

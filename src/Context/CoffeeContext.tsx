@@ -8,7 +8,7 @@ export interface CartItem extends CoffeeProps {
   item?: void;
 }
 
-type PagForm = "Cartão de Crédito" | "Cartão de Débito" | "Dinheiro";
+type PagForm = string;
 
 interface CartContextType {
   cartItems: CartItem[];
@@ -25,8 +25,9 @@ interface CartContextType {
   handleConfirmOrder: () => void;
   setFormaPagamento: (
     formaPagamento: "Cartão de Crédito" | "Cartão de Débito" | "Dinheiro"
-    // type: "Cartão de Crédito" | "Cartão de Débito" | "Dinheiro"
   ) => void;
+  formPag: string;
+  setFormPag: (value: React.SetStateAction<string>) => void;
 }
 
 interface CartContextProviderProps {
@@ -133,14 +134,12 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     );
   }, [cartItems]);
 
-  function setFormaPagamento(
-    formaPagamento: "Cartão de Crédito" | "Cartão de Débito" | "Dinheiro"
-  ) {
+  function setFormaPagamento(formaPagamento: string) {
     setFormPag(formaPagamento);
     localStorage.setItem("pagamento", formaPagamento);
   }
 
-  const [FormPag, setFormPag] = useState<PagForm>("Cartão de Crédito");
+  const [formPag, setFormPag] = useState<PagForm>("Cartão de Crédito");
 
   return (
     <CartContext.Provider
@@ -155,7 +154,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         getItemsInStorage,
         handleConfirmOrder,
         setFormaPagamento,
-      }}>
+        formPag,
+        setFormPag,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

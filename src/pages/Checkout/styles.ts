@@ -181,12 +181,16 @@ export const DivFpg = styled.div`
     color: ${(props) => props.theme["base-text"]};
     text-align: center;
     border: 1px solid transparent;
+    justify-content: space-between;
   }
 
   button:hover {
     /* border: solid 1px ${(props) => props.theme["purple-dark"]}; */
     background-color: ${(props) => props.theme["base-hover"]};
     transition: all 0.3s;
+  }
+  button:active {
+    color: ${(props) => props.theme["purple-dark"]};
   }
 `;
 
@@ -198,7 +202,7 @@ export const ContainerCheckout = styled.nav`
   border-bottom-right-radius: 12px;
   width: 600px;
   min-height: 400px;
-  max-height: 900px;
+  max-height: 600px;
   background-color: ${(props) => props.theme["base-card"]};
 `;
 
@@ -317,3 +321,34 @@ export const DivTeste = styled.div`
     height: 8px;
   }
 `;
+
+export const ContainerInfo = styled.nav`
+  width: 85%;
+  height: 200px;
+  margin-top: 20px;
+  background-color: ${(props) => props.theme["base-card"]};
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DivInfo = styled.div`
+  width: 90%;
+  height: 80%;
+  h2 {
+    font-family: "Roboto", sans-serif;
+    color: ${(props) => props.theme["base-subtitle"]};
+  }
+  svg {
+    color: ${(props) => props.theme["yellow-dark"]};
+  }
+`;
+
+export const BaseInputInfo = styled.input``;
+
+export const InputNome = styled(BaseInputInfo)``;
+
+export const InputSNome = styled(BaseInputInfo)``;
+
+export const InputCel = styled(BaseInputInfo)``;

@@ -1,6 +1,12 @@
 import React from "react";
 import { Header } from "../../components/Header";
-import { CoffeListContainer, Container, DivCoffee, DivInfo } from "./styles";
+import {
+  CoffeListContainer,
+  Container,
+  DivCoffee,
+  DivInfo,
+  ImagemCafe,
+} from "./styles";
 import Imagem from "../../assets/Imagem.svg";
 import coffeIcon from "../../assets/coffeIcon.svg";
 import checkoutIcon from "../../assets/checkoutIcon.svg";
@@ -43,7 +49,7 @@ export function Home() {
           </div>
 
           <div>
-            <img src={Imagem} alt="imagem café" />
+            <ImagemCafe src={Imagem} alt="imagem café" id="imagemCafe" />
           </div>
         </section>
       </Container>

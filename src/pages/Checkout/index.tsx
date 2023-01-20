@@ -5,6 +5,7 @@ import {
   ContainerCep,
   ContainerFpg,
   ContainerCheckout,
+  ContainerInfo,
   CepInput,
   RuaInput,
   NumeroInput,
@@ -20,6 +21,10 @@ import {
   ButtonConfirm,
   ButtonHome,
   DivTeste,
+  DivInfo,
+  InputNome,
+  InputSNome,
+  InputCel,
 } from "./styles";
 import {
   MapPinLine,
@@ -27,21 +32,17 @@ import {
   CreditCard,
   Bank,
   Money,
+  UserCircle,
 } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import { CartListCheckout } from "./Components/Cart";
-
 import { NavLink } from "react-router-dom";
-
 import { useCart } from "../../hooks/useCart";
-import { useState } from "react";
 
 export function Checkout() {
-  const { setFormaPagamento } = useCart();
-
+  let { setFormPag, formPag } = useCart();
   const { register, setValue } = useForm();
   const { handleConfirmOrder } = useCart();
-  //const onSubmit = (event: any) => {};
   const DELIVERY_PRICE = 3.5;
   const { cartItems, cartItemsTotal } = useCart();
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
@@ -85,34 +86,54 @@ export function Checkout() {
                   id="teste"
                   placeholder="CEP"
                   type="text"
-                  onBlur={chekCEP}></CepInput>
+                  onBlur={chekCEP}
+                ></CepInput>
                 <RuaInput
                   placeholder="Rua"
                   type="text"
-                  {...register("logradouro")}></RuaInput>
+                  {...register("logradouro")}
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput placeholder="Número" type="text"></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento"
-                    type="text"></ComplementoInput>
+                    type="text"
+                  ></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
                     type="text"
-                    {...register("bairro")}></BairroInput>
+                    {...register("bairro")}
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     type="text"
-                    {...register("cidade")}></CidadeInput>
+                    {...register("cidade")}
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     type="text"
-                    {...register("uf")}></UFInput>
+                    {...register("uf")}
+                  ></UFInput>
                 </div>
               </form>
             </div>
           </ContainerCep>
+
+          <ContainerInfo>
+            <DivInfo>
+              <h2>
+                <UserCircle />
+                Informações pessoais
+              </h2>
+              <form action="">
+                <InputNome placeholder="Nome" />
+                <InputSNome placeholder="Sobrenome" />
+                <InputCel placeholder="Celular" />
+              </form>
+            </DivInfo>
+          </ContainerInfo>
 
           <ContainerFpg>
             <DivFpg>
@@ -127,13 +148,37 @@ export function Checkout() {
                 </p>
               </div>
               <div style={{ display: "flex", gap: "18px" }}>
-                <button onClick={() => setFormaPagamento("Cartão de Crédito")}>
+                <button
+                  style={{
+                    border:
+                      formPag === "Cartão de Crédito"
+                        ? `2px solid #4B2995`
+                        : "2px solid transparent",
+                  }}
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
+                >
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
-                <button onClick={() => setFormaPagamento("Cartão de Débito")}>
+                <button
+                  style={{
+                    border:
+                      formPag === "Cartão de Débito"
+                        ? `2px solid #4B2995`
+                        : "2px solid transparent",
+                  }}
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
+                >
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
-                <button onClick={() => setFormaPagamento("Dinheiro")}>
+                <button
+                  style={{
+                    border:
+                      formPag === "Dinheiro"
+                        ? `2px solid #4B2995`
+                        : "2px solid transparent",
+                  }}
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}
+                >
                   <Money /> DINHEIRO
                 </button>
               </div>
@@ -175,7 +220,8 @@ export function Checkout() {
                 onClick={handleConfirmOrder}
                 onInvalid={CepValidator}
                 type="submit"
-                onSubmit={CepValidator}>
+                onSubmit={CepValidator}
+              >
                 CONFIRMAR PEDIDO
               </ButtonConfirm>
             </NavLink>

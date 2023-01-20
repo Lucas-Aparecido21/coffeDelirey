@@ -1,28 +1,35 @@
-import React, { createContext, ReactNode } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { produce } from "immer";
+import { CoffeeProps } from "../@types/Coffe";
+import { useForm } from "react-hook-form";
 
-interface AdressContext {
-  cep: string;
-  rua: string;
-  numero: string;
-  complemento: string;
-  bairro: string;
-  cidade: string;
-  uf: string;
-}
+interface AdressContextType {}
 
-interface AdressContextType {
-  adress: AdressContext;
-  setEndereco: (endereco: AdressContext) => void;
-  setValue: (nome: string, value: string) => void;
-  clearAddress: () => void;
-}
-
-interface AdressContextProps {
+interface AdressContextProviderProps {
   children: ReactNode;
 }
 
-const ADRESS_IN_STORAGE = "CoffeDelivery:endereco";
-
 export const AdressContext = createContext({} as AdressContextType);
 
-export const AdressContextProvider = ({ children }: AdressContextProps) => {};
+export function AdressContextProvider({
+  children,
+}: AdressContextProviderProps) {
+  const { register, setValue } = useForm();
+
+  const chekCEP = (event: any) => {
+    const cep = event.target.value;
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setValue("logradouro", data.logradouro);
+        setValue("bairro", data.bairro);
+        setValue("cidade", data.localidade);
+        setValue("uf", data.uf);
+      });
+  };
+
+  return <AdressContext.Provider value={{}}>{children}</AdressContext.Provider>;
+}
