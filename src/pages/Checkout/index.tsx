@@ -34,8 +34,11 @@ import { CartListCheckout } from "./Components/Cart";
 import { NavLink } from "react-router-dom";
 
 import { useCart } from "../../hooks/useCart";
+import { useState } from "react";
 
 export function Checkout() {
+  const { setFormaPagamento } = useCart();
+
   const { register, setValue } = useForm();
   const { handleConfirmOrder } = useCart();
   //const onSubmit = (event: any) => {};
@@ -124,13 +127,13 @@ export function Checkout() {
                 </p>
               </div>
               <div style={{ display: "flex", gap: "18px" }}>
-                <button>
+                <button onClick={() => setFormaPagamento("Cartão de Crédito")}>
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
-                <button>
+                <button onClick={() => setFormaPagamento("Cartão de Débito")}>
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
-                <button>
+                <button onClick={() => setFormaPagamento("Dinheiro")}>
                   <Money /> DINHEIRO
                 </button>
               </div>

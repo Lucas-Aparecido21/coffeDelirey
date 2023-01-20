@@ -6,8 +6,17 @@ import LocaleIcon from "../../assets/Local.svg";
 import TimerIcon from "../../assets/timerIcon.svg";
 import CashIcon from "../../assets/CashIcon.svg";
 import { NavLink } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
 
 export function Sucess() {
+  const { setFormaPagamento } = useCart();
+
+  // function testePag(){
+  //  setFormaPagamento{
+  //  ...formaPagamento
+  // }
+  // }
+
   return (
     <>
       <Header />
@@ -49,9 +58,7 @@ export function Sucess() {
                   <img src={CashIcon} alt="Icone Dinheiro" />
                   <p style={{ marginTop: "12px" }}>
                     Pagamento na entrega
-                    <p style={{ color: "#272221", fontWeight: "600" }}>
-                      Cartão de Crédito
-                    </p>
+                    <p style={{ color: "#272221", fontWeight: "600" }}></p>
                   </p>
                 </div>
               </CardOrder2>

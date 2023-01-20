@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { produce } from "immer";
 import { CoffeeProps } from "../@types/Coffe";
@@ -6,6 +7,8 @@ export interface CartItem extends CoffeeProps {
   quantity: number;
   item?: void;
 }
+
+type PagForm = "Cartão de Crédito" | "Cartão de Débito" | "Dinheiro";
 
 interface CartContextType {
   cartItems: CartItem[];
@@ -20,6 +23,10 @@ interface CartContextType {
   ) => void;
   removeCartItem: (cartItemId: number) => void;
   handleConfirmOrder: () => void;
+  setFormaPagamento: (
+    formaPagamento: "Cartão de Crédito" | "Cartão de Débito" | "Dinheiro"
+    // type: "Cartão de Crédito" | "Cartão de Débito" | "Dinheiro"
+  ) => void;
 }
 
 interface CartContextProviderProps {
@@ -126,6 +133,15 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     );
   }, [cartItems]);
 
+  function setFormaPagamento(
+    formaPagamento: "Cartão de Crédito" | "Cartão de Débito" | "Dinheiro"
+  ) {
+    setFormPag(formaPagamento);
+    localStorage.setItem("pagamento", formaPagamento);
+  }
+
+  const [FormPag, setFormPag] = useState<PagForm>("Cartão de Crédito");
+
   return (
     <CartContext.Provider
       value={{
@@ -138,6 +154,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         setItemInStorage,
         getItemsInStorage,
         handleConfirmOrder,
+        setFormaPagamento,
       }}>
       {children}
     </CartContext.Provider>
