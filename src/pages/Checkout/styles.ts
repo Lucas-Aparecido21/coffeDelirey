@@ -336,6 +336,9 @@ export const ContainerInfo = styled.nav`
 export const DivInfo = styled.div`
   width: 90%;
   height: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   h2 {
     font-family: "Roboto", sans-serif;
     color: ${(props) => props.theme["base-subtitle"]};
@@ -345,10 +348,20 @@ export const DivInfo = styled.div`
   }
 `;
 
-export const BaseInputInfo = styled.input``;
+export const DivName = styled.div`
+  display: flex;
+  gap: 12px;
+`;
 
-export const InputNome = styled(BaseInputInfo)``;
+export const InputNome = styled(BaseInput)`
+  width: 40%;
+`;
 
-export const InputSNome = styled(BaseInputInfo)``;
+export const InputSNome = styled(BaseInput)`
+  width: 40%;
+`;
 
-export const InputCel = styled(BaseInputInfo)``;
+export const InputCel = styled(BaseInput)`
+  margin-top: 12px;
+  width: 40%;
+`;

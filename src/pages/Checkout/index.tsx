@@ -25,6 +25,7 @@ import {
   InputNome,
   InputSNome,
   InputCel,
+  DivName,
 } from "./styles";
 import {
   MapPinLine,
@@ -38,11 +39,11 @@ import { useForm } from "react-hook-form";
 import { CartListCheckout } from "./Components/Cart";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
+import { useState } from "react";
 
 export function Checkout() {
   let { setFormPag, formPag } = useCart();
   const { register, setValue } = useForm();
-  const { handleConfirmOrder } = useCart();
   const DELIVERY_PRICE = 3.5;
   const { cartItems, cartItemsTotal } = useCart();
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
@@ -59,8 +60,43 @@ export function Checkout() {
         setValue("uf", data.uf);
       });
   };
+  const { handleConfirmOrder } = useCart();
+  const [inputValue, setInputValue] = useState("");
+  const [inputName, setInputName] = useState("");
+  const [inputSName, setInputSName] = useState("");
+  const [inputCel, setInputCel] = useState("");
+  const [inputNumber, setInputNumber] = useState("");
+  const [valueNav, setValueNav] = useState("/Checkout");
+  function handleClick() {
+    if (inputValue === "") {
+      alert("O Endereço de entrega é obrigatório");
+      return;
+    }
+    if (inputNumber === "") {
+      alert("O Numero do endereço é obrigatório");
+      return;
+    }
+    if (inputName === "") {
+      alert("As Informações pessoais são obrigatórias");
+      return;
+    }
+    if (inputSName === "") {
+      alert("As Informações pessoais são obrigatórias");
+      return;
+    }
+    if (inputCel === "") {
+      alert("As Informações pessoais são obrigatórias");
+      return;
+    }
 
-  function CepValidator() {}
+    if (cartItemsTotal <= 0)
+      alert("Insira algum item no carrinho antes de concluir a compra");
+    if (valueNav === "/Checkout") {
+      setValueNav("/Sucess");
+    } else {
+      handleConfirmOrder();
+    }
+  }
 
   return (
     <>
@@ -81,41 +117,45 @@ export function Checkout() {
               <p>
                 Informe o endereço de entrega onde deseja receber seu pedido
               </p>
-              <form onSubmit={CepValidator}>
+
+              <form>
                 <CepInput
                   id="teste"
                   placeholder="CEP"
                   type="text"
                   onBlur={chekCEP}
-                ></CepInput>
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}></CepInput>
+
                 <RuaInput
                   placeholder="Rua"
                   type="text"
-                  {...register("logradouro")}
-                ></RuaInput>
+                  {...register("logradouro")}></RuaInput>
                 <div className="Separador1">
-                  <NumeroInput placeholder="Número" type="text"></NumeroInput>
-                  <ComplementoInput
-                    placeholder="Complemento"
+                  <NumeroInput
+                    placeholder="Número"
                     type="text"
-                  ></ComplementoInput>
+                    value={inputNumber}
+                    onChange={(e) =>
+                      setInputNumber(e.target.value)
+                    }></NumeroInput>
+                  <ComplementoInput
+                    placeholder="Complemento (opcional)"
+                    type="text"></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
                     type="text"
-                    {...register("bairro")}
-                  ></BairroInput>
+                    {...register("bairro")}></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     type="text"
-                    {...register("cidade")}
-                  ></CidadeInput>
+                    {...register("cidade")}></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     type="text"
-                    {...register("uf")}
-                  ></UFInput>
+                    {...register("uf")}></UFInput>
                 </div>
               </form>
             </div>
@@ -128,9 +168,23 @@ export function Checkout() {
                 Informações pessoais
               </h2>
               <form action="">
-                <InputNome placeholder="Nome" />
-                <InputSNome placeholder="Sobrenome" />
-                <InputCel placeholder="Celular" />
+                <DivName>
+                  <InputNome
+                    placeholder="Nome"
+                    value={inputName}
+                    onChange={(e) => setInputName(e.target.value)}
+                  />
+                  <InputSNome
+                    placeholder="Sobrenome"
+                    value={inputSName}
+                    onChange={(e) => setInputSName(e.target.value)}
+                  />
+                </DivName>
+                <InputCel
+                  placeholder="Celular"
+                  value={inputCel}
+                  onChange={(e) => setInputCel(e.target.value)}
+                />
               </form>
             </DivInfo>
           </ContainerInfo>
@@ -155,8 +209,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -166,8 +219,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -177,8 +229,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}
-                >
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
                   <Money /> DINHEIRO
                 </button>
               </div>
@@ -215,13 +266,9 @@ export function Checkout() {
             <NavLink to="/">
               <ButtonHome> CONTINUAR COMPRANDO</ButtonHome>
             </NavLink>
-            <NavLink to="/Sucess">
-              <ButtonConfirm
-                onClick={handleConfirmOrder}
-                onInvalid={CepValidator}
-                type="submit"
-                onSubmit={CepValidator}
-              >
+
+            <NavLink to={valueNav}>
+              <ButtonConfirm onClick={handleClick}>
                 CONFIRMAR PEDIDO
               </ButtonConfirm>
             </NavLink>

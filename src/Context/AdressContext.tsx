@@ -4,7 +4,9 @@ import { produce } from "immer";
 import { CoffeeProps } from "../@types/Coffe";
 import { useForm } from "react-hook-form";
 
-interface AdressContextType {}
+interface AdressContextType {
+  chekCEP: (event: any) => void;
+}
 
 interface AdressContextProviderProps {
   children: ReactNode;
@@ -31,5 +33,12 @@ export function AdressContextProvider({
       });
   };
 
-  return <AdressContext.Provider value={{}}>{children}</AdressContext.Provider>;
+  return (
+    <AdressContext.Provider
+      value={{
+        chekCEP,
+      }}>
+      {children}
+    </AdressContext.Provider>
+  );
 }

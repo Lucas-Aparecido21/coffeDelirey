@@ -28,6 +28,7 @@ interface CartContextType {
   ) => void;
   formPag: string;
   setFormPag: (value: React.SetStateAction<string>) => void;
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
 }
 
 interface CartContextProviderProps {
@@ -156,8 +157,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         setFormaPagamento,
         formPag,
         setFormPag,
-      }}
-    >
+        setCartItems,
+      }}>
       {children}
     </CartContext.Provider>
   );
