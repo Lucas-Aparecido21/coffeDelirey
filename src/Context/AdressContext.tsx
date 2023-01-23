@@ -2,43 +2,34 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { produce } from "immer";
 import { CoffeeProps } from "../@types/Coffe";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm, UseFormRegister } from "react-hook-form";
 
-interface AdressContextType {
-  chekCEP: (event: any) => void;
-}
+interface AdressContextType {}
 
 interface AdressContextProviderProps {
   children: ReactNode;
 }
 
-export const AdressContext = createContext({} as AdressContextType);
+interface Adress {
+  cep: string;
+  logradouro: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+}
+
+export const AdressContext = createContext<AdressContextType>(
+  {} as AdressContextType
+);
 
 export function AdressContextProvider({
   children,
 }: AdressContextProviderProps) {
-  const { register, setValue } = useForm();
+  const [addres, setAddres] = useState<Adress>(() => {
+    // LocalStorage JSON
 
-  const chekCEP = (event: any) => {
-    const cep = event.target.value;
+    return {} as Adress;
+  });
 
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setValue("logradouro", data.logradouro);
-        setValue("bairro", data.bairro);
-        setValue("cidade", data.localidade);
-        setValue("uf", data.uf);
-      });
-  };
-
-  return (
-    <AdressContext.Provider
-      value={{
-        chekCEP,
-      }}>
-      {children}
-    </AdressContext.Provider>
-  );
+  return <AdressContext.Provider value={{}}>{children}</AdressContext.Provider>;
 }

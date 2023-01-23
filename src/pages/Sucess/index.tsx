@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../../components/Header";
 import { Container, CardOrder, CardOrder2, DivHome } from "./styles";
 import SucessImagem from "../../assets/Sucess.svg";
@@ -11,7 +11,15 @@ import { useCart } from "../../hooks/useCart";
 export function Sucess() {
   const { formPag } = useCart();
 
-  console.log(formPag);
+  // const [addres] = useState(() => {
+  //   const stateJSON = localStorage.getItem("logradouro");
+
+  //   if (!stateJSON) return {};
+
+  //   return JSON.parse(stateJSON);
+  // });
+
+  const valueLogradouro = localStorage.getItem("logradouro");
   return (
     <>
       <Header />
@@ -34,8 +42,9 @@ export function Sucess() {
               <CardOrder2>
                 <div>
                   <img src={LocaleIcon} alt="Icone Localização" />
+
                   <p>
-                    Entrega em Rua João Daniel Martinelli, 102
+                    Entrega em {valueLogradouro}
                     <p style={{ color: "#272221", fontWeight: "600" }}>
                       Farrapos - Porto Alegre, RS
                     </p>

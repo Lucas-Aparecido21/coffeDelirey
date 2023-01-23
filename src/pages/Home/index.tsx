@@ -17,6 +17,8 @@ import { dataFake } from "../../database/fakeCoffe";
 import { Card } from "./Components/Card";
 
 export function Home() {
+  const valueLogradouro = localStorage.getItem("logradouro");
+
   return (
     <>
       <Header />

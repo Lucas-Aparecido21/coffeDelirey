@@ -47,26 +47,37 @@ export function Checkout() {
   const DELIVERY_PRICE = 3.5;
   const { cartItems, cartItemsTotal } = useCart();
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
-  const chekCEP = (event: any) => {
+
+  const ConsultaCEP = (event: any) => {
     const cep = event.target.value;
-    console.log(cep);
+
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setValue("logradouro", data.logradouro);
         setValue("bairro", data.bairro);
         setValue("cidade", data.localidade);
         setValue("uf", data.uf);
+
+        const logradouroLocal = JSON.stringify(data.logradouro);
+        localStorage.setItem("logradouro", logradouroLocal);
+        const bairroLocal = JSON.stringify(data.logradouro);
+        localStorage.setItem("bairro", bairroLocal);
+        const localidadeLocal = JSON.stringify(data.logradouro);
+        localStorage.setItem("localidade", localidadeLocal);
+        const ufLocal = JSON.stringify(data.logradouro);
+        localStorage.setItem("uf", ufLocal);
       });
   };
-  const { handleConfirmOrder } = useCart();
+
+  const { setCartItems } = useCart();
   const [inputValue, setInputValue] = useState("");
   const [inputName, setInputName] = useState("");
   const [inputSName, setInputSName] = useState("");
   const [inputCel, setInputCel] = useState("");
   const [inputNumber, setInputNumber] = useState("");
   const [valueNav, setValueNav] = useState("/Checkout");
+
   function handleClick() {
     if (inputValue === "") {
       alert("O Endereço de entrega é obrigatório");
@@ -88,13 +99,12 @@ export function Checkout() {
       alert("As Informações pessoais são obrigatórias");
       return;
     }
-
     if (cartItemsTotal <= 0)
       alert("Insira algum item no carrinho antes de concluir a compra");
     if (valueNav === "/Checkout") {
       setValueNav("/Sucess");
     } else {
-      handleConfirmOrder();
+      setCartItems([]);
     }
   }
 
@@ -123,39 +133,44 @@ export function Checkout() {
                   id="teste"
                   placeholder="CEP"
                   type="text"
-                  onBlur={chekCEP}
+                  onBlur={ConsultaCEP}
                   value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}></CepInput>
+                  onChange={(e) => setInputValue(e.target.value)}
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
                   type="text"
-                  {...register("logradouro")}></RuaInput>
+                  {...register("logradouro")}
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
                     type="text"
                     value={inputNumber}
-                    onChange={(e) =>
-                      setInputNumber(e.target.value)
-                    }></NumeroInput>
+                    onChange={(e) => setInputNumber(e.target.value)}
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
-                    type="text"></ComplementoInput>
+                    type="text"
+                  ></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
                     type="text"
-                    {...register("bairro")}></BairroInput>
+                    {...register("bairro")}
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     type="text"
-                    {...register("cidade")}></CidadeInput>
+                    {...register("cidade")}
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     type="text"
-                    {...register("uf")}></UFInput>
+                    {...register("uf")}
+                  ></UFInput>
                 </div>
               </form>
             </div>
@@ -209,7 +224,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
+                >
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -219,7 +235,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
+                >
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -229,7 +246,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}
+                >
                   <Money /> DINHEIRO
                 </button>
               </div>
@@ -267,10 +285,8 @@ export function Checkout() {
               <ButtonHome> CONTINUAR COMPRANDO</ButtonHome>
             </NavLink>
 
-            <NavLink to={valueNav}>
-              <ButtonConfirm onClick={handleClick}>
-                CONFIRMAR PEDIDO
-              </ButtonConfirm>
+            <NavLink to={valueNav} onClickCapture={handleClick}>
+              <ButtonConfirm>CONFIRMAR PEDIDO</ButtonConfirm>
             </NavLink>
           </DivButton>
         </ContainerCheckout>
