@@ -13,6 +13,16 @@ import { useCart } from "../../hooks/useCart";
 
 export function Header() {
   const { cartQuantity } = useCart();
+  //let valueLocalidade = localStorage.getItem("localidade");
+  //let valueUF = localStorage.getItem("uf");
+
+  //if (valueUF === "undefined") {
+  // valueUF = "";
+  // }
+
+  // if (valueLocalidade === "undefined") {
+  //  valueLocalidade = "";
+  // }
 
   return (
     <ContainerGrid>
@@ -29,7 +39,7 @@ export function Header() {
           style={{ textDecoration: "none" }}>
           <Locale>
             <img src={Icon} alt="LocaleIcon" />
-            Santo André, SP
+            {/*{valueLocalidade} {valueUF} */}
           </Locale>
         </NavLink>
         <Checkout title="Checkout">

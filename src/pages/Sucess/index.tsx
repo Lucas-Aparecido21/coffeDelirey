@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Header } from "../../components/Header";
 import { Container, CardOrder, CardOrder2, DivHome } from "./styles";
 import SucessImagem from "../../assets/Sucess.svg";
@@ -10,16 +9,15 @@ import { useCart } from "../../hooks/useCart";
 
 export function Sucess() {
   const { formPag } = useCart();
-
-  // const [addres] = useState(() => {
-  //   const stateJSON = localStorage.getItem("logradouro");
-
-  //   if (!stateJSON) return {};
-
-  //   return JSON.parse(stateJSON);
-  // });
-
+  //const valueLogradouro = JSON.parse(ocalStorage.getItem("logradouro"););
   const valueLogradouro = localStorage.getItem("logradouro");
+  const valueLocalidade = localStorage.getItem("localidade");
+  const valueUF = localStorage.getItem("uf");
+  const valueNumero = localStorage.getItem("numero");
+  const valueBairro = localStorage.getItem("bairro");
+
+  console.log("bairro");
+
   return (
     <>
       <Header />
@@ -33,8 +31,7 @@ export function Sucess() {
                 fontWeight: "400",
                 fontSize: "22px",
                 color: "#403937",
-              }}
-            >
+              }}>
               Agora é só aguardar que logo o café chegará até você
             </span>
 
@@ -44,9 +41,9 @@ export function Sucess() {
                   <img src={LocaleIcon} alt="Icone Localização" />
 
                   <p>
-                    Entrega em {valueLogradouro}
+                    Entrega em {valueLogradouro} , {valueNumero}
                     <p style={{ color: "#272221", fontWeight: "600" }}>
-                      Farrapos - Porto Alegre, RS
+                      {valueBairro} - {valueLocalidade}, {valueUF}
                     </p>
                   </p>
                 </div>

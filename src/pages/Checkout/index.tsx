@@ -39,7 +39,7 @@ import { useForm } from "react-hook-form";
 import { CartListCheckout } from "./Components/Cart";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function Checkout() {
   let { setFormPag, formPag } = useCart();
@@ -61,20 +61,22 @@ export function Checkout() {
 
         const logradouroLocal = JSON.stringify(data.logradouro);
         localStorage.setItem("logradouro", logradouroLocal);
-        const bairroLocal = JSON.stringify(data.logradouro);
+        const bairroLocal = JSON.stringify(data.bairro);
         localStorage.setItem("bairro", bairroLocal);
-        const localidadeLocal = JSON.stringify(data.logradouro);
+        const localidadeLocal = JSON.stringify(data.localidade);
         localStorage.setItem("localidade", localidadeLocal);
-        const ufLocal = JSON.stringify(data.logradouro);
+        const ufLocal = JSON.stringify(data.uf);
         localStorage.setItem("uf", ufLocal);
       });
   };
-
+  const savedName = localStorage.getItem("inputName");
+  const savedSName = localStorage.getItem("inputSName");
+  const savedCel = localStorage.getItem("inputCel");
   const { setCartItems } = useCart();
   const [inputValue, setInputValue] = useState("");
-  const [inputName, setInputName] = useState("");
-  const [inputSName, setInputSName] = useState("");
-  const [inputCel, setInputCel] = useState("");
+  const [inputName, setInputName] = useState(savedName || "");
+  const [inputSName, setInputSName] = useState(savedSName || "");
+  const [inputCel, setInputCel] = useState(savedCel || "");
   const [inputNumber, setInputNumber] = useState("");
   const [valueNav, setValueNav] = useState("/Checkout");
 
@@ -99,15 +101,46 @@ export function Checkout() {
       alert("As Informações pessoais são obrigatórias");
       return;
     }
-    if (cartItemsTotal <= 0)
+    if (cartItemsTotal === 0) {
       alert("Insira algum item no carrinho antes de concluir a compra");
-    if (valueNav === "/Checkout") {
-      setValueNav("/Sucess");
     } else {
       setCartItems([]);
+
+      setValueNav("/Sucess");
     }
   }
 
+  function saveToLocalStorageCel() {
+    localStorage.setItem("inputCel", inputCel);
+  }
+  useEffect(() => {
+    const savedCel = localStorage.getItem("inputCel");
+    if (savedCel !== null) {
+      setInputCel(savedCel);
+    }
+  }, []);
+
+  function saveToLocalStorageSName() {
+    localStorage.setItem("inputSName", inputSName);
+  }
+
+  useEffect(() => {
+    const savedName = localStorage.getItem("inputName");
+    if (savedName !== null) {
+      setInputName(savedName);
+    }
+  }, []);
+
+  function saveToLocalStorageName() {
+    localStorage.setItem("inputName", inputName);
+  }
+
+  useEffect(() => {
+    const savedName = localStorage.getItem("inputName");
+    if (savedName !== null) {
+      setInputName(savedName);
+    }
+  }, []);
   return (
     <>
       <Header />
@@ -135,42 +168,37 @@ export function Checkout() {
                   type="text"
                   onBlur={ConsultaCEP}
                   value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                ></CepInput>
+                  onChange={(e) => setInputValue(e.target.value)}></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
                   type="text"
-                  {...register("logradouro")}
-                ></RuaInput>
+                  {...register("logradouro")}></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
                     type="text"
                     value={inputNumber}
-                    onChange={(e) => setInputNumber(e.target.value)}
-                  ></NumeroInput>
+                    onChange={(e) =>
+                      setInputNumber(e.target.value)
+                    }></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
-                    type="text"
-                  ></ComplementoInput>
+                    type="text"></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
                     type="text"
-                    {...register("bairro")}
-                  ></BairroInput>
+                    {...register("bairro")}></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     type="text"
-                    {...register("cidade")}
-                  ></CidadeInput>
+                    {...register("cidade")}></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     type="text"
-                    {...register("uf")}
-                  ></UFInput>
+                    {...register("uf")}></UFInput>
                 </div>
               </form>
             </div>
@@ -188,17 +216,20 @@ export function Checkout() {
                     placeholder="Nome"
                     value={inputName}
                     onChange={(e) => setInputName(e.target.value)}
+                    onBlur={saveToLocalStorageName}
                   />
                   <InputSNome
                     placeholder="Sobrenome"
                     value={inputSName}
                     onChange={(e) => setInputSName(e.target.value)}
+                    onBlur={saveToLocalStorageSName}
                   />
                 </DivName>
                 <InputCel
                   placeholder="Celular"
                   value={inputCel}
                   onChange={(e) => setInputCel(e.target.value)}
+                  onBlur={saveToLocalStorageCel}
                 />
               </form>
             </DivInfo>
@@ -224,8 +255,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -235,8 +265,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -246,8 +275,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}
-                >
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
                   <Money /> DINHEIRO
                 </button>
               </div>

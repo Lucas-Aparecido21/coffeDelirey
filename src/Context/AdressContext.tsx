@@ -15,7 +15,7 @@ interface Adress {
   logradouro: string;
   bairro: string;
   localidade: string;
-  uf: string;
+  uf: string | null;
 }
 
 export const AdressContext = createContext<AdressContextType>(
