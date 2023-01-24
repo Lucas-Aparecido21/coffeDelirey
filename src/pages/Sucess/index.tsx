@@ -9,12 +9,12 @@ import { useCart } from "../../hooks/useCart";
 
 export function Sucess() {
   const { formPag } = useCart();
-  //const valueLogradouro = JSON.parse(ocalStorage.getItem("logradouro"););
-  const valueLogradouro = localStorage.getItem("logradouro");
-  const valueLocalidade = localStorage.getItem("localidade");
-  const valueUF = localStorage.getItem("uf");
-  const valueNumero = localStorage.getItem("numero");
-  const valueBairro = localStorage.getItem("bairro");
+
+  const valueLogradouro = localStorage.getItem("inputLogradouro");
+  const valueLocalidade = localStorage.getItem("inputLocalidade");
+  const valueUF = localStorage.getItem("inputUf");
+  const valueNumero = localStorage.getItem("inputNumber");
+  const valueBairro = localStorage.getItem("inputBairro");
 
   console.log("bairro");
 
@@ -31,7 +31,8 @@ export function Sucess() {
                 fontWeight: "400",
                 fontSize: "22px",
                 color: "#403937",
-              }}>
+              }}
+            >
               Agora é só aguardar que logo o café chegará até você
             </span>
 

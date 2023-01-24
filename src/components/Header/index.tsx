@@ -10,19 +10,24 @@ import Icon from "../../assets/Locale.svg";
 import CheckoutIcon from "../../assets/Checkout.svg";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
+import { useState } from "react";
 
 export function Header() {
   const { cartQuantity } = useCart();
-  //let valueLocalidade = localStorage.getItem("localidade");
-  //let valueUF = localStorage.getItem("uf");
+  let valueLocalidade = localStorage.getItem("inputLocalidade");
+  let valueUF = localStorage.getItem("inputUf");
+  let separator = ",";
+  if (valueUF === "undefined") {
+    valueUF = "Insira seu Endereço";
+  }
+  if (valueLocalidade === "undefined") {
+    valueLocalidade = "Insira seu Endereço";
+  }
 
-  //if (valueUF === "undefined") {
-  // valueUF = "";
-  // }
-
-  // if (valueLocalidade === "undefined") {
-  //  valueLocalidade = "";
-  // }
+  if (valueUF === "") {
+    valueUF = "Insira seu Endereço";
+    separator = " ";
+  }
 
   return (
     <ContainerGrid>
@@ -36,10 +41,13 @@ export function Header() {
         <NavLink
           to="/Checkout"
           title="Insira seu endereço"
-          style={{ textDecoration: "none" }}>
+          style={{ textDecoration: "none" }}
+        >
           <Locale>
             <img src={Icon} alt="LocaleIcon" />
-            {/*{valueLocalidade} {valueUF} */}
+            {valueLocalidade}
+            {separator}
+            {valueUF}
           </Locale>
         </NavLink>
         <Checkout title="Checkout">

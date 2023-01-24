@@ -19,17 +19,10 @@ export const Container = styled.main`
     width: 90%;
     margin-top: 2rem;
 
-    //    background-color: rgba(235, 229, 249, 0.3);
-    //  border-radius: 88px;
-
-    @media (max-width: 1554px) {
-      display: flex;
-    }
-
     h1 {
       margin-top: 2rem;
       margin-bottom: 2rem;
-      width: 80%;
+      width: 83%;
       color: ${(props) => props.theme["base-title"]};
       font-size: 52px;
       font-weight: 800;
@@ -42,7 +35,7 @@ export const Container = styled.main`
 
     span {
       font-family: "Roboto", sans-serif;
-      width: 80%;
+      width: 83%;
       color: ${(props) => props.theme["base-subtitle"]};
     }
     img {
@@ -60,6 +53,10 @@ export const Container = styled.main`
     p img {
       width: 28px;
       height: 28px;
+    }
+
+    @media (max-width: 1300px) {
+      display: flex;
     }
   }
 `;
@@ -79,6 +76,11 @@ export const DivInfo = styled.section`
     font-size: 14px;
     padding: 0 2.5rem;
   }
+
+  @media (max-width: 1554px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `;
 
 export const ImagemCafe = styled.img`
@@ -97,19 +99,45 @@ export const CoffeListContainer = styled.div`
   margin-top: 4rem;
 
   section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   h1 {
     color: ${(props) => props.theme["base-title"]};
     font-size: 28px;
     font-weight: 800;
+    position: relative;
+    left: 12rem;
+
+    @media (max-width: 1780px) {
+      left: 11rem;
+      width: 100px;
+    }
   }
 `;
 
 export const DivCoffee = styled.div`
-  margin-top: 4rem;
-  width: 90%;
+  margin-top: 7rem;
+  width: 89%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 4rem;
+
+  @media (max-width: 1700px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+  }
+  @media (max-width: 1450px) {
+    grid-template-columns: repeat(2, 1fr);
+    width: 800px;
+  }
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    width: 500px;
+  }
+  @media (max-width: 870px) {
+    width: 300px;
+  }
 `;
