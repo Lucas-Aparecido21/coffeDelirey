@@ -197,12 +197,12 @@ export const DivFpg = styled.div`
 export const ContainerCheckout = styled.nav`
   margin-top: 66px;
   border-top-left-radius: 12px;
-  border-top-right-radius: 50px;
-  border-bottom-left-radius: 50px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   width: 600px;
-  min-height: 400px;
-  max-height: 600px;
+  min-height: 100px;
+  max-height: 750px;
   background-color: ${(props) => props.theme["base-card"]};
 `;
 

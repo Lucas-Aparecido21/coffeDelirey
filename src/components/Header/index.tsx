@@ -10,7 +10,6 @@ import Icon from "../../assets/Locale.svg";
 import CheckoutIcon from "../../assets/Checkout.svg";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
-import { useState } from "react";
 
 export function Header() {
   const { cartQuantity } = useCart();
