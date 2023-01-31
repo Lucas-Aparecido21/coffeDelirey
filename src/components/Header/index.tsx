@@ -4,12 +4,14 @@ import {
   Locale,
   Checkout,
   ContainerLogo,
+  OrdersButton,
 } from "./styles";
 import Logo from "../../assets/Logo.svg";
 import Icon from "../../assets/Locale.svg";
 import CheckoutIcon from "../../assets/Checkout.svg";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
+import { Scroll } from "phosphor-react";
 
 export function Header() {
   const { cartQuantity } = useCart();
@@ -37,11 +39,15 @@ export function Header() {
       </ContainerLogo>
 
       <ContainerCheckout>
+        <OrdersButton>
+          <NavLink to="/Orders" title="Pedidos">
+            <Scroll />
+          </NavLink>
+        </OrdersButton>
         <NavLink
           to="/Checkout"
           title="Insira seu endereço"
-          style={{ textDecoration: "none" }}
-        >
+          style={{ textDecoration: "none" }}>
           <Locale>
             <img src={Icon} alt="LocaleIcon" />
             {valueLocalidade}

@@ -10,11 +10,6 @@ export const ContainerGrid = styled.div`
   z-index: 99;
   top: 0;
   background: #fafafa;
-  div {
-    width: 13rem;
-    align-items: center;
-    justify-content: space-between;
-  }
 
   @media (max-width: 640px) {
     width: 90%;
@@ -25,6 +20,7 @@ export const ContainerCheckout = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
+  width: 16rem;
 
   button svg {
     width: 100%;
@@ -34,7 +30,7 @@ export const ContainerCheckout = styled.div`
 
 export const ContainerLogo = styled.main`
   display: flex;
-  width: 575px;
+  width: 65%;
   justify-self: center;
 
   img {
@@ -100,5 +96,18 @@ export const Checkout = styled.button`
     position: relative;
     bottom: 10px;
     left: 8px;
+  }
+`;
+
+export const OrdersButton = styled.button`
+  all: unset;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  background-color: ${(props) => props.theme["purple-light"]};
+  color: ${(props) => props.theme["purple-dark"]};
+  border-radius: 8px;
+
+  :active {
   }
 `;
