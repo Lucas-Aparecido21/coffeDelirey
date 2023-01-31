@@ -18,28 +18,56 @@ export const Container = styled.main`
     margin-top: 2rem;
     display: flex;
     justify-content: center;
+    
   }
 `;
 
 export const ContainerOrders = styled.div`
   width: 1580px;
-  height: 650px;
+  height: 700px;
   margin-top: 20px;
   background-color: ${(props) => props.theme["base-card"]};
   border-radius: 6px;
   display: flex;
   justify-content: center;
+  
+  overflow-y: scroll;
+ ::-webkit-scrollbar-track {
+    background-color: ${(props) => props.theme["base-card"]};
+  }
+   ::-webkit-scrollbar {
+    width: 8px; 
+    height: 8px;
+    border-radius: 8px;
+     background: transparent;
+   }
+   ::-webkit-scrollbar-thumb {
+     background: #dad7d7;
+   }
+   ::-webkit-scrollbar-track {
+     background: transparent;
+     padding: 2px;
+     height: 8px;
+   } 
+
+
+
 `;
 
 export const DivInfo = styled.div`
-  margin-top: 2rem;
   display: flex;
-  height: 50px;
+  height: 100px;
   position: absolute;
+  align-items: center;
   justify-content: center;
   gap: 18px;
   width: 80%;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
+  font-size: 20px;
+  color: ${props=>props.theme["base-subtitle"]};
+  background-color: ${(props) => props.theme["base-card"]};
+
+  
+
 `;
 
 export const DivCodPedido = styled.div`
@@ -48,7 +76,17 @@ export const DivCodPedido = styled.div`
   display: flex;
   align-items: center;
   justify-content: initial;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
+  
+`;
+
+
+
+export const DivDatapedido = styled.div`
+  width: 180px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+
 `;
 
 export const DivCodCliente = styled.div`
@@ -57,16 +95,7 @@ export const DivCodCliente = styled.div`
   display: flex;
   align-items: center;
   gap: 12rem;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
-`;
 
-export const DivDatapedido = styled.div`
-  width: 180px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  gap: 12rem;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
 `;
 
 export const DivCodValor = styled.div`
@@ -74,13 +103,11 @@ export const DivCodValor = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
 `;
 
 export const DivButton = styled.div`
   width: 250px;
   height: 50px;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -93,10 +120,7 @@ export const DivStatus = styled.div`
   align-items: center;
 `;
 export const DivOrders = styled.div`
-  display: flex;
-  height: 80px;
-  justify-content: center;
-  gap: 18px;
-  width: 80%;
-  background-color: ${(props) => props.theme["base-input"]};
+   margin-top: 7rem;
+
 `;
+

@@ -1,35 +1,21 @@
 import styled from "styled-components";
 
-export const Container = styled.main`
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  margin-top: 108px;
+export const DivOrders = styled.nav`
 
   display: flex;
+  height: 90px;
   justify-content: center;
+  gap: 18px;
+  width: 100%;
+  background-color: ${(props) => props.theme["base-button"]};
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+  margin-top: 1rem !important;
+  align-items: center;
 
-  font-family: "Baloo 2", sans-serif;
-  section {
-    width: 100%;
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-  }
 `;
 
-export const ContainerOrders = styled.div`
-  width: 1580px;
-  height: 650px;
-  margin-top: 20px;
-  background-color: ${(props) => props.theme["base-card"]};
-  border-radius: 6px;
-  display: flex;
-  justify-content: center;
-`;
+
 
 export const DivInfo = styled.div`
   margin-top: 2rem;
@@ -38,36 +24,36 @@ export const DivInfo = styled.div`
   position: absolute;
   justify-content: center;
   gap: 18px;
-  width: 80%;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
+  width: 100%;
+
 `;
 
 export const DivCodPedido = styled.div`
-  width: 200px;
+ width: 200px;
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: initial;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
+  justify-content: center;
 `;
 
-export const DivCodCliente = styled.div`
-  width: 400px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  gap: 12rem;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
-`;
 
 export const DivDatapedido = styled.div`
   width: 180px;
   height: 50px;
   display: flex;
   align-items: center;
-  gap: 12rem;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
+
+
 `;
+export const DivCodCliente = styled.div`
+  width: 400px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 12rem;
+
+`;
+
 
 export const DivCodValor = styled.div`
   width: 150px;
@@ -80,17 +66,37 @@ export const DivCodValor = styled.div`
 export const DivButton = styled.div`
   width: 250px;
   height: 50px;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 40px;
 
+
+svg{
+  width: 80px;
+  height: 25px;
+}
   button {
     all: unset;
     width: 50px;
     height: 30px;
     cursor: pointer;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  #alterar:hover{
+    color: ${props=>props.theme["purple-dark"]};
+  }
+
+  #excluir:hover{
+    color: red;
+  }
+ 
+  #consultar:hover{
+    color: ${props=> props.theme["yellow-dark"]};
   }
 `;
 
@@ -99,13 +105,4 @@ export const DivStatus = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-`;
-export const DivOrders = styled.nav`
-  margin-top: 8rem;
-  display: flex;
-  height: 50px;
-  justify-content: center;
-  gap: 18px;
-  width: 90%;
-  background-color: ${(props) => props.theme["base-input"]};
 `;

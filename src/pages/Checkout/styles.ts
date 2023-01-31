@@ -35,7 +35,7 @@ export const ContainerCep = styled.nav`
   align-items: center;
   border-radius: 8px;
   background-color: ${(props) => props.theme["base-card"]};
-
+  margin-top: 1rem;
   .Separador1 {
     display: flex;
     gap: 1rem;
@@ -185,7 +185,7 @@ export const DivFpg = styled.div`
   }
 
   button:hover {
-    /* border: solid 1px ${(props) => props.theme["purple-dark"]}; */
+
     background-color: ${(props) => props.theme["base-hover"]};
     transition: all 0.3s;
   }

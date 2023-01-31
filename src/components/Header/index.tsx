@@ -40,7 +40,7 @@ export function Header() {
 
       <ContainerCheckout>
         <OrdersButton>
-          <NavLink to="/Orders" title="Pedidos">
+          <NavLink to="/Orders" title="Pedidos" style={{ textDecoration: "none", color: "#4B2995" }}>
             <Scroll />
           </NavLink>
         </OrdersButton>
@@ -57,7 +57,7 @@ export function Header() {
         </NavLink>
         <Checkout title="Checkout">
           <span>{cartQuantity}</span>
-          <NavLink to="/Checkout" title="Checkout">
+          <NavLink to="/Checkout" title="Checkout" style={{ textDecoration: "none" }}>
             <img src={CheckoutIcon} alt="CheckoutIcon" />
           </NavLink>
         </Checkout>

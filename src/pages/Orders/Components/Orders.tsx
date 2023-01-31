@@ -22,15 +22,15 @@ export function Orders() {
       <DivCodValor>
         <p>R$ 130,00</p>
       </DivCodValor>
-      <DivStatus>Status</DivStatus>
+      <DivStatus>Em andamento</DivStatus>
       <DivButton>
-        <button>
+        <button id="alterar">
           <PencilSimple />
         </button>
-        <button>
+        <button id="excluir">
           <Trash />
         </button>
-        <button>
+        <button id="consultar">
           <Scroll />
         </button>
       </DivButton>

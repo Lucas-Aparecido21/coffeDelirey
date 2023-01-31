@@ -10,6 +10,8 @@ import {
   DivDatapedido,
   DivInfo,
   DivStatus,
+  DivOrders,
+
 } from "./styles";
 
 export function Order() {
@@ -37,9 +39,25 @@ export function Order() {
                 <p>Excluir</p>
                 <p>Consultar</p>
               </DivButton>
+     
             </DivInfo>
+  
+            <DivOrders>
             <Orders />
+            <Orders />
+          
+            <Orders />
+            <Orders />
+            <Orders />
+            <Orders />
+            <Orders />
+            <Orders />
+            <Orders />
+            <Orders />
+            </DivOrders>
+    
           </ContainerOrders>
+       
         </section>
       </Container>
     </>

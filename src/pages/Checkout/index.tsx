@@ -235,6 +235,38 @@ export function Checkout() {
               Complete seu pedido
             </h1>
           </div>
+          <ContainerInfo>
+            <DivInfo>
+              <h2>
+                <UserCircle />
+                Informações pessoais
+              </h2>
+              <form action="">
+                <DivName>
+                  <InputNome
+                    placeholder="CPF"
+                    value={inputName}
+                    onChange={(e) => setInputName(e.target.value)}
+                    onBlur={saveToLocalStorageName}
+                  />
+                  <InputSNome
+                    placeholder="Nome"
+                    value={inputSName}
+                    onChange={(e) => setInputSName(e.target.value)}
+                    onBlur={saveToLocalStorageSName}
+                  />
+                </DivName>
+                <InputCel
+                  placeholder="Celular"
+                  type="tel"
+                  value={inputCel}
+                  onChange={(e) => setInputCel(e.target.value)}
+                  onBlur={saveToLocalStorageCel}
+                />
+              </form>
+            </DivInfo>
+          </ContainerInfo>
+
           <ContainerCep>
             <div>
               <h2>
@@ -244,6 +276,7 @@ export function Checkout() {
               <p>
                 Informe o endereço de entrega onde deseja receber seu pedido
               </p>
+
 
               <form>
                 <CepInput
@@ -305,38 +338,7 @@ export function Checkout() {
             </div>
           </ContainerCep>
 
-          <ContainerInfo>
-            <DivInfo>
-              <h2>
-                <UserCircle />
-                Informações pessoais
-              </h2>
-              <form action="">
-                <DivName>
-                  <InputNome
-                    placeholder="Nome"
-                    value={inputName}
-                    onChange={(e) => setInputName(e.target.value)}
-                    onBlur={saveToLocalStorageName}
-                  />
-                  <InputSNome
-                    placeholder="Sobrenome"
-                    value={inputSName}
-                    onChange={(e) => setInputSName(e.target.value)}
-                    onBlur={saveToLocalStorageSName}
-                  />
-                </DivName>
-                <InputCel
-                  placeholder="Celular"
-                  type="tel"
-                  value={inputCel}
-                  onChange={(e) => setInputCel(e.target.value)}
-                  onBlur={saveToLocalStorageCel}
-                />
-              </form>
-            </DivInfo>
-          </ContainerInfo>
-
+         
           <ContainerFpg>
             <DivFpg>
               <div>

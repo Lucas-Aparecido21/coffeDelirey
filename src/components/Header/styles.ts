@@ -107,7 +107,11 @@ export const OrdersButton = styled.button`
   background-color: ${(props) => props.theme["purple-light"]};
   color: ${(props) => props.theme["purple-dark"]};
   border-radius: 8px;
+  text-decoration: none;
 
   :active {
+    color: ${(props) => props.theme["purple-dark"]};
   }
+  
+
 `;
