@@ -1,5 +1,6 @@
 import { Header } from "../../components/Header";
 import { Orders } from "./Components/Orders";
+
 import {
   Container,
   ContainerOrders,
@@ -11,14 +12,16 @@ import {
   DivInfo,
   DivStatus,
   DivOrders,
-
+  DivSubtitulo,
 } from "./styles";
 
 export function Order() {
   return (
     <>
       <Header />
-
+      <DivSubtitulo>
+        <h1>Pedidos realizados</h1>
+      </DivSubtitulo>
       <Container>
         <section>
           <ContainerOrders>
@@ -39,25 +42,22 @@ export function Order() {
                 <p>Excluir</p>
                 <p>Consultar</p>
               </DivButton>
-     
             </DivInfo>
-  
+
             <DivOrders>
-            <Orders />
-            <Orders />
-          
-            <Orders />
-            <Orders />
-            <Orders />
-            <Orders />
-            <Orders />
-            <Orders />
-            <Orders />
-            <Orders />
+              <Orders />
+              <Orders />
+
+              <Orders />
+              <Orders />
+              <Orders />
+              <Orders />
+              <Orders />
+              <Orders />
+              <Orders />
+              <Orders />
             </DivOrders>
-    
           </ContainerOrders>
-       
         </section>
       </Container>
     </>
