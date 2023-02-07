@@ -5,30 +5,28 @@ import {
   Checkout,
   ContainerLogo,
   OrdersButton,
+  ClientesButton,
 } from "./styles";
 import Logo from "../../assets/Logo.svg";
 import Icon from "../../assets/Locale.svg";
 import CheckoutIcon from "../../assets/Checkout.svg";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
-import { Scroll } from "phosphor-react";
+import { Scroll, UserCircle } from "phosphor-react";
 
 export function Header() {
   const { cartQuantity } = useCart();
   let valueLocalidade = localStorage.getItem("inputLocalidade");
   let valueUF = localStorage.getItem("inputUf");
   let separator = ",";
-  if (valueUF === "undefined") {
-    valueUF = "Insira seu Endereço";
-  }
-  if (valueLocalidade === "undefined") {
-    valueLocalidade = "Insira seu Endereço";
-  }
+  // if (valueUF === "undefined") {
+  //   valueUF = "Insira seu Endereço";
+  // }
 
-  if (valueUF === "") {
-    valueUF = "Insira seu Endereço";
-    separator = " ";
-  }
+  // if (valueUF === "") {
+  //   valueUF = "Insira seu Endereço";
+  //   separator = " ";
+  // }
 
   return (
     <ContainerGrid>
@@ -39,8 +37,19 @@ export function Header() {
       </ContainerLogo>
 
       <ContainerCheckout>
+        <ClientesButton>
+          <NavLink
+            to="/Clientes"
+            title="Clientes"
+            style={{ textDecoration: "none", color: "#4B2995" }}>
+            <UserCircle />
+          </NavLink>
+        </ClientesButton>
         <OrdersButton>
-          <NavLink to="/Orders" title="Pedidos" style={{ textDecoration: "none", color: "#4B2995" }}>
+          <NavLink
+            to="/Orders"
+            title="Pedidos"
+            style={{ textDecoration: "none", color: "#4B2995" }}>
             <Scroll />
           </NavLink>
         </OrdersButton>
@@ -57,7 +66,10 @@ export function Header() {
         </NavLink>
         <Checkout title="Checkout">
           <span>{cartQuantity}</span>
-          <NavLink to="/Checkout" title="Checkout" style={{ textDecoration: "none" }}>
+          <NavLink
+            to="/Checkout"
+            title="Checkout"
+            style={{ textDecoration: "none" }}>
             <img src={CheckoutIcon} alt="CheckoutIcon" />
           </NavLink>
         </Checkout>

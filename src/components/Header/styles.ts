@@ -20,7 +20,7 @@ export const ContainerCheckout = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  width: 16rem;
+  width: 18rem;
 
   button svg {
     width: 100%;
@@ -112,6 +112,19 @@ export const OrdersButton = styled.button`
   :active {
     color: ${(props) => props.theme["purple-dark"]};
   }
-  
+`;
 
+export const ClientesButton = styled.button`
+  all: unset;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  background-color: ${(props) => props.theme["purple-light"]};
+  color: ${(props) => props.theme["purple-dark"]};
+  border-radius: 8px;
+  text-decoration: none;
+
+  :active {
+    color: ${(props) => props.theme["purple-dark"]};
+  }
 `;
