@@ -65,6 +65,7 @@ export function Checkout() {
   const { setCartItems } = useCart();
 
   const [cliente, setCliente] = useState<Cliente>({} as Cliente);
+  // const [cpf, setCpf] = useState();
   const [valueNav, setValueNav] = useState("/Checkout");
   // const ConsultaCEP = (event: any) => {
   //   const cep = event.target.value;
@@ -78,13 +79,25 @@ export function Checkout() {
   //       setInputUf(data.uf);
   //     });
 
-  const ConsultaCPF = (event: any) => {
-    const cpf2 = event.target.value;
-    console.log(cpf2);
-    api.get(`clientes/${cpf2}`).then((res) => {});
-  };
+  // const ConsultaCPF = (event: any) => {
+  //   const cpf2 = event.target.value;
+  //   console.log(cpf2);
+  //   api.get(`clientes/41878052810`).then((res) => {
+  //     setCliente((prevState) => {
+  //       return { ...prevState, [cliente.bairro]: cliente.bairro };
+  //     });
+  //     console.log(res);
+  //   });
+  // };
 
-  console.log(ConsultaCPF);
+  const ConsultaCPF = (event: any) => {
+    api.get(`clientes/41878052810`).then((res) => {
+      setCliente((prevState) => {
+        return { ...prevState, bairro: res.data.bairro };
+      });
+      console.log({ ...cliente, bairro: res.data.bairro });
+    });
+  };
 
   // const changeCliente = (campo: keyof typeof cliente, valor: string) => {
   //   setCliente((prevState) => {
@@ -143,7 +156,8 @@ export function Checkout() {
                   <InputNome
                     placeholder="CPF"
                     value={cliente.cpf}
-                    // onChange={(e) => setinputCPF(e.target.value)}
+                    // onChange={(e) => cpf(e.target.value)}
+                    onBlur={ConsultaCPF}
                   />
                   <InputSNome
                     placeholder="Nome"
@@ -204,7 +218,7 @@ export function Checkout() {
                   <BairroInput
                     placeholder="Bairro"
                     type="text"
-                    value={cliente.bairro}
+                    value={cliente.bairro || ""}
 
                     // onChange={(e) => setInputBairro(e.target.value)}
                   ></BairroInput>
