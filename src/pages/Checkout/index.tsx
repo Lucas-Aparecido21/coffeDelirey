@@ -105,26 +105,27 @@ export function Checkout() {
   // }
 
   function handleClick() {
-    if (cliente.rua === "") {
+    if (cliente.cpf === undefined) {
+      alert("As Informações pessoais são obrigatórias");
+      return;
+    }
+    if (cliente.nome === undefined) {
+      alert("As Informações pessoais são obrigatórias");
+      return;
+    }
+    if (cliente.telefone === undefined) {
+      alert("As Informações pessoais são obrigatórias");
+      return;
+    }
+    if (cliente.rua === undefined) {
       alert("O Endereço de entrega é obrigatório");
       return;
     }
-    if (cliente.numero === "") {
+    if (cliente.numero === undefined) {
       alert("O Numero do endereço é obrigatório");
       return;
     }
-    if (cliente.cpf === "") {
-      alert("As Informações pessoais são obrigatórias");
-      return;
-    }
-    if (cliente.nome === "") {
-      alert("As Informações pessoais são obrigatórias");
-      return;
-    }
-    if (cliente.telefone === "") {
-      alert("As Informações pessoais são obrigatórias");
-      return;
-    }
+
     if (cartItemsTotal === 0) {
       alert("Insira algum item no carrinho antes de concluir a compra");
     } else {
