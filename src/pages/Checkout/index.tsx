@@ -79,21 +79,20 @@ export function Checkout() {
   //       setInputUf(data.uf);
   //     });
 
-  // const ConsultaCPF = (event: any) => {
-  //   const cpf2 = event.target.value;
-  //   console.log(cpf2);
-  //   api.get(`clientes/41878052810`).then((res) => {
-  //     setCliente((prevState) => {
-  //       return { ...prevState, [cliente.bairro]: cliente.bairro };
-  //     });
-  //     console.log(res);
-  //   });
-  // };
-
   const ConsultaCPF = (event: any) => {
-    api.get(`clientes/41878052810`).then((res) => {
+    api.get(`clientes/145156`).then((res) => {
       setCliente((prevState) => {
-        return { ...prevState, bairro: res.data.bairro };
+        return {
+          ...prevState,
+          bairro: res.data.bairro,
+          cidade: res.data.cidade,
+          rua: res.data.rua,
+          numero: res.data.numero,
+          uf: res.data.uf,
+          nome: res.data.nome,
+          complemento: res.data.complemento,
+          telefone: res.data.telefone,
+        };
       });
       console.log({ ...cliente, bairro: res.data.bairro });
     });
@@ -155,21 +154,39 @@ export function Checkout() {
                 <DivName>
                   <InputNome
                     placeholder="CPF"
-                    value={cliente.cpf}
-                    // onChange={(e) => cpf(e.target.value)}
+                    name="cpf"
+                    value={cliente.cpf || ""}
+                    onChange={(e) =>
+                      setCliente({
+                        ...cliente,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
                     onBlur={ConsultaCPF}
                   />
                   <InputSNome
                     placeholder="Nome"
-                    value={cliente.nome}
-                    // onChange={(e) => setInputSName(e.target.value)}
+                    name="nome"
+                    value={cliente.nome || ""}
+                    onChange={(e) =>
+                      setCliente({
+                        ...cliente,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
                   />
                 </DivName>
                 <InputCel
                   placeholder="Celular"
+                  name="telefone"
                   type="tel"
-                  value={cliente.telefone}
-                  // onChange={(e) => setInputCel(e.target.value)}
+                  value={cliente.telefone || ""}
+                  onChange={(e) =>
+                    setCliente({
+                      ...cliente,
+                      [e.target.name]: e.target.value,
+                    })
+                  }
                 />
               </form>
             </DivInfo>
@@ -188,54 +205,86 @@ export function Checkout() {
               <form>
                 <CepInput
                   placeholder="CEP"
+                  name="cep"
                   type="text"
                   // onBlur={ConsultaCEP}
-                  value={cliente.cep}
-                  // onChange={(e) => setInputValue(e.target.value)}
-                ></CepInput>
+                  value={cliente.cep || ""}
+                  onChange={(e) =>
+                    setCliente({
+                      ...cliente,
+                      [e.target.name]: e.target.value,
+                    })
+                  }></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
+                  name="rua"
                   type="text"
-                  value={cliente.rua}
-                  // onChange={(e) => setInputLogradouro(e.target.value)}
-                ></RuaInput>
+                  value={cliente.rua || ""}
+                  onChange={(e) =>
+                    setCliente({
+                      ...cliente,
+                      [e.target.name]: e.target.value,
+                    })
+                  }></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
+                    name="numero"
                     type="text"
-                    value={cliente.numero}
-                    // onChange={(e) => setInputNumber(e.target.value)}
-                  ></NumeroInput>
+                    value={cliente.numero || ""}
+                    onChange={(e) =>
+                      setCliente({
+                        ...cliente,
+                        [e.target.name]: e.target.value,
+                      })
+                    }></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
+                    name="complemento"
                     type="text"
-                    value={cliente.complemento}
-                    // onChange={(e) => setInputComplemento(e.target.value)}
-                  ></ComplementoInput>
+                    value={cliente.complemento || ""}
+                    onChange={(e) =>
+                      setCliente({
+                        ...cliente,
+                        [e.target.name]: e.target.value,
+                      })
+                    }></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
+                    name="bairro"
                     type="text"
                     value={cliente.bairro || ""}
-
-                    // onChange={(e) => setInputBairro(e.target.value)}
-                  ></BairroInput>
+                    onChange={(e) =>
+                      setCliente({
+                        ...cliente,
+                        [e.target.name]: e.target.value,
+                      })
+                    }></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
+                    name="cidade"
                     type="text"
-                    value={cliente.cidade}
-
-                    // onChange={(e) => setInputLocalidade(e.target.value)}
-                  ></CidadeInput>
+                    value={cliente.cidade || ""}
+                    onChange={(e) =>
+                      setCliente({
+                        ...cliente,
+                        [e.target.name]: e.target.value,
+                      })
+                    }></CidadeInput>
                   <UFInput
                     placeholder="UF"
+                    name="uf"
                     type="text"
                     value={cliente.uf}
-
-                    // onChange={(e) => setInputUf(e.target.value)}
-                  ></UFInput>
+                    onChange={(e) =>
+                      setCliente({
+                        ...cliente,
+                        [e.target.name]: e.target.value,
+                      })
+                    }></UFInput>
                 </div>
               </form>
             </div>
@@ -261,8 +310,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -272,8 +320,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -283,8 +330,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}
-                >
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
                   <Money /> DINHEIRO
                 </button>
               </div>
