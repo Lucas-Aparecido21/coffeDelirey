@@ -57,30 +57,33 @@ interface Cliente {
 
 export function Checkout() {
   let { setFormPag, formPag } = useCart();
-  // const { register, setValue } = useForm();
   const DELIVERY_PRICE = 3.5;
   const { cartItems, cartItemsTotal } = useCart();
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
-
   const { setCartItems } = useCart();
-
   const [cliente, setCliente] = useState<Cliente>({} as Cliente);
-  // const [cpf, setCpf] = useState();
   const [valueNav, setValueNav] = useState("/Checkout");
-  // const ConsultaCEP = (event: any) => {
-  //   const cep = event.target.value;
 
-  //   fetch(`https://viacep.com.br/ws/${cep}/json/`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setInputLogradouro(data.logradouro);
-  //       setInputBairro(data.bairro);
-  //       setInputLocalidade(data.localidade);
-  //       setInputUf(data.uf);
-  //     });
+  const ConsultaCEP = (event: any) => {
+    const cep = event.target.value;
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCliente({
+          ...cliente,
+          rua: data.logradouro,
+          bairro: data.bairro,
+          cidade: data.localidade,
+          uf: data.uf,
+        });
+      });
+  };
 
   const ConsultaCPF = (event: any) => {
-    api.get(`clientes/145156`).then((res) => {
+    const cpf = event.target.value;
+
+    api.get(`clientes/${cpf} `).then((res) => {
       setCliente((prevState) => {
         return {
           ...prevState,
@@ -92,17 +95,32 @@ export function Checkout() {
           nome: res.data.nome,
           complemento: res.data.complemento,
           telefone: res.data.telefone,
+          cep: res.data.cep,
         };
       });
-      console.log({ ...cliente, bairro: res.data.bairro });
     });
   };
 
-  // const changeCliente = (campo: keyof typeof cliente, valor: string) => {
-  //   setCliente((prevState) => {
-  //     return { ...prevState, [campo]: valor }
-  //   })
-  // }
+  function createPedido() {
+    // api.post(`pedidos`);
+    // const data = new FormData();
+    // data.append("valor", cartTotal);
+    // data.append("entrega", DELIVERY_PRICE);
+  }
+  function createCliente() {
+    // if (cliente === undefined) {
+    //   const data = new FormData();
+    //   data.append("cpf");
+    //   // data.append("nome", { ...cliente.nome });
+    //   // data.append("telefone", { ...cliente.telefone });
+    //   // data.append("cep", { ...cliente.cep });
+    //   // data.append("rua", { ...cliente.rua });
+    //   // data.append("cidade", { ...cliente.cidade });
+    //   // data.append("bairro", { ...cliente.bairro });
+    //   // data.append("uf", { ...cliente.uf });
+    //   // data.append("numero", { ...cliente.numero });
+    // } else {
+  }
 
   function handleClick() {
     if (cliente.cpf === undefined) {
@@ -130,8 +148,8 @@ export function Checkout() {
       alert("Insira algum item no carrinho antes de concluir a compra");
     } else {
       setCartItems([]);
-
       setValueNav("/Sucess");
+      createPedido();
     }
   }
 
@@ -208,14 +226,15 @@ export function Checkout() {
                   placeholder="CEP"
                   name="cep"
                   type="text"
-                  // onBlur={ConsultaCEP}
+                  onBlur={ConsultaCEP}
                   value={cliente.cep || ""}
                   onChange={(e) =>
                     setCliente({
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></CepInput>
+                  }
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -227,7 +246,8 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></RuaInput>
+                  }
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -239,7 +259,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></NumeroInput>
+                    }
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -250,7 +271,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></ComplementoInput>
+                    }
+                  ></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
@@ -263,7 +285,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></BairroInput>
+                    }
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -274,7 +297,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></CidadeInput>
+                    }
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -285,7 +309,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></UFInput>
+                    }
+                  ></UFInput>
                 </div>
               </form>
             </div>
@@ -311,7 +336,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
+                >
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -321,7 +347,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
+                >
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -331,7 +358,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}
+                >
                   <Money /> DINHEIRO
                 </button>
               </div>

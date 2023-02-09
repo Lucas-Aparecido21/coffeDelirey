@@ -10,12 +10,6 @@ import { useCart } from "../../hooks/useCart";
 export function Sucess() {
   const { formPag } = useCart();
 
-  const valueLogradouro = localStorage.getItem("inputLogradouro");
-  const valueLocalidade = localStorage.getItem("inputLocalidade");
-  const valueUF = localStorage.getItem("inputUf");
-  const valueNumero = localStorage.getItem("inputNumber");
-  const valueBairro = localStorage.getItem("inputBairro");
-
   console.log("bairro");
 
   return (
@@ -42,9 +36,9 @@ export function Sucess() {
                   <img src={LocaleIcon} alt="Icone Localização" />
 
                   <p>
-                    Entrega em {valueLogradouro} , {valueNumero}
+                    Entrega em Insira a rua , Insira o numero
                     <p style={{ color: "#272221", fontWeight: "600" }}>
-                      {valueBairro} - {valueLocalidade}, {valueUF}
+                      Insira o Bairro -Insira a cidade, Insira a uf
                     </p>
                   </p>
                 </div>
