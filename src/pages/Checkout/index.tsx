@@ -104,25 +104,31 @@ export function Checkout() {
     });
   };
 
-  function createPedido() {
-    // api.post(`pedidos`);
-    // const data = new FormData();
-    // data.append("valor", cartTotal);
-    // data.append("entrega", DELIVERY_PRICE);
+  async function createPedido() {
+    const data = new FormData();
+    data.append("valor", JSON.stringify(cartTotal));
+    data.append("entrega", JSON.stringify(DELIVERY_PRICE));
+
+    if (cliente.cpf) {
+      createCliente();
+    } else {
+      await api.post(`pedidos/${cliente.cpf}`);
+    }
   }
-  function createCliente() {
-    // if (cliente === undefined) {
-    //   const data = new FormData();
-    //   data.append("cpf");
-    //   // data.append("nome", { ...cliente.nome });
-    //   // data.append("telefone", { ...cliente.telefone });
-    //   // data.append("cep", { ...cliente.cep });
-    //   // data.append("rua", { ...cliente.rua });
-    //   // data.append("cidade", { ...cliente.cidade });
-    //   // data.append("bairro", { ...cliente.bairro });
-    //   // data.append("uf", { ...cliente.uf });
-    //   // data.append("numero", { ...cliente.numero });
-    // } else {
+  async function createCliente() {
+    const data = new FormData();
+    data.append("cpf", JSON.stringify(cliente.cpf));
+    data.append("nome", JSON.stringify(cliente.nome));
+    data.append("cep", JSON.stringify(cliente.cep));
+    data.append("bairro", JSON.stringify(cliente.bairro));
+    data.append("rua", JSON.stringify(cliente.rua));
+    data.append("telefone", JSON.stringify(cliente.telefone));
+    data.append("cidade", JSON.stringify(cliente.cidade));
+    data.append("numero", JSON.stringify(cliente.numero));
+    data.append("uf", JSON.stringify(cliente.uf));
+    data.append("complemento", JSON.stringify(cliente.complemento));
+
+    await api.post(`clientes`);
   }
 
   function handleClick() {
@@ -150,9 +156,9 @@ export function Checkout() {
     if (cartItemsTotal === 0) {
       alert("Insira algum item no carrinho antes de concluir a compra");
     } else {
+      createPedido();
       setCartItems([]);
       setValueNav("/Sucess");
-      createPedido();
     }
   }
 
@@ -236,7 +242,8 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></CepInput>
+                  }
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -248,7 +255,8 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></RuaInput>
+                  }
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -260,7 +268,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></NumeroInput>
+                    }
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -271,7 +280,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></ComplementoInput>
+                    }
+                  ></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
@@ -284,7 +294,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></BairroInput>
+                    }
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -295,7 +306,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></CidadeInput>
+                    }
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -306,7 +318,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></UFInput>
+                    }
+                  ></UFInput>
                 </div>
               </form>
             </div>
@@ -332,7 +345,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
+                >
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -342,7 +356,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
+                >
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -352,7 +367,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}
+                >
                   <Money /> DINHEIRO
                 </button>
               </div>
