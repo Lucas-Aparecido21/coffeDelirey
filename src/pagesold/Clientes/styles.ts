@@ -21,8 +21,8 @@ export const Container = styled.main`
   }
 `;
 
-export const ContainerOrders = styled.div`
-  width: 1400px;
+export const ContainerClientes = styled.div`
+  width: 1580px;
   height: 700px;
   margin-top: 20px;
   background-color: ${(props) => props.theme["base-card"]};
@@ -57,13 +57,13 @@ export const DivInfo = styled.div`
   align-items: center;
   justify-content: center;
   gap: 18px;
-  width: 1390px;
+  width: 1500px;
   font-size: 20px;
   color: ${(props) => props.theme["base-subtitle"]};
   background-color: ${(props) => props.theme["base-card"]};
 `;
 
-export const DivCodPedido = styled.div`
+export const DivCodCPF = styled.div`
   width: 200px;
   height: 50px;
   display: flex;
@@ -101,12 +101,6 @@ export const DivButton = styled.div`
   justify-content: space-between;
 `;
 
-export const DivStatus = styled.div`
-  width: 150px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-`;
 export const DivOrders = styled.div`
   margin-top: 7rem;
 `;

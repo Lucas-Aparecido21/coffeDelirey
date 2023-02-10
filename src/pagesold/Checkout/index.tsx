@@ -1,5 +1,4 @@
 // import { useState } from "react";
-import React from "react";
 import { Header } from "../../components/Header";
 import {
   Container,
@@ -58,8 +57,6 @@ interface Cliente {
 
 export function Checkout() {
   let { setFormPag, formPag } = useCart();
-  // const savedCliente = localStorage.getItem();
-
   const DELIVERY_PRICE = 3.5;
   const { cartItems, cartItemsTotal } = useCart();
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
@@ -236,7 +233,8 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></CepInput>
+                  }
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -248,7 +246,8 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></RuaInput>
+                  }
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -260,7 +259,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></NumeroInput>
+                    }
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -271,7 +271,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></ComplementoInput>
+                    }
+                  ></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
@@ -284,7 +285,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></BairroInput>
+                    }
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -295,7 +297,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></CidadeInput>
+                    }
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -306,7 +309,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></UFInput>
+                    }
+                  ></UFInput>
                 </div>
               </form>
             </div>
@@ -332,7 +336,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
+                >
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -342,7 +347,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
+                >
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -352,7 +358,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}
+                >
                   <Money /> DINHEIRO
                 </button>
               </div>

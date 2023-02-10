@@ -6,11 +6,10 @@ import {
   DivCodValor,
   DivDatapedido,
   DivOrders,
+  DivStatus,
 } from "./styles";
 
 export function Orders() {
-  function handleDeleteCliente() {}
-
   return (
     <DivOrders>
       <DivCodPedido>
@@ -23,11 +22,12 @@ export function Orders() {
       <DivCodValor>
         <p>R$ 130,00</p>
       </DivCodValor>
+      <DivStatus>Em andamento</DivStatus>
       <DivButton>
         <button id="alterar">
           <PencilSimple />
         </button>
-        <button id="excluir" onClick={handleDeleteCliente}>
+        <button id="excluir">
           <Trash />
         </button>
         <button id="consultar">

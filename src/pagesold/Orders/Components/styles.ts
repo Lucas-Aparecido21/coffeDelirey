@@ -11,10 +11,6 @@ export const DivOrders = styled.nav`
   font-family: "Roboto", sans-serif;
   margin-top: 1rem !important;
   align-items: center;
-
-  :hover {
-    box-shadow: 4px 2px 13px 2px gray;
-  }
 `;
 
 export const DivInfo = styled.div`
@@ -27,7 +23,7 @@ export const DivInfo = styled.div`
   width: 100%;
 `;
 
-export const DivCPF = styled.div`
+export const DivCodPedido = styled.div`
   width: 200px;
   height: 50px;
   display: flex;
@@ -35,7 +31,7 @@ export const DivCPF = styled.div`
   justify-content: center;
 `;
 
-export const DivNome = styled.div`
+export const DivDatapedido = styled.div`
   width: 180px;
   height: 50px;
   display: flex;
@@ -90,4 +86,11 @@ export const DivButton = styled.div`
   #consultar:hover {
     color: ${(props) => props.theme["yellow-dark"]};
   }
+`;
+
+export const DivStatus = styled.div`
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
 `;

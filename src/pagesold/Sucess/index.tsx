@@ -25,7 +25,8 @@ export function Sucess() {
                 fontWeight: "400",
                 fontSize: "22px",
                 color: "#403937",
-              }}>
+              }}
+            >
               Agora é só aguardar que logo o café chegará até você
             </span>
 
@@ -65,7 +66,7 @@ export function Sucess() {
           <DivHome>
             <img src={SucessImagem} alt="Imagem Motoboy" id="teste" />
             <NavLink to="/">
-              <button>Realizar novo pedido</button>
+              <button>Continuar comprando</button>
             </NavLink>
           </DivHome>
         </section>

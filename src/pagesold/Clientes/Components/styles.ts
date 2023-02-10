@@ -11,10 +11,6 @@ export const DivOrders = styled.nav`
   font-family: "Roboto", sans-serif;
   margin-top: 1rem !important;
   align-items: center;
-
-  :hover {
-    box-shadow: 4px 2px 13px 2px gray;
-  }
 `;
 
 export const DivInfo = styled.div`

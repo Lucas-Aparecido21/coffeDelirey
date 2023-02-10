@@ -1,6 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import { ConsultarCliente } from "./pages/ConsultarCliente";
-import { AlterarCliente } from "./pages/AlterarCliente";
 import { Checkout } from "./pages/Checkout";
 import { Cliente } from "./pages/Clientes";
 import { Home } from "./pages/Home";
@@ -15,8 +13,6 @@ export function Router() {
       <Route path="/Sucess" element={<Sucess />} />
       <Route path="/Orders" element={<Order />} />
       <Route path="/Clientes" element={<Cliente />} />
-      <Route path="/ConsultarCliente" element={<ConsultarCliente />} />
-      <Route path="/AlterarCliente" element={<AlterarCliente />} />
     </Routes>
   );
 }

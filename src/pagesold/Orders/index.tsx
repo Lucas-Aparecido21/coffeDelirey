@@ -10,6 +10,7 @@ import {
   DivCodValor,
   DivDatapedido,
   DivInfo,
+  DivStatus,
   DivOrders,
   DivSubtitulo,
 } from "./styles";
@@ -35,7 +36,7 @@ export function Order() {
               <DivCodValor>
                 <p>Valor total</p>
               </DivCodValor>
-
+              <DivStatus>Status</DivStatus>
               <DivButton>
                 <p>Alterar</p>
                 <p>Excluir</p>

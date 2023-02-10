@@ -1,6 +1,5 @@
 import { PencilSimple, Scroll, Trash } from "phosphor-react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
 import api from "../../../services/api";
 import {
   DivButton,
@@ -46,7 +45,6 @@ export function Clientes() {
   api.get(`clientes/`).then((res) => {
     return {};
   });
-
   return (
     <DivOrders>
       <DivCPF>
@@ -61,23 +59,15 @@ export function Clientes() {
       <DivCodValor>03978180</DivCodValor>
 
       <DivButton>
-        <NavLink
-          to="/AlterarCliente"
-          style={{ textDecoration: "none", color: "black" }}>
-          <button id="alterar">
-            <PencilSimple />
-          </button>
-        </NavLink>
+        <button id="alterar">
+          <PencilSimple />
+        </button>
         <button id="excluir">
           <Trash />
         </button>
-        <NavLink
-          to="/ConsultarCliente"
-          style={{ textDecoration: "none", color: "black" }}>
-          <button id="consultar">
-            <Scroll />
-          </button>
-        </NavLink>
+        <button id="consultar">
+          <Scroll />
+        </button>
       </DivButton>
     </DivOrders>
   );

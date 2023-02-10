@@ -11,6 +11,10 @@ export const DivOrders = styled.nav`
   font-family: "Roboto", sans-serif;
   margin-top: 1rem !important;
   align-items: center;
+
+  :hover {
+    box-shadow: 4px 2px 13px 2px gray;
+  }
 `;
 
 export const DivInfo = styled.div`
@@ -29,6 +33,7 @@ export const DivCodPedido = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 18px;
 `;
 
 export const DivDatapedido = styled.div`
@@ -36,6 +41,7 @@ export const DivDatapedido = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
+  font-size: 18px;
 `;
 export const DivCodCliente = styled.div`
   width: 400px;
@@ -43,6 +49,7 @@ export const DivCodCliente = styled.div`
   display: flex;
   align-items: center;
   gap: 12rem;
+  font-size: 18px;
 `;
 
 export const DivCodValor = styled.div`
@@ -50,6 +57,7 @@ export const DivCodValor = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
+  font-size: 18px;
   /* background-color: ${(props) => props.theme["base-input"]}; */
 `;
 
@@ -76,7 +84,7 @@ export const DivButton = styled.div`
   }
 
   #alterar:hover {
-    color: ${(props) => props.theme["purple-dark"]};
+    color: purple;
   }
 
   #excluir:hover {
@@ -86,11 +94,4 @@ export const DivButton = styled.div`
   #consultar:hover {
     color: ${(props) => props.theme["yellow-dark"]};
   }
-`;
-
-export const DivStatus = styled.div`
-  width: 150px;
-  height: 50px;
-  display: flex;
-  align-items: center;
 `;
