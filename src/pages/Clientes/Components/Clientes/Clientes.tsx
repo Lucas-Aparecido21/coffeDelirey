@@ -12,40 +12,23 @@ import {
   DivOrders,
 } from "./styles";
 
-interface Cliente {
-  cpf: string;
-  cep: string;
-  cidade: string;
-  telefone: string;
-  complemento: string;
-  nome: string;
-  rua: string;
-  uf: string;
-  bairro: string;
-  numero: string;
+import { ClienteProps } from "../../../../@types/Coffe";
+
+interface ClientesProps {
+  clientes: ClienteProps;
 }
 
-export function Clientes() {
-  const [cliente, setCliente] = useState<Cliente>({} as Cliente);
-  //   api.get(`clientes/ `).then((res) => {
-
-  //     return {
-  //       ...prevState,
-  //       bairro: res.data.bairro,
-  //       cidade: res.data.cidade,
-  //       rua: res.data.rua,
-  //       numero: res.data.numero,
-  //       uf: res.data.uf,
-  //       nome: res.data.nome,
-  //       complemento: res.data.complemento,
-  //       telefone: res.data.telefone,
-  //       cep: res.data.cep,
-  //     };
-
-  //  )}
-
+export const Clientes = ({ clientes }: ClientesProps) => {
   api.get(`clientes/`).then((res) => {
-    return {};
+    const data = new FormData();
+
+    return {
+      ...clientes,
+      cpf: res.data.cpf,
+      nome: res.data.nome,
+      telefone: res.data.telefone,
+      cep: res.data.cep,
+    };
   });
 
   const [isOpen, setIsOpen] = useState(false);
@@ -54,15 +37,17 @@ export function Clientes() {
       <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
       <DivOrders>
         <DivCPF>
-          <p>41878052810 </p>
+          {clientes.cpf.map((clientes) => (
+            <p>{clientes}</p>
+          ))}
         </DivCPF>
         <DivNome>
-          <p>Lucas Aparecido</p>
+          <p>{clientes.nome}</p>
         </DivNome>
         <DivCodCliente>
-          <p>11940296563</p>
+          <p>{clientes.telefone}</p>
         </DivCodCliente>
-        <DivCodValor>03978180</DivCodValor>
+        <DivCodValor>{clientes.cep}</DivCodValor>
 
         <DivButton>
           <NavLink
@@ -88,4 +73,4 @@ export function Clientes() {
       </DivOrders>
     </>
   );
-}
+};

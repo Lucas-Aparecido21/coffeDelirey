@@ -13,7 +13,7 @@ import {
   ContainerClientes,
   DivCodCPF,
 } from "./styles";
-import { useState } from "react";
+import { Key, useState } from "react";
 
 export function Cliente() {
   return (
@@ -47,16 +47,9 @@ export function Cliente() {
             </DivInfo>
 
             <DivOrders>
-              <Clientes />
-              <Clientes />
-              <Clientes />
-              <Clientes />
-              <Clientes />
-              <Clientes />
-              <Clientes />
-              <Clientes />
-              <Clientes />
-              <Clientes />
+              {clientes.map((cliente) => (
+                <Clientes key={cliente.cpf} cliente={clientes} />
+              ))}
             </DivOrders>
           </ContainerClientes>
         </section>

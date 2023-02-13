@@ -38,7 +38,7 @@ export const ContainerModal = styled.div`
 `;
 
 export const DivButton = styled.div`
-  margin-top: 30px;
+  margin-top: 30px !important;
   display: flex;
   gap: 1rem;
 `;
