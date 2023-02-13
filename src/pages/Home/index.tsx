@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../../components/Header";
 import {
   CoffeListContainer,
@@ -14,9 +14,12 @@ import timerIcon from "../../assets/timerIcon.svg";
 import embIcon from "../../assets/embIcon.svg";
 //
 import { dataFake } from "../../database/fakeCoffe";
-import { Card } from "./Components/Card";
+import { Card } from "./Components/Card/Card";
+import { Modal } from "./Components/Modal";
 
 export function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <Header />
@@ -53,15 +56,18 @@ export function Home() {
           </div>
         </section>
       </Container>
+
       <CoffeListContainer>
         <section>
           <h1>Nossos Cafés</h1>
+
           <DivCoffee>
             {dataFake.map((coffee) => (
               <Card key={coffee.id} coffee={coffee} />
             ))}
           </DivCoffee>
         </section>
+        <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
       </CoffeListContainer>
     </>
   );

@@ -90,7 +90,6 @@ export const ImagemCafe = styled.img`
 `;
 
 export const CoffeListContainer = styled.div`
-  width: 90%;
   height: 1550px;
   display: flex;
   justify-content: center;

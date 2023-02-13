@@ -1,3 +1,5 @@
+import { ButtonNo, ButtonYes, Container, ContainerModal } from "./styles";
+
 interface Open {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -6,11 +8,13 @@ interface Open {
 export function Modal({ isOpen, setIsOpen }: Open) {
   return (
     <>
-      <div>
-        <h1>Tem certeza que deseja excluir este cliente?</h1>
-        <button>Sim</button>
-        <button>Não</button>
-      </div>
+      <Container>
+        <ContainerModal>
+          <h1>Tem certeza que deseja excluir este cliente?</h1>
+          <ButtonYes>Sim</ButtonYes>
+          <ButtonNo>Não</ButtonNo>
+        </ContainerModal>
+      </Container>
     </>
   );
 }
