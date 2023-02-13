@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Header } from "../../components/Header";
-import { Orders } from "./Components/Orders";
+import { Modal } from "./Components/Modal";
+import { Orders } from "./Components/Orders/Orders";
 
 import {
   Container,

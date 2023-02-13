@@ -86,22 +86,26 @@ export function Checkout() {
   const ConsultaCPF = (event: any) => {
     const cpf = event.target.value;
 
-    api.get(`clientes/${cpf} `).then((res) => {
-      setCliente((prevState) => {
-        return {
-          ...prevState,
-          bairro: res.data.bairro,
-          cidade: res.data.cidade,
-          rua: res.data.rua,
-          numero: res.data.numero,
-          uf: res.data.uf,
-          nome: res.data.nome,
-          complemento: res.data.complemento,
-          telefone: res.data.telefone,
-          cep: res.data.cep,
-        };
+    if (cpf !== undefined) {
+      api.get(`clientes/${cpf} `).then((res) => {
+        setCliente((prevState) => {
+          return {
+            ...prevState,
+            bairro: res.data.bairro,
+            cidade: res.data.cidade,
+            rua: res.data.rua,
+            numero: res.data.numero,
+            uf: res.data.uf,
+            nome: res.data.nome,
+            complemento: res.data.complemento,
+            telefone: res.data.telefone,
+            cep: res.data.cep,
+          };
+        });
       });
-    });
+    } else {
+      createCliente();
+    }
   };
 
   async function createPedido() {

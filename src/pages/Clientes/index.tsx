@@ -1,6 +1,6 @@
 import { Header } from "../../components/Header";
-import { Clientes } from "./Components/Clientes";
-import { Modal } from "../../components/Modal";
+import { Clientes } from "./Components/Clientes/Clientes";
+
 import {
   Container,
   DivButton,
@@ -16,15 +16,14 @@ import {
 import { useState } from "react";
 
 export function Cliente() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <Header />
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+
       <DivSubtitulo>
         <h1>Cadastro de clientes</h1>
       </DivSubtitulo>
+
       <Container>
         <section>
           <ContainerClientes>
@@ -50,7 +49,6 @@ export function Cliente() {
             <DivOrders>
               <Clientes />
               <Clientes />
-
               <Clientes />
               <Clientes />
               <Clientes />
