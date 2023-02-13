@@ -1,4 +1,5 @@
-import { Container, ContainerModal } from "./styles";
+import { XCircle } from "phosphor-react";
+import { ContainerModal, Container, ButtonYes, DivButton } from "./styles";
 
 interface Open {
   isOpen: boolean;
@@ -7,13 +8,18 @@ interface Open {
 
 export function Modal({ isOpen, setIsOpen }: Open) {
   return (
-    <Container style={{ display: isOpen ? "fixed" : "none" }}>
-      <ContainerModal>
-        <h1>Insira uma quantidade para adicionar o produto no carrinho</h1>
-        <div>
-          <button onClick={() => setIsOpen(false)}>OK</button>
-        </div>
-      </ContainerModal>
-    </Container>
+    <>
+      <Container style={{ display: isOpen ? "flex" : "none" }}>
+        <ContainerModal>
+          <h1>
+            <XCircle />
+            Insira uma quantidade para prosseguir
+          </h1>
+          <DivButton>
+            <ButtonYes onClick={() => setIsOpen(false)}>OK</ButtonYes>
+          </DivButton>
+        </ContainerModal>
+      </Container>
+    </>
   );
 }

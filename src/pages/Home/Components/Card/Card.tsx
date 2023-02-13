@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CoffeeProps } from "../../../../@types/Coffe";
 import { useCart } from "../../../../hooks/useCart";
 
+import { Modal } from "../Modal";
 import {
   Description,
   Price,
@@ -17,6 +18,7 @@ interface CardProps {
 }
 
 export const Card = ({ coffee }: CardProps) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const { addCoffeeToCart } = useCart();
   function handleAddQuantity() {
@@ -29,6 +31,7 @@ export const Card = ({ coffee }: CardProps) => {
 
   function handleAddToCart() {
     if (quantity === 0) {
+      setIsOpen(true);
     } else {
       const coffeeToAdd = {
         ...coffee,
@@ -74,6 +77,7 @@ export const Card = ({ coffee }: CardProps) => {
           </Price>
         </CardDiv>
       </Container2>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };
