@@ -47,9 +47,9 @@ export function Cliente() {
             </DivInfo>
 
             <DivOrders>
-              {clientes.map((cliente) => (
+              {/* {clientes.map((cliente) => (
                 <Clientes key={cliente.cpf} cliente={clientes} />
-              ))}
+              ))} */}
             </DivOrders>
           </ContainerClientes>
         </section>

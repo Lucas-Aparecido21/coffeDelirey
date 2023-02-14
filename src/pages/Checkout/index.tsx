@@ -41,7 +41,7 @@ import { CartListCheckout } from "./Components/Cart";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 import { useState } from "react";
-import api from "../../services/api";
+import * as api from "../../services/api";
 
 interface Cliente {
   cpf: string;
@@ -83,29 +83,34 @@ export function Checkout() {
       });
   };
 
-  const ConsultaCPF = (event: any) => {
+  const ConsultaCPF = async (event: any) => {
     const cpf = event.target.value;
 
-    if (cpf !== undefined) {
-      api.get(`clientes/${cpf} `).then((res) => {
+    if (cpf) {
+      try {
+        const { data } = await api.getClientByCpf(cpf);
+
         setCliente((prevState) => {
           return {
             ...prevState,
-            bairro: res.data.bairro,
-            cidade: res.data.cidade,
-            rua: res.data.rua,
-            numero: res.data.numero,
-            uf: res.data.uf,
-            nome: res.data.nome,
-            complemento: res.data.complemento,
-            telefone: res.data.telefone,
-            cep: res.data.cep,
+            bairro: data.bairro,
+            cidade: data.cidade,
+            rua: data.rua,
+            numero: data.numero,
+            uf: data.uf,
+            nome: data.nome,
+            complemento: data.complemento,
+            telefone: data.telefone,
+            cep: data.cep,
           };
         });
-      });
-    } else {
-      createCliente();
+      } catch (error) {
+        console.error(error);
+      }
+
+      return;
     }
+    createCliente();
   };
 
   async function createPedido() {
@@ -116,7 +121,7 @@ export function Checkout() {
     if (cliente.cpf) {
       createCliente();
     } else {
-      await api.post(`pedidos/${cliente.cpf}`);
+      // await api.post(`pedidos/${cliente.cpf}`);
     }
   }
   async function createCliente() {
@@ -132,7 +137,7 @@ export function Checkout() {
     data.append("uf", JSON.stringify(cliente.uf));
     data.append("complemento", JSON.stringify(cliente.complemento));
 
-    await api.post(`clientes`);
+    // await api.post(`clientes`);
   }
 
   function handleClick() {
