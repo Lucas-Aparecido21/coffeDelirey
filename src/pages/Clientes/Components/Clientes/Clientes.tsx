@@ -1,7 +1,7 @@
 import { PencilSimple, Scroll, Trash } from "phosphor-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import api from "../../../../services/api";
+import * as api from "../../../../services/api";
 import { Modal } from "../Modal";
 import {
   DivButton,
@@ -18,18 +18,33 @@ interface ClientesProps {
   clientes: ClienteProps;
 }
 
-export const Clientes = ({ clientes }: ClientesProps) => {
-  api.get(`clientes/`).then((res) => {
-    const data = new FormData();
+interface Cliente {
+  cpf: string[];
+  nome: string;
+  telefone: string;
+  cep: string;
+}
 
-    return {
-      ...clientes,
-      cpf: res.data.cpf,
-      nome: res.data.nome,
-      telefone: res.data.telefone,
-      cep: res.data.cep,
-    };
-  });
+export const Cadastro = async ({ clientes }: ClientesProps) => {
+  const [cliente, setCliente] = useState<Cliente>({} as Cliente);
+
+  try {
+    const { data } = await api.getClient();
+
+    setCliente((prevState) => {
+      return {
+        ...prevState,
+        cpf: data.cpf,
+        nome: data.nome,
+        telefone: data.telefone,
+        cep: data.cep,
+      };
+    });
+
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
 
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -37,23 +52,20 @@ export const Clientes = ({ clientes }: ClientesProps) => {
       <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
       <DivOrders>
         <DivCPF>
-          {clientes.cpf.map((clientes) => (
-            <p>{clientes}</p>
-          ))}
+          <p>{cliente.cpf}</p>
         </DivCPF>
         <DivNome>
-          <p>{clientes.nome}</p>
+          <p>{cliente.nome}</p>
         </DivNome>
         <DivCodCliente>
-          <p>{clientes.telefone}</p>
+          <p>{cliente.telefone}</p>
         </DivCodCliente>
-        <DivCodValor>{clientes.cep}</DivCodValor>
+        <DivCodValor>{cliente.cep}</DivCodValor>
 
         <DivButton>
           <NavLink
             to="/AlterarCliente"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="alterar">
               <PencilSimple />
             </button>
@@ -63,8 +75,7 @@ export const Clientes = ({ clientes }: ClientesProps) => {
           </button>
           <NavLink
             to="/ConsultarCliente"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="consultar">
               <Scroll />
             </button>

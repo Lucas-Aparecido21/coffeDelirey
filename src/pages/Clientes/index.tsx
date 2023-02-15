@@ -1,5 +1,5 @@
 import { Header } from "../../components/Header";
-import { Clientes } from "./Components/Clientes/Clientes";
+import { Cadastro } from "./Components/Clientes/Clientes";
 
 import {
   Container,
@@ -13,7 +13,6 @@ import {
   ContainerClientes,
   DivCodCPF,
 } from "./styles";
-import { Key, useState } from "react";
 
 export function Cliente() {
   return (
@@ -48,7 +47,7 @@ export function Cliente() {
 
             <DivOrders>
               {/* {clientes.map((cliente) => (
-                <Clientes key={cliente.cpf} cliente={clientes} />
+                <Clientes key={cliente.cpf} cliente={cliente} />
               ))} */}
             </DivOrders>
           </ContainerClientes>

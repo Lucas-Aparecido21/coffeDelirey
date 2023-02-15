@@ -22,7 +22,7 @@ import {
 } from "./styles";
 import { MapPinLine, UserCircle } from "phosphor-react";
 import { useState } from "react";
-import api from "../../services/api";
+import * as api from "../../services/api";
 
 interface Cliente {
   cpf: string;
@@ -58,24 +58,24 @@ export function AlterarCliente() {
 
   const ConsultaCPF = (event: any) => {
     const cpf = event.target.value;
-
-    api.get(`clientes/${cpf} `).then((res) => {
-      setCliente((prevState) => {
-        return {
-          ...prevState,
-          bairro: res.data.bairro,
-          cidade: res.data.cidade,
-          rua: res.data.rua,
-          numero: res.data.numero,
-          uf: res.data.uf,
-          nome: res.data.nome,
-          complemento: res.data.complemento,
-          telefone: res.data.telefone,
-          cep: res.data.cep,
-        };
-      });
-    });
   };
+  //   api.get(`clientes/${cpf} `).then((res) => {
+  //     setCliente((prevState) => {
+  //       return {
+  //         ...prevState,
+  //         bairro: res.data.bairro,
+  //         cidade: res.data.cidade,
+  //         rua: res.data.rua,
+  //         numero: res.data.numero,
+  //         uf: res.data.uf,
+  //         nome: res.data.nome,
+  //         complemento: res.data.complemento,
+  //         telefone: res.data.telefone,
+  //         cep: res.data.cep,
+  //       };
+  //     });
+  //   });
+  // };
 
   return (
     <>
