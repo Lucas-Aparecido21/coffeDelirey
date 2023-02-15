@@ -1,4 +1,4 @@
-import { PencilSimple, Scroll, Trash } from "phosphor-react";
+import { Scroll, Trash } from "phosphor-react";
 import { useState } from "react";
 import { Modal } from "../Modal";
 import {
@@ -31,9 +31,6 @@ export function Orders() {
           <p>R$ 130,00</p>
         </DivCodValor>
         <DivButton>
-          <button id="alterar">
-            <PencilSimple />
-          </button>
           <button id="excluir" onClick={handleDeleteCliente}>
             <Trash />
           </button>

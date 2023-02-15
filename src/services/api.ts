@@ -1,14 +1,22 @@
 import xhr from "./xhr";
 import { AxiosPromise } from "axios";
 
-import { ClienteProps } from "../@types";
+import { ClienteProps, Cliente, Pedido } from "../@types";
 
-const getClient = (): AxiosPromise<ClienteProps> => xhr.get(`clientes/`);
+/* CLIENTES */
+const getClient = (): AxiosPromise<Cliente[]> => xhr.get(`clientes/`);
 
 const getClientByCpf = (cpf: string): AxiosPromise<ClienteProps> =>
   xhr.get(`clientes/${cpf}`);
 
-const postCreateCliente = (): AxiosPromise<ClienteProps> =>
-  xhr.post(`clientes/`);
+const postCreateCliente = (params: ClienteProps): AxiosPromise<ClienteProps> =>
+  xhr.post(`clientes/`, params);
 
-export { getClientByCpf, getClient, postCreateCliente };
+/* CLIENTES */
+
+/* PEDIDOS */
+const getPedido = (): AxiosPromise<Pedido[]> => xhr.get(`pedidos/`);
+
+/* PEDIDOS */
+
+export { getClientByCpf, getClient, postCreateCliente, getPedido };

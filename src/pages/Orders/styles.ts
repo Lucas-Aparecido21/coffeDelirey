@@ -98,7 +98,8 @@ export const DivButton = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1.5rem;
 `;
 
 export const DivStatus = styled.div`

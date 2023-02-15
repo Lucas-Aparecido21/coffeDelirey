@@ -12,36 +12,20 @@ import {
   DivOrders,
 } from "./styles";
 
-import { ClienteProps } from "../../../../@types/Coffe";
-
-interface ClientesProps {
-  clientes: ClienteProps;
-}
-
 interface Cliente {
-  cpf: string[];
+  cpf: string;
   nome: string;
   telefone: string;
   cep: string;
 }
 
-export const Cadastro = async ({ clientes }: ClientesProps) => {
-  const [cliente, setCliente] = useState<Cliente>({} as Cliente);
+export const Cadastro = async () => {
+  const [cliente, setCliente] = useState<Cliente[]>([]);
 
   try {
     const { data } = await api.getClient();
 
-    setCliente((prevState) => {
-      return {
-        ...prevState,
-        cpf: data.cpf,
-        nome: data.nome,
-        telefone: data.telefone,
-        cep: data.cep,
-      };
-    });
-
-    console.log(data);
+    setCliente(data);
   } catch (error) {
     console.error(error);
   }
@@ -51,21 +35,26 @@ export const Cadastro = async ({ clientes }: ClientesProps) => {
     <>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
       <DivOrders>
-        <DivCPF>
-          <p>{cliente.cpf}</p>
-        </DivCPF>
-        <DivNome>
-          <p>{cliente.nome}</p>
-        </DivNome>
-        <DivCodCliente>
-          <p>{cliente.telefone}</p>
-        </DivCodCliente>
-        <DivCodValor>{cliente.cep}</DivCodValor>
+        {cliente.map((c) => (
+          <>
+            <DivCPF>
+              <p>{c.cpf}</p>
+            </DivCPF>
+            <DivNome>
+              <p>{c.nome}</p>
+            </DivNome>
+            <DivCodCliente>
+              <p>{c.telefone}</p>
+            </DivCodCliente>
+            <DivCodValor>{c.cep}</DivCodValor>
+          </>
+        ))}
 
         <DivButton>
           <NavLink
             to="/AlterarCliente"
-            style={{ textDecoration: "none", color: "black" }}>
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <button id="alterar">
               <PencilSimple />
             </button>
@@ -75,7 +64,8 @@ export const Cadastro = async ({ clientes }: ClientesProps) => {
           </button>
           <NavLink
             to="/ConsultarCliente"
-            style={{ textDecoration: "none", color: "black" }}>
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <button id="consultar">
               <Scroll />
             </button>

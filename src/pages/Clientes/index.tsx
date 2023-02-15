@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { Header } from "../../components/Header";
-import { Cadastro } from "./Components/Clientes/Clientes";
 
 import {
   Container,
@@ -14,7 +14,15 @@ import {
   DivCodCPF,
 } from "./styles";
 
+interface Cliente {
+  cpf: string;
+  nome: string;
+  telefone: string;
+  cep: string;
+}
+
 export function Cliente() {
+  const [cliente] = useState<Cliente[]>([]);
   return (
     <>
       <Header />
@@ -45,11 +53,7 @@ export function Cliente() {
               </DivButton>
             </DivInfo>
 
-            <DivOrders>
-              {/* {clientes.map((cliente) => (
-                <Clientes key={cliente.cpf} cliente={cliente} />
-              ))} */}
-            </DivOrders>
+            <DivOrders></DivOrders>
           </ContainerClientes>
         </section>
       </Container>

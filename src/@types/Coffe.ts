@@ -8,18 +8,6 @@ export interface CoffeeProps {
   price: number;
 }
 
-export interface ClienteProps {
-  cpf: string[];
-  cep: string;
-  cidade: string;
-  telefone: string;
-  complemento: string;
-  nome: string;
-  rua: string;
-  uf: string;
-  bairro: string;
-  numero: string;
-}
 export interface CartListCoffee {
   id: number;
   image: string;

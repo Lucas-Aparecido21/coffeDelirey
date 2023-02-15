@@ -47,11 +47,14 @@ export const BaseButton = styled.button`
   all: unset;
   cursor: pointer;
   border: none;
-  width: 100px;
+  width: 130px;
   height: 40px;
   text-align: center;
   border-radius: 8px;
   font-size: 18px;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
 `;
 
 export const ButtonYes = styled(BaseButton)`

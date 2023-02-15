@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { Header } from "../../components/Header";
-import { Modal } from "./Components/Modal";
 import { Orders } from "./Components/Orders/Orders";
 
 import {
@@ -39,7 +37,6 @@ export function Order() {
               </DivCodValor>
 
               <DivButton>
-                <p>Alterar</p>
                 <p>Excluir</p>
                 <p>Consultar</p>
               </DivButton>
@@ -48,7 +45,6 @@ export function Order() {
             <DivOrders>
               <Orders />
               <Orders />
-
               <Orders />
               <Orders />
               <Orders />

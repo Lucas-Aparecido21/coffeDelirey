@@ -44,7 +44,7 @@ import { useState } from "react";
 import * as api from "../../services/api";
 
 interface Cliente {
-  cpf: string[];
+  cpf: string;
   nome: string;
   telefone: string;
   cep: string;
@@ -53,7 +53,7 @@ interface Cliente {
   bairro: string;
   uf: string;
   numero: string;
-  complemento?: string;
+  complemento?: string | undefined;
 }
 
 export function Checkout() {
@@ -109,13 +109,14 @@ export function Checkout() {
       }
 
       return;
+    } else {
+      createCliente();
     }
-    // createCliente();
   };
 
   async function createCliente() {
     try {
-      const { data } = await api.postCreateCliente();
+      await api.postCreateCliente(cliente);
     } catch (error) {
       console.error(error);
     }
@@ -232,7 +233,8 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></CepInput>
+                  }
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -244,7 +246,8 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></RuaInput>
+                  }
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -256,7 +259,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></NumeroInput>
+                    }
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -267,7 +271,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></ComplementoInput>
+                    }
+                  ></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
@@ -280,7 +285,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></BairroInput>
+                    }
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -291,7 +297,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></CidadeInput>
+                    }
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -302,11 +309,10 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></UFInput>
+                    }
+                  ></UFInput>
                 </div>
               </form>
-
-              <button onClick={createCliente}>SÓ UM TESTE</button>
             </div>
           </ContainerCep>
 
@@ -330,7 +336,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
+                >
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -340,7 +347,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
+                >
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -350,7 +358,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}
+                >
                   <Money /> DINHEIRO
                 </button>
               </div>
