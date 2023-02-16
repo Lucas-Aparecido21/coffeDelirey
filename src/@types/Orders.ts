@@ -8,4 +8,5 @@ export interface PedidoProps {
   cpf_id: string;
   valor: number;
   entrega: number;
+  id: number;
 }

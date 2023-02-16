@@ -42,7 +42,7 @@ import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 import { useState } from "react";
 import * as api from "../../services/api";
-
+import { Itens, CoffeeProps, PedidoProps } from "../../../src/@types";
 interface Cliente {
   cpf: string;
   nome: string;
@@ -56,20 +56,15 @@ interface Cliente {
   complemento?: string | undefined;
 }
 
-interface Pedido {
-  cpf_id: string;
-  valor: number;
-  entrega: number;
-}
-
 export function Checkout() {
   let { setFormPag, formPag } = useCart();
   const DELIVERY_PRICE = 3.5;
-  const { cartItems, cartItemsTotal } = useCart();
+  const { cartItems, cartItemsTotal, cartQuantity } = useCart();
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
   const { setCartItems } = useCart();
   const savedCliente = localStorage.getItem("cliente");
-  const [pedido, setPedido] = useState<Pedido>({} as Pedido);
+  const [pedido] = useState<PedidoProps>({} as PedidoProps);
+  const [itens] = useState<Itens>({} as Itens);
   const [cliente, setCliente] = useState<Cliente>(
     ({} as Cliente) || savedCliente
   );
@@ -110,11 +105,23 @@ export function Checkout() {
     }
   }
 
+  async function createItens(pedidoId: number) {
+    itens.quantidade = cartQuantity;
+    itens.descricao = "descricao";
+    itens.preco = 12;
+
+    console.log(pedido.id);
+
+    await api.postCreateItens(itens, pedidoId);
+  }
+
   async function createPedido() {
     pedido.entrega = DELIVERY_PRICE;
     pedido.valor = cartTotal;
 
-    await api.postCreatePedido(pedido, cliente.cpf);
+    const { data } = await api.postCreatePedido(pedido, cliente.cpf);
+
+    createItens(data.id);
   }
   console.log(pedido);
   const ConsultaCPF = async (event: any) => {
