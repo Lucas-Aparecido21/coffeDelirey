@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Header } from "../../components/Header";
 import {
   Container,
@@ -58,13 +58,14 @@ interface Cliente {
 
 export function Checkout() {
   let { setFormPag, formPag } = useCart();
-  // const savedCliente = localStorage.getItem();
-
   const DELIVERY_PRICE = 3.5;
   const { cartItems, cartItemsTotal } = useCart();
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
   const { setCartItems } = useCart();
-  const [cliente, setCliente] = useState<Cliente>({} as Cliente);
+  const savedCliente = localStorage.getItem("cliente");
+  const [cliente, setCliente] = useState<Cliente>(
+    ({} as Cliente) || savedCliente
+  );
   const [valueNav, setValueNav] = useState("/Checkout");
 
   const ConsultaCEP = (event: any) => {
@@ -83,36 +84,16 @@ export function Checkout() {
       });
   };
 
-  const ConsultaCPF = async (event: any) => {
-    const cpf = event.target.value;
+  function saveToLocalStorageCliente() {
+    localStorage.setItem("cliente", JSON.stringify(cliente));
+  }
 
-    if (cpf) {
-      try {
-        const { data } = await api.getClientByCpf(cpf);
-
-        setCliente((prevState) => {
-          return {
-            ...prevState,
-            bairro: data.bairro,
-            cidade: data.cidade,
-            rua: data.rua,
-            numero: data.numero,
-            uf: data.uf,
-            nome: data.nome,
-            complemento: data.complemento,
-            telefone: data.telefone,
-            cep: data.cep,
-          };
-        });
-      } catch (error) {
-        console.error(error);
-      }
-
-      return;
-    } else {
-      createCliente();
+  useEffect(() => {
+    const savedCliente = localStorage.getItem("cliente");
+    if (savedCliente !== null) {
+      setCliente(JSON.parse(savedCliente));
     }
-  };
+  }, []);
 
   async function createCliente() {
     try {
@@ -121,6 +102,30 @@ export function Checkout() {
       console.error(error);
     }
   }
+
+  const ConsultaCPF = async (event: any) => {
+    const cpf = event.target.value;
+
+    const { data } = await api.getClientByCpf(cpf);
+    if (cpf) {
+      setCliente((prevState) => {
+        return {
+          ...prevState,
+          bairro: data.bairro,
+          cidade: data.cidade,
+          rua: data.rua,
+          numero: data.numero,
+          uf: data.uf,
+          nome: data.nome,
+          complemento: data.complemento,
+          telefone: data.telefone,
+          cep: data.cep,
+        };
+      });
+    } else {
+      createCliente();
+    }
+  };
 
   function handleClick() {
     if (cliente.cpf === undefined) {
@@ -206,6 +211,7 @@ export function Checkout() {
                       [e.target.name]: e.target.value,
                     })
                   }
+                  onBlur={saveToLocalStorageCliente}
                 />
               </form>
             </DivInfo>
@@ -233,8 +239,7 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }
-                ></CepInput>
+                  }></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -246,8 +251,7 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }
-                ></RuaInput>
+                  }></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -259,8 +263,7 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></NumeroInput>
+                    }></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -271,8 +274,7 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></ComplementoInput>
+                    }></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
@@ -285,8 +287,7 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></BairroInput>
+                    }></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -297,8 +298,7 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></CidadeInput>
+                    }></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -309,8 +309,7 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></UFInput>
+                    }></UFInput>
                 </div>
               </form>
             </div>
@@ -336,8 +335,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -347,8 +345,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -358,8 +355,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}
-                >
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
                   <Money /> DINHEIRO
                 </button>
               </div>
