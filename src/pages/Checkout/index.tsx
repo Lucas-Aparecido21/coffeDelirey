@@ -128,23 +128,23 @@ export function Checkout() {
   };
 
   function handleClick() {
-    if (cliente.cpf === undefined) {
+    if (cliente.cpf === "") {
       alert("As Informações pessoais são obrigatórias");
       return;
     }
-    if (cliente.nome === undefined) {
+    if (cliente.nome === "") {
       alert("As Informações pessoais são obrigatórias");
       return;
     }
-    if (cliente.telefone === undefined) {
+    if (cliente.telefone === "") {
       alert("As Informações pessoais são obrigatórias");
       return;
     }
-    if (cliente.rua === undefined) {
+    if (cliente.rua === "") {
       alert("O Endereço de entrega é obrigatório");
       return;
     }
-    if (cliente.numero === undefined) {
+    if (cliente.numero === "") {
       alert("O Numero do endereço é obrigatório");
       return;
     }
