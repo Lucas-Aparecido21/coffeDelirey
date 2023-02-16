@@ -1,5 +1,11 @@
 export interface Pedido {
-  date: string;
-  nome: string;
+  cpf: string;
   valor: number;
+  entrega: number;
+}
+
+export interface PedidoProps {
+  cpf: string;
+  valor: number;
+  entrega: number;
 }

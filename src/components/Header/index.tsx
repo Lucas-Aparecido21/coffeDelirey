@@ -14,19 +14,30 @@ import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 import { Scroll, UserCircle } from "phosphor-react";
 
+interface MyType {
+  cep?: string;
+  rua?: string;
+  cidade?: string;
+  uf?: string;
+  bairro?: string;
+  numero?: string;
+}
+
 export function Header() {
   const { cartQuantity } = useCart();
-  let valueLocalidade = localStorage.getItem("inputLocalidade");
-  let valueUF = localStorage.getItem("inputUf");
-  let separator = ",";
-  // if (valueUF === "undefined") {
-  //   valueUF = "Insira seu Endereço";
-  // }
 
-  // if (valueUF === "") {
-  //   valueUF = "Insira seu Endereço";
-  //   separator = " ";
-  // }
+  const enderecoCli = localStorage.getItem("cliente");
+
+  let enderecoObj: MyType = {};
+  if (enderecoCli) {
+    enderecoObj = JSON.parse(enderecoCli);
+  }
+
+  let separator = ",";
+  if (!enderecoObj.cidade) {
+    enderecoObj.cidade = "Insira seu Endereço";
+    separator = " ";
+  }
 
   return (
     <ContainerGrid>
@@ -59,9 +70,9 @@ export function Header() {
           style={{ textDecoration: "none" }}>
           <Locale>
             <img src={Icon} alt="LocaleIcon" />
-            {valueLocalidade}
+            {enderecoObj.cidade}
             {separator}
-            {valueUF}
+            {enderecoObj.uf}
           </Locale>
         </NavLink>
         <Checkout title="Checkout">

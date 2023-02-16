@@ -56,6 +56,12 @@ interface Cliente {
   complemento?: string | undefined;
 }
 
+interface Pedido {
+  cpf: string;
+  valor: number;
+  entrega: number;
+}
+
 export function Checkout() {
   let { setFormPag, formPag } = useCart();
   const DELIVERY_PRICE = 3.5;
@@ -63,6 +69,7 @@ export function Checkout() {
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
   const { setCartItems } = useCart();
   const savedCliente = localStorage.getItem("cliente");
+  const [pedido, setPedido] = useState<Pedido>({} as Pedido);
   const [cliente, setCliente] = useState<Cliente>(
     ({} as Cliente) || savedCliente
   );
@@ -103,6 +110,14 @@ export function Checkout() {
     }
   }
 
+  async function createPedido() {
+    pedido.cpf = cliente.cpf;
+    pedido.entrega = DELIVERY_PRICE;
+    pedido.valor = cartTotal;
+
+    await api.postCreatePedido(pedido, pedido.cpf);
+  }
+  console.log(pedido);
   const ConsultaCPF = async (event: any) => {
     const cpf = event.target.value;
 
@@ -152,6 +167,7 @@ export function Checkout() {
     if (cartItemsTotal === 0) {
       alert("Insira algum item no carrinho antes de concluir a compra");
     } else {
+      createPedido();
       setCartItems([]);
       setValueNav("/Sucess");
     }
@@ -251,7 +267,8 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></RuaInput>
+                  }
+                  onBlur={saveToLocalStorageCliente}></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -263,7 +280,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></NumeroInput>
+                    }
+                    onBlur={saveToLocalStorageCliente}></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -274,7 +292,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></ComplementoInput>
+                    }
+                    onBlur={saveToLocalStorageCliente}></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
@@ -287,7 +306,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></BairroInput>
+                    }
+                    onBlur={saveToLocalStorageCliente}></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -298,7 +318,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></CidadeInput>
+                    }
+                    onBlur={saveToLocalStorageCliente}></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -309,7 +330,8 @@ export function Checkout() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></UFInput>
+                    }
+                    onBlur={saveToLocalStorageCliente}></UFInput>
                 </div>
               </form>
             </div>
