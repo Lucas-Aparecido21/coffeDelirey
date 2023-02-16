@@ -61,7 +61,7 @@ export const Locale = styled.button`
   border-radius: 8px;
 
   img {
-    padding: 0 8px;
+    padding: 0 6px;
     align-self: center;
     display: flex;
   }

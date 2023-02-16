@@ -22,8 +22,8 @@ const getPedidoByID = (id: number): AxiosPromise<PedidoProps> =>
 
 const postCreatePedido = (
   params: PedidoProps,
-  cpf: string
-): AxiosPromise<PedidoProps> => xhr.post(`pedidos/${cpf}`, params);
+  cpf_id: string
+): AxiosPromise<PedidoProps> => xhr.post(`pedidos/${cpf_id}`, params);
 /* PEDIDOS */
 
 export {
