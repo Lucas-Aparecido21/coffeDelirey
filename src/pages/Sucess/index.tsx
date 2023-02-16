@@ -6,12 +6,26 @@ import TimerIcon from "../../assets/timerIcon.svg";
 import CashIcon from "../../assets/CashIcon.svg";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
+interface MyType {
+  cep?: string;
+  rua?: string;
+  cidade?: string;
+  uf?: string;
+  bairro?: string;
+  numero?: string;
+}
 
 export function Sucess() {
   const { formPag } = useCart();
 
-  console.log("bairro");
+  const enderecoCli = localStorage.getItem("cliente");
 
+  let enderecoObj: MyType = {};
+  if (enderecoCli) {
+    enderecoObj = JSON.parse(enderecoCli);
+  }
+
+  console.log(enderecoObj);
   return (
     <>
       <Header />
@@ -35,9 +49,10 @@ export function Sucess() {
                   <img src={LocaleIcon} alt="Icone Localização" />
 
                   <p>
-                    Entrega em Insira a rua , Insira o numero
+                    Entrega em {enderecoObj.rua} , {enderecoObj.numero}
                     <p style={{ color: "#272221", fontWeight: "600" }}>
-                      Insira o Bairro -Insira a cidade, Insira a uf
+                      {enderecoObj.bairro} - {enderecoObj.cidade},{" "}
+                      {enderecoObj.uf}
                     </p>
                   </p>
                 </div>
