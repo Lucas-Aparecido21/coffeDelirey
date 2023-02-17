@@ -185,7 +185,6 @@ export const DivFpg = styled.div`
   }
 
   button:hover {
-
     background-color: ${(props) => props.theme["base-hover"]};
     transition: all 0.3s;
   }
@@ -351,6 +350,12 @@ export const DivInfo = styled.div`
 export const DivName = styled.div`
   display: flex;
   gap: 12px;
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 export const InputNome = styled(BaseInput)`
