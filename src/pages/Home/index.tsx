@@ -15,11 +15,8 @@ import embIcon from "../../assets/embIcon.svg";
 //
 import { dataFake } from "../../database/fakeCoffe";
 import { Card } from "./Components/Card/Card";
-import { Modal } from "./Components/Modal";
 
 export function Home() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <Header />
@@ -67,7 +64,6 @@ export function Home() {
             ))}
           </DivCoffee>
         </section>
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
       </CoffeListContainer>
     </>
   );

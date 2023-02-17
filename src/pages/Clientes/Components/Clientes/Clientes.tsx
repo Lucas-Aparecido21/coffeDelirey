@@ -19,7 +19,7 @@ interface Cliente {
   cep: string;
 }
 
-export const Cadastro = async () => {
+export async function Cadastro() {
   const [cliente, setCliente] = useState<Cliente[]>([]);
 
   try {
@@ -29,7 +29,6 @@ export const Cadastro = async () => {
   } catch (error) {
     console.error(error);
   }
-
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -53,8 +52,7 @@ export const Cadastro = async () => {
         <DivButton>
           <NavLink
             to="/AlterarCliente"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="alterar">
               <PencilSimple />
             </button>
@@ -64,8 +62,7 @@ export const Cadastro = async () => {
           </button>
           <NavLink
             to="/ConsultarCliente"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="consultar">
               <Scroll />
             </button>
@@ -74,4 +71,4 @@ export const Cadastro = async () => {
       </DivOrders>
     </>
   );
-};
+}

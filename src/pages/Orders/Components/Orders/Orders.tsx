@@ -1,5 +1,6 @@
 import { Scroll, Trash } from "phosphor-react";
 import { useState } from "react";
+import * as api from "../../../../services/api";
 import { Modal } from "../Modal";
 import {
   DivButton,
@@ -11,14 +12,24 @@ import {
 } from "./styles";
 
 export function Orders() {
-  function handleDeleteCliente() {
-    setIsOpen(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+
+  async function DeleteClient() {
+    // await api.deletePedidoByID(id)
   }
 
-  const [isOpen, setIsOpen] = useState(false);
+  if (isDelete) {
+    DeleteClient();
+  }
   return (
     <>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Modal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        isDelete={isDelete}
+        setIsDelete={setIsDelete}
+      />
       <DivOrders>
         <DivCodPedido>
           <p>1</p>
@@ -31,7 +42,7 @@ export function Orders() {
           <p>R$ 130,00</p>
         </DivCodValor>
         <DivButton>
-          <button id="excluir" onClick={handleDeleteCliente}>
+          <button id="excluir" onClick={() => setIsOpen(true)}>
             <Trash />
           </button>
           <button id="consultar">

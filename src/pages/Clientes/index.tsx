@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Header } from "../../components/Header";
 
 import {
@@ -14,15 +13,7 @@ import {
   DivCodCPF,
 } from "./styles";
 
-interface Cliente {
-  cpf: string;
-  nome: string;
-  telefone: string;
-  cep: string;
-}
-
 export function Cliente() {
-  const [cliente] = useState<Cliente[]>([]);
   return (
     <>
       <Header />
@@ -53,7 +44,7 @@ export function Cliente() {
               </DivButton>
             </DivInfo>
 
-            <DivOrders></DivOrders>
+            <DivOrders>{/* <Cadastro /> */}</DivOrders>
           </ContainerClientes>
         </section>
       </Container>
