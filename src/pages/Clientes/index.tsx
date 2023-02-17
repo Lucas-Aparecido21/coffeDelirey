@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
+import * as api from "../../services/api";
+import { Cadastro } from "./Components/Clientes/Clientes";
 
 import {
   Container,
@@ -13,7 +16,28 @@ import {
   DivCodCPF,
 } from "./styles";
 
+export interface ClienteProps {
+  cpf: string;
+  nome: string;
+  telefone: string;
+  cep: string;
+}
+
 export function Cliente() {
+  const [cliente, setCliente] = useState<ClienteProps[]>([]);
+  const getCliente = async () => {
+    try {
+      const { data } = await api.getClient();
+
+      setCliente(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getCliente();
+  }, []);
   return (
     <>
       <Header />
@@ -44,7 +68,11 @@ export function Cliente() {
               </DivButton>
             </DivInfo>
 
-            <DivOrders>{/* <Cadastro /> */}</DivOrders>
+            <DivOrders>
+              {cliente.map((cliente) => (
+                <Cadastro c={cliente} />
+              ))}
+            </DivOrders>
           </ContainerClientes>
         </section>
       </Container>

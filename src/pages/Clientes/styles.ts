@@ -68,7 +68,7 @@ export const DivCodCPF = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: initial;
+  justify-content: center;
 `;
 
 export const DivDatapedido = styled.div`

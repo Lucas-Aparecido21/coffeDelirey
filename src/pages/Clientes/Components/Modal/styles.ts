@@ -64,4 +64,5 @@ export const ButtonYes = styled(BaseButton)`
 
 export const ButtonNo = styled(BaseButton)`
   background-color: #f34336;
+  color: white;
 `;

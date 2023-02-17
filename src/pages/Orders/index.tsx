@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Orders } from "./Components/Orders/Orders";
+import * as api from "../../services/api";
 
 import {
   Container,
@@ -14,7 +16,28 @@ import {
   DivSubtitulo,
 } from "./styles";
 
+export interface PedidoProps {
+  id: number;
+  created_at: string;
+  cpf_id: string;
+  valor: number;
+}
+
 export function Order() {
+  const [pedido, setPedido] = useState<PedidoProps[]>([]);
+
+  const getPedido = async () => {
+    try {
+      const { data } = await api.getPedido();
+      setPedido(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  console.log(pedido);
+  useEffect(() => {
+    getPedido();
+  }, []);
   return (
     <>
       <Header />
@@ -43,16 +66,9 @@ export function Order() {
             </DivInfo>
 
             <DivOrders>
-              <Orders />
-              <Orders />
-              <Orders />
-              <Orders />
-              <Orders />
-              <Orders />
-              <Orders />
-              <Orders />
-              <Orders />
-              <Orders />
+              {pedido.map((pedido) => (
+                <Orders p={pedido} />
+              ))}
             </DivOrders>
           </ContainerOrders>
         </section>

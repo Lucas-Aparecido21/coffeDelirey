@@ -1,6 +1,7 @@
+import moment from "moment";
 import { Scroll, Trash } from "phosphor-react";
 import { useState } from "react";
-import * as api from "../../../../services/api";
+import { PedidoProps } from "../..";
 import { Modal } from "../Modal";
 import {
   DivButton,
@@ -11,17 +12,14 @@ import {
   DivOrders,
 } from "./styles";
 
-export function Orders() {
+interface CadastroPedidoProps {
+  p: PedidoProps;
+}
+
+export function Orders({ p }: CadastroPedidoProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
 
-  async function DeleteClient() {
-    // await api.deletePedidoByID(id)
-  }
-
-  if (isDelete) {
-    DeleteClient();
-  }
   return (
     <>
       <Modal
@@ -32,14 +30,21 @@ export function Orders() {
       />
       <DivOrders>
         <DivCodPedido>
-          <p>1</p>
+          <p>{p.id}</p>
         </DivCodPedido>
-        <DivDatapedido>31/01/2023</DivDatapedido>
+        <DivDatapedido>
+          {moment(p.created_at).format("DD/MM/YYYY")}
+        </DivDatapedido>
         <DivCodCliente>
-          <p>Lucas Aparecido</p>
+          <p>{p.cpf_id}</p>
         </DivCodCliente>
         <DivCodValor>
-          <p>R$ 130,00</p>
+          <p>
+            {p.valor.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            })}
+          </p>
         </DivCodValor>
         <DivButton>
           <button id="excluir" onClick={() => setIsOpen(true)}>
