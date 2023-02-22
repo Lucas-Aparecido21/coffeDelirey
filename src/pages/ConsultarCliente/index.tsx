@@ -35,16 +35,16 @@ interface Cliente {
   complemento?: string;
 }
 
-// interface ClienteProps {
-//   idCliente: string;
-// }
-
 export function ConsultarCliente() {
   const [cliente, setCliente] = useState<Cliente>({} as Cliente);
 
-  const idCliente = "123";
+  const idCliente = localStorage.getItem("idCliente");
 
   const ConsultaCliente = async () => {
+    if (!idCliente) {
+      return;
+    }
+
     const { data } = await api.getClientByCpf(idCliente);
     if (idCliente) {
       setCliente((prevState) => {
@@ -119,39 +119,46 @@ export function ConsultarCliente() {
                   placeholder="CEP"
                   name="cep"
                   type="text"
-                  value={cliente.cep || ""}></CepInput>
+                  value={cliente.cep || ""}
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
                   name="rua"
                   type="text"
-                  value={cliente.rua || ""}></RuaInput>
+                  value={cliente.rua || ""}
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
                     name="numero"
                     type="text"
-                    value={cliente.numero || ""}></NumeroInput>
+                    value={cliente.numero || ""}
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
                     type="text"
-                    value={cliente.complemento || ""}></ComplementoInput>
+                    value={cliente.complemento || ""}
+                  ></ComplementoInput>
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
                     type="text"
-                    value={cliente.bairro || ""}></BairroInput>
+                    value={cliente.bairro || ""}
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
                     type="text"
-                    value={cliente.cidade || ""}></CidadeInput>
+                    value={cliente.cidade || ""}
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
                     type="text"
-                    value={cliente.uf || ""}></UFInput>
+                    value={cliente.uf || ""}
+                  ></UFInput>
                 </div>
               </form>
             </div>

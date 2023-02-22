@@ -4,6 +4,7 @@ export interface Pedido {
   created_at: string;
   valor: number;
   entrega: number;
+  pagamento: string;
 }
 
 export interface PedidoProps {
@@ -11,4 +12,5 @@ export interface PedidoProps {
   valor: number;
   entrega: number;
   id: number;
+  pagamento: string;
 }

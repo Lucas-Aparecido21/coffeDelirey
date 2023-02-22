@@ -1,6 +1,7 @@
 import moment from "moment";
 import { Scroll, Trash } from "phosphor-react";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { PedidoProps } from "../..";
 import * as api from "../../../../services/api";
 import { Modal } from "../Modal";
@@ -26,6 +27,11 @@ export function Orders({ p }: CadastroPedidoProps) {
     window.location.reload();
   }
 
+  function ConsultarPedido() {
+    localStorage.setItem("OrdersCliente", p.cpf_id);
+
+    localStorage.setItem("OrdersPedido", JSON.stringify(p.id));
+  }
   return (
     <>
       <Modal
@@ -56,9 +62,15 @@ export function Orders({ p }: CadastroPedidoProps) {
           <button id="excluir" onClick={() => setIsOpen(true)}>
             <Trash />
           </button>
-          <button id="consultar">
-            <Scroll />
-          </button>
+
+          <NavLink
+            to="/ConsultarPedido"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <button id="consultar" onClick={ConsultarPedido}>
+              <Scroll />
+            </button>
+          </NavLink>
         </DivButton>
       </DivOrders>
     </>

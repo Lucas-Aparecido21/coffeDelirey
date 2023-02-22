@@ -22,10 +22,12 @@ export function Cadastro({ c }: CadastroProps) {
   const [isDelete, setIsDelete] = useState(false);
 
   function ConsultaCliente() {
-    const idCliente = JSON.stringify(c.cpf);
-    localStorage.setItem("idCliente", idCliente);
+    localStorage.setItem("idCliente", c.cpf);
   }
 
+  function AlteraCliente() {
+    localStorage.setItem("idCliente", c.cpf);
+  }
   if (isDelete) {
     api.deleteClienteByCpf(c.cpf);
     window.location.reload();
@@ -55,8 +57,9 @@ export function Cadastro({ c }: CadastroProps) {
         <DivButton>
           <NavLink
             to="/AlterarCliente"
-            style={{ textDecoration: "none", color: "black" }}>
-            <button id="alterar">
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <button id="alterar" onClick={AlteraCliente}>
               <PencilSimple />
             </button>
           </NavLink>
@@ -65,7 +68,8 @@ export function Cadastro({ c }: CadastroProps) {
           </button>
           <NavLink
             to="/ConsultarCliente"
-            style={{ textDecoration: "none", color: "black" }}>
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <button id="consultar" onClick={ConsultaCliente}>
               <Scroll />
             </button>

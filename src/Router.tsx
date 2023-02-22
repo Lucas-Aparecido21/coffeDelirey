@@ -6,6 +6,7 @@ import { Cliente } from "./pages/Clientes";
 import { Home } from "./pages/Home";
 import { Order } from "./pages/Orders";
 import { Sucess } from "./pages/Sucess";
+import { ConsultarPedido } from "./pages/ConsultarPedido";
 
 export function Router() {
   return (
@@ -17,6 +18,7 @@ export function Router() {
       <Route path="/Clientes" element={<Cliente />} />
       <Route path="/ConsultarCliente" element={<ConsultarCliente />} />
       <Route path="/AlterarCliente" element={<AlterarCliente />} />
+      <Route path="/ConsultarPedido" element={<ConsultarPedido />} />
     </Routes>
   );
 }
