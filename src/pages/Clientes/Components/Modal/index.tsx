@@ -10,9 +10,15 @@ import {
 interface Open {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isDelete: boolean;
+  setIsDelete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function Modal({ isOpen, setIsOpen }: Open) {
+export function Modal({ isOpen, setIsOpen, isDelete, setIsDelete }: Open) {
+  function handleDeleteClient() {
+    setIsDelete(true);
+    setIsOpen(false);
+  }
   return (
     <>
       <Container style={{ display: isOpen ? "flex" : "none" }}>
@@ -23,7 +29,7 @@ export function Modal({ isOpen, setIsOpen }: Open) {
           </h1>
           <DivButton>
             <ButtonNo onClick={() => setIsOpen(false)}>Não</ButtonNo>
-            <ButtonYes onClick={() => setIsOpen(false)}>Sim</ButtonYes>
+            <ButtonYes onClick={handleDeleteClient}>Sim</ButtonYes>
           </DivButton>
         </ContainerModal>
       </Container>

@@ -2,6 +2,7 @@ import moment from "moment";
 import { Scroll, Trash } from "phosphor-react";
 import { useState } from "react";
 import { PedidoProps } from "../..";
+import * as api from "../../../../services/api";
 import { Modal } from "../Modal";
 import {
   DivButton,
@@ -19,6 +20,11 @@ interface CadastroPedidoProps {
 export function Orders({ p }: CadastroPedidoProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+
+  if (isDelete) {
+    api.deletePedidoByID(p.id);
+    window.location.reload();
+  }
 
   return (
     <>

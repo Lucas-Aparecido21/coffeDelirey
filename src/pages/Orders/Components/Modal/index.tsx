@@ -16,8 +16,8 @@ interface Open {
 
 export function Modal({ isOpen, setIsOpen, isDelete, setIsDelete }: Open) {
   function handleDeleteOrder() {
-    setIsOpen(true);
     setIsDelete(true);
+    setIsOpen(false);
   }
   return (
     <>

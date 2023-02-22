@@ -2,6 +2,7 @@ import { PencilSimple, Scroll, Trash } from "phosphor-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ClienteProps } from "../..";
+import * as api from "../../../../services/api";
 import { Modal } from "../Modal";
 import {
   DivButton,
@@ -20,9 +21,20 @@ export function Cadastro({ c }: CadastroProps) {
   function ConsultaCliente() {}
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+
+  if (isDelete) {
+    api.deleteClienteByCpf(c.cpf);
+    window.location.reload();
+  }
   return (
     <>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Modal
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        isDelete={isDelete}
+        setIsDelete={setIsDelete}
+      />
       <DivOrders>
         <>
           <DivCPF>
@@ -40,8 +52,7 @@ export function Cadastro({ c }: CadastroProps) {
         <DivButton>
           <NavLink
             to="/AlterarCliente"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="alterar">
               <PencilSimple />
             </button>
@@ -51,8 +62,7 @@ export function Cadastro({ c }: CadastroProps) {
           </button>
           <NavLink
             to="/ConsultarCliente"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="consultar" onClick={ConsultaCliente}>
               <Scroll />
             </button>
