@@ -19,7 +19,8 @@ import {
   Divisor,
 } from "./styles";
 import { MapPinLine, UserCircle } from "phosphor-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import * as api from "../../services/api";
 
 interface Cliente {
   cpf: string;
@@ -34,8 +35,38 @@ interface Cliente {
   complemento?: string;
 }
 
+// interface ClienteProps {
+//   idCliente: string;
+// }
+
 export function ConsultarCliente() {
-  const [cliente] = useState<Cliente>({} as Cliente);
+  const [cliente, setCliente] = useState<Cliente>({} as Cliente);
+
+  const idCliente = "123";
+
+  const ConsultaCliente = async () => {
+    const { data } = await api.getClientByCpf(idCliente);
+    if (idCliente) {
+      setCliente((prevState) => {
+        return {
+          ...prevState,
+          cpf: data.cpf,
+          bairro: data.bairro,
+          cidade: data.cidade,
+          rua: data.rua,
+          numero: data.numero,
+          uf: data.uf,
+          nome: data.nome,
+          complemento: data.complemento,
+          telefone: data.telefone,
+          cep: data.cep,
+        };
+      });
+    }
+  };
+  useEffect(() => {
+    ConsultaCliente();
+  }, [idCliente]);
 
   return (
     <>

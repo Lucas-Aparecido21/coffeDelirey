@@ -21,7 +21,8 @@ import {
   DivBotao,
 } from "./styles";
 import { MapPinLine, UserCircle } from "phosphor-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import * as api from "../../services/api";
 
 interface Cliente {
   cpf: string;
@@ -55,27 +56,34 @@ export function AlterarCliente() {
       });
   };
 
-  const ConsultaCPF = (event: any) => {
-    const cpf = event.target.value;
-  };
-  //   api.get(`clientes/${cpf} `).then((res) => {
-  //     setCliente((prevState) => {
-  //       return {
-  //         ...prevState,
-  //         bairro: res.data.bairro,
-  //         cidade: res.data.cidade,
-  //         rua: res.data.rua,
-  //         numero: res.data.numero,
-  //         uf: res.data.uf,
-  //         nome: res.data.nome,
-  //         complemento: res.data.complemento,
-  //         telefone: res.data.telefone,
-  //         cep: res.data.cep,
-  //       };
-  //     });
-  //   });
-  // };
+  const idCliente = "123";
+  const cpf = "123";
 
+  const ConsultaCliente = async () => {
+    const { data } = await api.getClientByCpf(idCliente);
+    if (idCliente) {
+      setCliente((prevState) => {
+        return {
+          ...prevState,
+          cpf: data.cpf,
+          bairro: data.bairro,
+          cidade: data.cidade,
+          rua: data.rua,
+          numero: data.numero,
+          uf: data.uf,
+          nome: data.nome,
+          complemento: data.complemento,
+          telefone: data.telefone,
+          cep: data.cep,
+        };
+      });
+    }
+  };
+  useEffect(() => {
+    ConsultaCliente();
+  }, [idCliente]);
+
+  async function handleConfirmClient() {}
   return (
     <>
       <Header />
@@ -101,7 +109,6 @@ export function AlterarCliente() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={ConsultaCPF}
                   />
                   <InputSNome
                     placeholder="Nome"
@@ -153,8 +160,7 @@ export function AlterarCliente() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }
-                ></CepInput>
+                  }></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -166,8 +172,7 @@ export function AlterarCliente() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }
-                ></RuaInput>
+                  }></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -179,8 +184,7 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></NumeroInput>
+                    }></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -191,8 +195,7 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></ComplementoInput>
+                    }></ComplementoInput>
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
@@ -203,8 +206,7 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></BairroInput>
+                    }></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -215,8 +217,7 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></CidadeInput>
+                    }></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -227,14 +228,15 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></UFInput>
+                    }></UFInput>
                 </div>
               </form>
             </div>
           </ContainerCep>
           <DivBotao>
-            <Confirmar>Confirmar Alterações</Confirmar>
+            <Confirmar onClick={handleConfirmClient}>
+              Confirmar Alterações
+            </Confirmar>
           </DivBotao>
         </Container>
       </Divisor>

@@ -18,6 +18,9 @@ const getClientByCpf = (cpf: string): AxiosPromise<ClienteProps> =>
 const postCreateCliente = (params: ClienteProps): AxiosPromise<ClienteProps> =>
   xhr.post(`clientes/`, params);
 
+const postAtualizaCliente = (cpf: string): AxiosPromise<ClienteProps> =>
+  xhr.post(`clientes/${cpf}`);
+
 const deleteClienteByCpf = (cpf: string) => xhr.delete(`clientes/${cpf}`);
 
 /* CLIENTES */
@@ -49,6 +52,7 @@ export {
   getClient,
   postCreateCliente,
   deleteClienteByCpf,
+  postAtualizaCliente,
   getPedido,
   getPedidoByID,
   deletePedidoByID,

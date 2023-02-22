@@ -18,10 +18,13 @@ interface CadastroProps {
 }
 
 export function Cadastro({ c }: CadastroProps) {
-  function ConsultaCliente() {}
-
   const [isOpen, setIsOpen] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+
+  function ConsultaCliente() {
+    const idCliente = JSON.stringify(c.cpf);
+    localStorage.setItem("idCliente", idCliente);
+  }
 
   if (isDelete) {
     api.deleteClienteByCpf(c.cpf);
