@@ -45,6 +45,9 @@ const postCreateItens = (
   params: ItensProps,
   id_pedido: number
 ): AxiosPromise<ItensProps> => xhr.post(`itens/${id_pedido}`, params);
+
+const getItensByIdPedido = (id_pedido: string): AxiosPromise<ItensProps> =>
+  xhr.get(`itens/${id_pedido}`);
 /* ITENS DO PEDIDO*/
 
 export {
@@ -58,4 +61,5 @@ export {
   deletePedidoByID,
   postCreatePedido,
   postCreateItens,
+  getItensByIdPedido,
 };

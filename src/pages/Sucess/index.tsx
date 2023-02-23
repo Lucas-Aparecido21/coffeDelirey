@@ -25,7 +25,6 @@ export function Sucess() {
     enderecoObj = JSON.parse(enderecoCli);
   }
 
-  console.log(enderecoObj);
   return (
     <>
       <Header />

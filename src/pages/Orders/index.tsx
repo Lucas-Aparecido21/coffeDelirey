@@ -34,7 +34,7 @@ export function Order() {
       console.error(error);
     }
   };
-  console.log(pedido);
+
   useEffect(() => {
     getPedido();
   }, []);

@@ -10,6 +10,9 @@ import {
 } from "./styles";
 import { Minus, Plus, Trash } from "phosphor-react";
 import { useCart } from "../../../hooks/useCart";
+import { useState } from "react";
+import { Itens } from "../../../@types";
+import * as api from "../../../services/api";
 
 interface CartListProps {
   coffee: CoffeeProps;
@@ -17,6 +20,7 @@ interface CartListProps {
 
 export function CartListCheckout({ coffee }: CartListProps) {
   const { changeCartItemQuantity, removeCartItem } = useCart();
+  const [itens, setItens] = useState<Itens>({} as Itens);
   const coffeeTotal = coffee.price * coffee.quantity;
   function handleAddQuantity() {
     changeCartItemQuantity(coffee.id, "increase");

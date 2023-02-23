@@ -1,15 +1,24 @@
 import { CoffeeProps } from "../../../@types/Coffe";
 import { DivCart, ContainerGeral, DivInfo, DivPrice } from "./styles";
-import { Minus, Plus, Trash } from "phosphor-react";
-import { useCart } from "../../../hooks/useCart";
+
+import * as api from "../../../services/api";
+import { useEffect } from "react";
 
 interface CartListProps {
   coffee: CoffeeProps;
 }
 
 export function CartListCheckout({ coffee }: CartListProps) {
-  const { changeCartItemQuantity, removeCartItem } = useCart();
   const coffeeTotal = coffee.price * coffee.quantity;
+  const id_pedido = "1";
+
+  const ConsultaItem = () => {
+    api.getItensByIdPedido(id_pedido);
+  };
+
+  useEffect(() => {
+    ConsultaItem();
+  }, []);
 
   return (
     <>
@@ -20,23 +29,7 @@ export function CartListCheckout({ coffee }: CartListProps) {
           </div>
           <DivInfo>
             <p>{coffee.name}</p>
-            <div>
-              {/* <DivButton>
-                <DivMinusPlus>
-                  <button onClick={handleRemoveQuantity}>
-                    <Minus />
-                  </button>
-                  <span>{coffee.quantity}</span>
-                  <button onClick={handleAddQuantity}>
-                    <Plus />
-                  </button>
-                </DivMinusPlus>
-                <DivTrash onClick={handleDeleteItem}>
-                  <Trash />
-                  Remover
-                </DivTrash>
-              </DivButton> */}
-            </div>
+            <div></div>
           </DivInfo>
           <DivPrice>
             <p>
