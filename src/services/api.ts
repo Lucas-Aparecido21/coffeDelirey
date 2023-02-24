@@ -18,8 +18,10 @@ const getClientByCpf = (cpf: string): AxiosPromise<ClienteProps> =>
 const postCreateCliente = (params: ClienteProps): AxiosPromise<ClienteProps> =>
   xhr.post(`clientes/`, params);
 
-const postAtualizaCliente = (cpf: string): AxiosPromise<ClienteProps> =>
-  xhr.post(`clientes/${cpf}`);
+const postAtualizaCliente = (
+  params: ClienteProps,
+  cpf: string
+): AxiosPromise<ClienteProps> => xhr.put(`clientes/${cpf}`, params);
 
 const deleteClienteByCpf = (cpf: string) => xhr.delete(`clientes/${cpf}`);
 
