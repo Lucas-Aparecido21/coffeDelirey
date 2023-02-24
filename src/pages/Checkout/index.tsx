@@ -99,10 +99,17 @@ export function Checkout() {
   }, []);
 
   async function createItens(pedidoId: number) {
-    itens.quantidade = cartQuantity;
-    itens.descricao = "descricao";
-    itens.preco = 12;
+    const coffeeid = localStorage.getItem("coffeeid");
+    const coffeequantity = localStorage.getItem("coffeequantity");
 
+    if (!coffeeid) {
+      return;
+    }
+    if (!coffeequantity) {
+      return;
+    }
+    itens.id_item = coffeeid;
+    itens.quantidade = coffeequantity;
     await api.postCreateItens(itens, pedidoId);
   }
 
@@ -168,8 +175,6 @@ export function Checkout() {
       setValueNav("/Sucess");
     }
   }
-
-  console.log(cartItems);
 
   return (
     <>
@@ -254,7 +259,8 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></CepInput>
+                  }
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -267,7 +273,8 @@ export function Checkout() {
                       [e.target.name]: e.target.value,
                     })
                   }
-                  onBlur={saveToLocalStorageCliente}></RuaInput>
+                  onBlur={saveToLocalStorageCliente}
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -280,7 +287,8 @@ export function Checkout() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={saveToLocalStorageCliente}></NumeroInput>
+                    onBlur={saveToLocalStorageCliente}
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -292,7 +300,8 @@ export function Checkout() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={saveToLocalStorageCliente}></ComplementoInput>
+                    onBlur={saveToLocalStorageCliente}
+                  ></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
@@ -306,7 +315,8 @@ export function Checkout() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={saveToLocalStorageCliente}></BairroInput>
+                    onBlur={saveToLocalStorageCliente}
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -318,7 +328,8 @@ export function Checkout() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={saveToLocalStorageCliente}></CidadeInput>
+                    onBlur={saveToLocalStorageCliente}
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -330,7 +341,8 @@ export function Checkout() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={saveToLocalStorageCliente}></UFInput>
+                    onBlur={saveToLocalStorageCliente}
+                  ></UFInput>
                 </div>
               </form>
             </div>
@@ -356,7 +368,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
+                >
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -366,7 +379,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
+                >
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -376,7 +390,8 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}
+                >
                   <Money /> DINHEIRO
                 </button>
               </div>

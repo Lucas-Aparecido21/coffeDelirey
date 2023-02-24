@@ -36,6 +36,9 @@ export function CartListCheckout({ coffee }: CartListProps) {
     removeCartItem(coffee.id);
   }
 
+  localStorage.setItem("coffeeid", JSON.stringify(coffee.id));
+  localStorage.setItem("coffeequantity", JSON.stringify(coffee.quantity));
+
   return (
     <>
       <ContainerGeral>

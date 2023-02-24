@@ -23,6 +23,7 @@ import {
 import { MapPinLine, UserCircle } from "phosphor-react";
 import { useEffect, useState } from "react";
 import * as api from "../../services/api";
+import { Modal } from "./Components/Modal";
 
 interface Cliente {
   cpf: string;
@@ -39,6 +40,7 @@ interface Cliente {
 
 export function AlterarCliente() {
   const [cliente, setCliente] = useState<Cliente>({} as Cliente);
+  const [isOpen, setIsOpen] = useState(false);
 
   const ConsultaCEP = (event: any) => {
     const cep = event.target.value;
@@ -83,6 +85,7 @@ export function AlterarCliente() {
   }, [idCliente]);
 
   async function handleConfirmClient() {
+    setIsOpen(true);
     if (!idCliente) {
       return;
     }
@@ -96,11 +99,10 @@ export function AlterarCliente() {
     await api.postAtualizaCliente(cliente, idCliente);
   }
 
-  console.log(cliente.nome);
   return (
     <>
       <Header />
-
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
       <Titulo>Alterar Cadastro</Titulo>
       <Divisor>
         <Container>
@@ -173,7 +175,8 @@ export function AlterarCliente() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></CepInput>
+                  }
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -185,7 +188,8 @@ export function AlterarCliente() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></RuaInput>
+                  }
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -197,7 +201,8 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></NumeroInput>
+                    }
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -208,7 +213,8 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></ComplementoInput>
+                    }
+                  ></ComplementoInput>
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
@@ -219,7 +225,8 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></BairroInput>
+                    }
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -230,7 +237,8 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></CidadeInput>
+                    }
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -241,7 +249,8 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></UFInput>
+                    }
+                  ></UFInput>
                 </div>
               </form>
             </div>
