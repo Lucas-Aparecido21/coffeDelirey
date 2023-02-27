@@ -9,6 +9,7 @@ import {
   ItensProps,
   AtuCliente,
 } from "../@types";
+import { CartItem2 } from "../Context/CoffeeContext";
 
 /* CLIENTES */
 const getClient = (): AxiosPromise<Cliente[]> => xhr.get(`clientes/`);
@@ -45,9 +46,9 @@ const deletePedidoByID = (id: number) => xhr.delete(`pedidos/${id}`);
 
 /* ITENS DO PEDIDO*/
 const postCreateItens = (
-  params: ItensProps,
+  itens: { itens: CartItem2[] },
   id_pedido: number
-): AxiosPromise<ItensProps> => xhr.post(`itens/${id_pedido}`, params);
+): AxiosPromise<ItensProps> => xhr.post(`itens/${id_pedido}`, itens);
 
 const getItensByIdPedido = (id_pedido: string): AxiosPromise<ItensProps> =>
   xhr.get(`itens/${id_pedido}`);

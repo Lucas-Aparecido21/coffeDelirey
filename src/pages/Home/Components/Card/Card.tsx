@@ -42,7 +42,6 @@ export const Card = ({ coffee }: CardProps) => {
 
     const handleAddToCart = (id: string, quantidade: string) => {
       addItem({ item: id, quantidade });
-      console.log({ item: id, quantidade });
     };
     handleAddToCart(coffee.id.toString(), quantity.toString());
   }

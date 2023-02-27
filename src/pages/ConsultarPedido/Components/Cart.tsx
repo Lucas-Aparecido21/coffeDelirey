@@ -14,8 +14,6 @@ export function CartListCheckout({ coffee }: CartListProps) {
   const coffeeTotal = coffee.price * coffee.quantity;
   const id_pedido = localStorage.getItem("OrdersPedido");
 
-  console.log(id_pedido);
-
   const ConsultaItem = () => {
     if (!id_pedido) {
       return;
