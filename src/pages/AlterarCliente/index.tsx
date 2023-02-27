@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Header } from "../../components/Header";
 import {
   ContainerCep,
@@ -85,17 +86,47 @@ export function AlterarCliente() {
   }, [idCliente]);
 
   async function handleConfirmClient() {
+    if (cliente.bairro === "") {
+      alert("O bairro do cliente não pode ser vazio");
+      return;
+    }
+    if (cliente.cidade === "") {
+      alert("A cidade do cliente não pode ser vazio");
+      return;
+    }
+    if (cliente.rua === "") {
+      alert("A rua do cliente não pode ser vazio");
+      return;
+    }
+    if (cliente.numero === "") {
+      alert("O numero do cliente não pode ser vazio");
+      return;
+    }
+    if (cliente.telefone === "") {
+      alert("O telefone do cliente não pode ser vazio");
+      return;
+    }
+    if (cliente.cidade === "") {
+      alert("A cidade do cliente não pode ser vazio");
+      return;
+    }
+    if (cliente.uf === "") {
+      alert("A UF do cliente não pode ser vazio");
+      return;
+    }
+    if (cliente.cep === "") {
+      alert("O CEP do cliente não pode ser vazio");
+      return;
+    }
+    if (cliente.nome === "") {
+      alert("O nome do cliente não pode ser vazio");
+      return;
+    }
     setIsOpen(true);
     if (!idCliente) {
       return;
     }
 
-    // setCliente((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     nome: cliente.nome,
-    //   };
-    // });
     await api.postAtualizaCliente(idCliente, {
       nome: cliente.nome.toString(),
       cep: cliente.cep.toString(),
@@ -129,12 +160,6 @@ export function AlterarCliente() {
                     placeholder="CPF"
                     name="cpf"
                     value={cliente.cpf || ""}
-                    onChange={(e) =>
-                      setCliente({
-                        ...cliente,
-                        [e.target.name]: e.target.value,
-                      })
-                    }
                   />
                   <InputSNome
                     placeholder="Nome"

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import { useState } from "react";
 import React, { useEffect } from "react";
 import { Header } from "../../components/Header";
@@ -59,9 +60,8 @@ interface Cliente {
 export function ConsultarPedido() {
   let { setFormPag, formPag } = useCart();
   const DELIVERY_PRICE = 3.5;
-  const { cartItems, cartItemsTotal, cartQuantity } = useCart();
+  const { cartItems, cartItemsTotal } = useCart();
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
-  const savedCliente = localStorage.getItem("cliente");
 
   const [cliente, setCliente] = useState<Cliente>({} as Cliente);
 
