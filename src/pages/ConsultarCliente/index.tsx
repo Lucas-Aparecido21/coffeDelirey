@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Header } from "../../components/Header";
 import {
   ContainerCep,
@@ -23,7 +24,7 @@ import { useEffect, useState } from "react";
 import * as api from "../../services/api";
 
 interface Cliente {
-  cpf: string;
+  cpf?: string | undefined;
   nome: string;
   telefone: string;
   cep: string;

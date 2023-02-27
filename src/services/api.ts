@@ -7,6 +7,7 @@ import {
   Pedido,
   PedidoProps,
   ItensProps,
+  AtuCliente,
 } from "../@types";
 
 /* CLIENTES */
@@ -19,9 +20,9 @@ const postCreateCliente = (params: ClienteProps): AxiosPromise<ClienteProps> =>
   xhr.post(`clientes/`, params);
 
 const postAtualizaCliente = (
-  params: ClienteProps,
-  cpf: string
-): AxiosPromise<ClienteProps> => xhr.put(`clientes/${cpf}`, params);
+  cpf: string,
+  params: AtuCliente
+): AxiosPromise<AtuCliente> => xhr.put(`clientes/${cpf}`, params);
 
 const deleteClienteByCpf = (cpf: string) => xhr.delete(`clientes/${cpf}`);
 

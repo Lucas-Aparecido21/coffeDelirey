@@ -90,14 +90,25 @@ export function AlterarCliente() {
       return;
     }
 
-    setCliente((prevState) => {
-      return {
-        ...prevState,
-        nome: cliente.nome,
-      };
+    // setCliente((prevState) => {
+    //   return {
+    //     ...prevState,
+    //     nome: cliente.nome,
+    //   };
+    // });
+    await api.postAtualizaCliente(idCliente, {
+      nome: cliente.nome.toString(),
+      cep: cliente.cep.toString(),
+      cidade: cliente.cidade.toString(),
+      telefone: cliente.telefone.toString(),
+      rua: cliente.rua.toString(),
+      uf: cliente.uf.toString(),
+      bairro: cliente.bairro.toString(),
+      numero: cliente.numero.toString(),
     });
-    await api.postAtualizaCliente(cliente, idCliente);
   }
+
+  console.log(cliente);
 
   return (
     <>

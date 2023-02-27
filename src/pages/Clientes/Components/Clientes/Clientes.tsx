@@ -57,8 +57,7 @@ export function Cadastro({ c }: CadastroProps) {
         <DivButton>
           <NavLink
             to="/AlterarCliente"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="alterar" onClick={AlteraCliente}>
               <PencilSimple />
             </button>
@@ -68,8 +67,7 @@ export function Cadastro({ c }: CadastroProps) {
           </button>
           <NavLink
             to="/ConsultarCliente"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="consultar" onClick={ConsultaCliente}>
               <Scroll />
             </button>

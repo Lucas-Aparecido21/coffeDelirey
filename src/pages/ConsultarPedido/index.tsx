@@ -41,9 +41,10 @@ import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 import { useState } from "react";
 import * as api from "../../services/api";
+import { dataFake } from "../../database/fakeCoffe";
 
 interface Cliente {
-  cpf: string;
+  cpf?: string | undefined;
   nome: string;
   telefone: string;
   cep: string;
@@ -144,48 +145,41 @@ export function ConsultarPedido() {
                   placeholder="CEP"
                   name="cep"
                   type="text"
-                  value={cliente.cep || ""}
-                ></CepInput>
+                  value={cliente.cep || ""}></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
                   name="rua"
                   type="text"
-                  value={cliente.rua || ""}
-                ></RuaInput>
+                  value={cliente.rua || ""}></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
                     name="numero"
                     type="text"
-                    value={cliente.numero || ""}
-                  ></NumeroInput>
+                    value={cliente.numero || ""}></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
                     type="text"
-                    value={cliente.complemento || ""}
-                  ></ComplementoInput>
+                    value={cliente.complemento || ""}></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
                     type="text"
-                    value={cliente.bairro || ""}
-                  ></BairroInput>
+                    value={cliente.bairro || ""}></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
                     type="text"
-                    value={cliente.cidade || ""}
-                  ></CidadeInput>
+                    value={cliente.cidade || ""}></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
                     type="text"
-                    value={cliente.uf}
-                  ></UFInput>
+                    value={cliente.uf}></UFInput>
                 </div>
               </form>
             </div>
@@ -208,8 +202,7 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Cartão de Crédito"}
-                >
+                  disabled={formPag !== "Cartão de Crédito"}>
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -219,8 +212,7 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Cartão de Débito"}
-                >
+                  disabled={formPag !== "Cartão de Débito"}>
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -230,8 +222,7 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Dinheiro"}
-                >
+                  disabled={formPag !== "Dinheiro"}>
                   <Money /> DINHEIRO
                 </button>
               </div>
@@ -244,7 +235,7 @@ export function ConsultarPedido() {
             <h1>Cafés Selecionados</h1>
           </DivInicial>
           <DivTeste>
-            {cartItems.map((item) => (
+            {dataFake.map((item) => (
               <CartListCheckout key={item.id} coffee={item} />
             ))}
           </DivTeste>

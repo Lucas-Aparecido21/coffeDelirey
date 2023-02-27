@@ -17,3 +17,15 @@ export interface Cliente {
   telefone: string;
   cep: string;
 }
+
+export interface AtuCliente {
+  cep: string;
+  cidade: string;
+  telefone: string;
+  complemento?: string | undefined;
+  nome: string;
+  rua: string;
+  uf: string;
+  bairro: string;
+  numero: string;
+}
