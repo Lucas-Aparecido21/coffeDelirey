@@ -8,6 +8,11 @@ export interface CartItem extends CoffeeProps {
   item?: void;
 }
 
+export interface CartItem2 {
+  item: string;
+  quantidade: string;
+}
+
 type PagForm = string;
 
 interface CartContextType {
@@ -29,6 +34,9 @@ interface CartContextType {
   formPag: string;
   setFormPag: (value: React.SetStateAction<string>) => void;
   setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
+  id: CartItem2[];
+  setId: React.Dispatch<React.SetStateAction<CartItem2[]>>;
+  addItem: (item: CartItem2) => void;
 }
 
 interface CartContextProviderProps {
@@ -48,6 +56,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     return [];
   });
 
+  const [id, setId] = useState<CartItem2[]>([]);
+
+  const addItem = (item: CartItem2) => {
+    setId([...id, item]);
+  };
   const cartQuantity = cartItems.length;
 
   function setItemInStorage(itemToSet: CartItem[]) {
@@ -75,6 +88,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   const cartItemsTotal = cartItems.reduce((total, cartItem) => {
     return total + cartItem.price * cartItem.quantity;
   }, 0);
+
+  const [quantidade, setQuantidade] = useState("");
 
   function addCoffeeToCart(coffee: CartItem) {
     const coffeeAlreadyExistsInCart = cartItems.findIndex(
@@ -145,6 +160,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   return (
     <CartContext.Provider
       value={{
+        id,
+        setId,
+        addItem,
         cartItems,
         cartQuantity,
         cartItemsTotal,

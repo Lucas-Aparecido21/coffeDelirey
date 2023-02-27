@@ -19,6 +19,7 @@ interface CardProps {
 export const Card = ({ coffee }: CardProps) => {
   const [quantity, setQuantity] = useState(0);
   const { addCoffeeToCart } = useCart();
+  const { addItem } = useCart();
   function handleAddQuantity() {
     setQuantity((state) => state + 1);
   }
@@ -38,6 +39,12 @@ export const Card = ({ coffee }: CardProps) => {
       addCoffeeToCart(coffeeToAdd);
       setQuantity((state) => (state = 0));
     }
+
+    const handleAddToCart = (id: string, quantidade: string) => {
+      addItem({ item: id, quantidade });
+      console.log({ item: id, quantidade });
+    };
+    handleAddToCart(coffee.id.toString(), quantity.toString());
   }
 
   return (
