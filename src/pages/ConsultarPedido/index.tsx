@@ -58,14 +58,15 @@ interface Cliente {
 }
 
 export function ConsultarPedido() {
-  let { setFormPag, formPag } = useCart();
+  let { formPag } = useCart();
   const DELIVERY_PRICE = 3.5;
-  const { cartItems, cartItemsTotal } = useCart();
+  const { cartItemsTotal } = useCart();
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
-
+  const [coffeeUse, setCoffeUse] = useState([""]);
   const [cliente, setCliente] = useState<Cliente>({} as Cliente);
-
+  const [id_pedidoCoffee, setId_pedidoCoffee] = useState();
   const ordersCliente = localStorage.getItem("OrdersCliente");
+
   const ConsultaCliente = async () => {
     if (!ordersCliente) {
       return;
@@ -91,6 +92,18 @@ export function ConsultarPedido() {
   useEffect(() => {
     ConsultaCliente();
   }, [ordersCliente]);
+
+  // const ConsultaItem = async () => {
+  //   if (!teste) {
+  //     return;
+  //   }
+  //   const { data } = await api.getItensByIdPedido(teste);
+  //   console.log(data);
+  // };
+
+  // useEffect(() => {
+  //   ConsultaItem();
+  // }, []);
 
   return (
     <>
@@ -145,41 +158,48 @@ export function ConsultarPedido() {
                   placeholder="CEP"
                   name="cep"
                   type="text"
-                  value={cliente.cep || ""}></CepInput>
+                  value={cliente.cep || ""}
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
                   name="rua"
                   type="text"
-                  value={cliente.rua || ""}></RuaInput>
+                  value={cliente.rua || ""}
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
                     name="numero"
                     type="text"
-                    value={cliente.numero || ""}></NumeroInput>
+                    value={cliente.numero || ""}
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
                     type="text"
-                    value={cliente.complemento || ""}></ComplementoInput>
+                    value={cliente.complemento || ""}
+                  ></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
                     type="text"
-                    value={cliente.bairro || ""}></BairroInput>
+                    value={cliente.bairro || ""}
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
                     type="text"
-                    value={cliente.cidade || ""}></CidadeInput>
+                    value={cliente.cidade || ""}
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
                     type="text"
-                    value={cliente.uf}></UFInput>
+                    value={cliente.uf}
+                  ></UFInput>
                 </div>
               </form>
             </div>
@@ -202,7 +222,8 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Cartão de Crédito"}>
+                  disabled={formPag !== "Cartão de Crédito"}
+                >
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -212,7 +233,8 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Cartão de Débito"}>
+                  disabled={formPag !== "Cartão de Débito"}
+                >
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -222,7 +244,8 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Dinheiro"}>
+                  disabled={formPag !== "Dinheiro"}
+                >
                   <Money /> DINHEIRO
                 </button>
               </div>

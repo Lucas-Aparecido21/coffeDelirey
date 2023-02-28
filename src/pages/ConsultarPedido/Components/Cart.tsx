@@ -4,7 +4,6 @@ import { DivCart, ContainerGeral, DivInfo, DivPrice } from "./styles";
 
 import * as api from "../../../services/api";
 import { useEffect } from "react";
-import { dataFake } from "../../../database/fakeCoffe";
 
 interface CartListProps {
   coffee: CoffeeProps;
@@ -14,11 +13,12 @@ export function CartListCheckout({ coffee }: CartListProps) {
   const coffeeTotal = coffee.price * coffee.quantity;
   const id_pedido = localStorage.getItem("OrdersPedido");
 
-  const ConsultaItem = () => {
+  const ConsultaItem = async () => {
     if (!id_pedido) {
       return;
     }
-    api.getItensByIdPedido(id_pedido);
+    const { data } = await api.getItensByIdPedido(id_pedido);
+    coffee.quantity = data.quantidade;
   };
 
   useEffect(() => {

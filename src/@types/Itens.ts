@@ -5,6 +5,5 @@ export interface Itens {
 
 export interface ItensProps {
   item: string;
-
-  quantidade: string;
+  quantidade: number;
 }
