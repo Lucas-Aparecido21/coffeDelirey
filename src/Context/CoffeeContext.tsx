@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { createContext, ReactNode, useEffect, useState } from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { produce } from "immer";
 import { CoffeeProps } from "../@types/Coffe";
 
@@ -37,6 +37,8 @@ interface CartContextType {
   id: CartItem2[];
   setId: React.Dispatch<React.SetStateAction<CartItem2[]>>;
   addItem: (item: CartItem2) => void;
+  idCoffee: string;
+  setIdCoffee: (value: React.SetStateAction<string>) => void;
 }
 
 interface CartContextProviderProps {
@@ -48,6 +50,8 @@ const COFFEE_ITEMS_IN_STORAGE_KEY = "coffeDelivery:cartItems";
 export const CartContext = createContext({} as CartContextType);
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
+  const [idCoffee, setIdCoffee] = useState("");
+
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     const storadCartItems = localStorage.getItem(COFFEE_ITEMS_IN_STORAGE_KEY);
     if (storadCartItems) {
@@ -160,6 +164,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   return (
     <CartContext.Provider
       value={{
+        idCoffee,
+        setIdCoffee,
         id,
         setId,
         addItem,
@@ -176,7 +182,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         formPag,
         setFormPag,
         setCartItems,
-      }}>
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

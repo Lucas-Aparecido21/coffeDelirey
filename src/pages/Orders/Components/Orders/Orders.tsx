@@ -3,6 +3,7 @@ import { Scroll, Trash } from "phosphor-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { PedidoProps } from "../..";
+import { useCart } from "../../../../hooks/useCart";
 import * as api from "../../../../services/api";
 import { Modal } from "../Modal";
 import {
@@ -21,6 +22,7 @@ interface CadastroPedidoProps {
 export function Orders({ p }: CadastroPedidoProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+  const { setIdCoffee } = useCart();
 
   if (isDelete) {
     api.deletePedidoByID(p.id);
@@ -30,8 +32,9 @@ export function Orders({ p }: CadastroPedidoProps) {
   function ConsultarPedido() {
     localStorage.setItem("OrdersCliente", p.cpf_id);
 
-    localStorage.setItem("OrdersPedido", JSON.stringify(p.id));
+    setIdCoffee(JSON.stringify(p.id));
   }
+
   return (
     <>
       <Modal

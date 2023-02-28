@@ -62,9 +62,7 @@ export function ConsultarPedido() {
   const DELIVERY_PRICE = 3.5;
   const { cartItemsTotal } = useCart();
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
-  const [coffeeUse, setCoffeUse] = useState([""]);
   const [cliente, setCliente] = useState<Cliente>({} as Cliente);
-  const [id_pedidoCoffee, setId_pedidoCoffee] = useState();
   const ordersCliente = localStorage.getItem("OrdersCliente");
 
   const ConsultaCliente = async () => {
