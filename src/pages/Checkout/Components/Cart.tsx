@@ -19,6 +19,7 @@ interface CartListProps {
 
 export function CartListCheckout({ coffee }: CartListProps) {
   const { addItem } = useCart();
+  const { id, setId } = useCart();
   const { changeCartItemQuantity, removeCartItem } = useCart();
   const coffeeTotal = coffee.price * coffee.quantity;
 

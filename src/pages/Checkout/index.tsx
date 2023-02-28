@@ -42,8 +42,8 @@ import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 import { useState } from "react";
 import * as api from "../../services/api";
-import { Itens, PedidoProps } from "../../../src/@types";
-import { CartItem2 } from "../../Context/CoffeeContext";
+import { PedidoProps } from "../../../src/@types";
+
 interface Cliente {
   cpf: string;
   nome: string;
@@ -88,7 +88,7 @@ export function Checkout() {
         });
       });
   };
-  console.log(id);
+
   function saveToLocalStorageCliente() {
     localStorage.setItem("cliente", JSON.stringify(cliente));
   }
@@ -100,20 +100,6 @@ export function Checkout() {
     }
   }, []);
 
-  async function createItens(pedidoId: number) {
-    const coffeeid = localStorage.getItem("coffeeid");
-    const coffeequantity = localStorage.getItem("coffeequantity");
-
-    if (!coffeeid) {
-      return;
-    }
-    if (!coffeequantity) {
-      return;
-    }
-
-    await api.postCreateItens({ itens: id }, pedidoId);
-  }
-
   async function createPedido() {
     pedido.entrega = DELIVERY_PRICE;
     pedido.valor = cartTotal;
@@ -122,6 +108,10 @@ export function Checkout() {
     const { data } = await api.postCreatePedido(pedido, cliente.cpf);
 
     createItens(data.id);
+  }
+
+  async function createItens(pedidoId: number) {
+    await api.postCreateItens({ itens: id }, pedidoId);
   }
 
   function createCliente() {
@@ -267,8 +257,7 @@ export function Checkout() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }
-                ></CepInput>
+                  }></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -281,8 +270,7 @@ export function Checkout() {
                       [e.target.name]: e.target.value,
                     })
                   }
-                  onBlur={saveToLocalStorageCliente}
-                ></RuaInput>
+                  onBlur={saveToLocalStorageCliente}></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -295,8 +283,7 @@ export function Checkout() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={saveToLocalStorageCliente}
-                  ></NumeroInput>
+                    onBlur={saveToLocalStorageCliente}></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -308,8 +295,7 @@ export function Checkout() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={saveToLocalStorageCliente}
-                  ></ComplementoInput>
+                    onBlur={saveToLocalStorageCliente}></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
@@ -323,8 +309,7 @@ export function Checkout() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={saveToLocalStorageCliente}
-                  ></BairroInput>
+                    onBlur={saveToLocalStorageCliente}></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -336,8 +321,7 @@ export function Checkout() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={saveToLocalStorageCliente}
-                  ></CidadeInput>
+                    onBlur={saveToLocalStorageCliente}></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -349,8 +333,7 @@ export function Checkout() {
                         [e.target.name]: e.target.value,
                       })
                     }
-                    onBlur={saveToLocalStorageCliente}
-                  ></UFInput>
+                    onBlur={saveToLocalStorageCliente}></UFInput>
                 </div>
               </form>
             </div>
@@ -376,8 +359,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -387,8 +369,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -398,8 +379,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}
-                >
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
                   <Money /> DINHEIRO
                 </button>
               </div>
