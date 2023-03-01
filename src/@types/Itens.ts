@@ -1,5 +1,5 @@
 export interface Itens {
-  id_item: string;
+  item: string;
   quantidade: string;
 }
 

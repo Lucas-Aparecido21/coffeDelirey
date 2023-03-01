@@ -20,6 +20,7 @@ export function CartListCheckout({ coffee }: CartListProps) {
     }
     const { data } = await api.getItensByIdPedido(idCoffee);
     coffee.quantity = data.quantidade;
+    console.log(data);
   };
 
   useEffect(() => {
@@ -35,8 +36,9 @@ export function CartListCheckout({ coffee }: CartListProps) {
           </div>
           <DivInfo>
             <p>{coffee.name}</p>
-            <div></div>
+            <span>1</span>
           </DivInfo>
+
           <DivPrice>
             <p>
               {coffeeTotal.toLocaleString("pt-br", {

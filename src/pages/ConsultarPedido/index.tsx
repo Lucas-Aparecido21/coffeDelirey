@@ -44,6 +44,11 @@ import { useState } from "react";
 import * as api from "../../services/api";
 import { dataFake } from "../../database/fakeCoffe";
 
+interface ItensProps {
+  item: number;
+  quantidade: number;
+}
+
 interface Cliente {
   cpf?: string | undefined;
   nome: string;
@@ -64,6 +69,8 @@ export function ConsultarPedido() {
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
   const [cliente, setCliente] = useState<Cliente>({} as Cliente);
   const ordersCliente = localStorage.getItem("OrdersCliente");
+  const { idCoffee, setIdCoffee } = useCart();
+  const [itensConsulta, setItensConsulta] = useState<ItensProps[]>([]);
 
   const ConsultaCliente = async () => {
     if (!ordersCliente) {
@@ -91,17 +98,17 @@ export function ConsultarPedido() {
     ConsultaCliente();
   }, [ordersCliente]);
 
-  // const ConsultaItem = async () => {
-  //   if (!teste) {
-  //     return;
-  //   }
-  //   const { data } = await api.getItensByIdPedido(teste);
-  //   console.log(data);
-  // };
+  const ConsultaItem = async () => {
+    if (!idCoffee) {
+      return;
+    }
+    const { data } = await api.getItensByIdPedido(idCoffee);
+    setItensConsulta(data as unknown as ItensProps[]);
+  };
 
-  // useEffect(() => {
-  //   ConsultaItem();
-  // }, []);
+  useEffect(() => {
+    ConsultaItem();
+  }, []);
 
   return (
     <>
@@ -156,48 +163,41 @@ export function ConsultarPedido() {
                   placeholder="CEP"
                   name="cep"
                   type="text"
-                  value={cliente.cep || ""}
-                ></CepInput>
+                  value={cliente.cep || ""}></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
                   name="rua"
                   type="text"
-                  value={cliente.rua || ""}
-                ></RuaInput>
+                  value={cliente.rua || ""}></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
                     name="numero"
                     type="text"
-                    value={cliente.numero || ""}
-                  ></NumeroInput>
+                    value={cliente.numero || ""}></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
                     type="text"
-                    value={cliente.complemento || ""}
-                  ></ComplementoInput>
+                    value={cliente.complemento || ""}></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
                     type="text"
-                    value={cliente.bairro || ""}
-                  ></BairroInput>
+                    value={cliente.bairro || ""}></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
                     type="text"
-                    value={cliente.cidade || ""}
-                  ></CidadeInput>
+                    value={cliente.cidade || ""}></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
                     type="text"
-                    value={cliente.uf}
-                  ></UFInput>
+                    value={cliente.uf}></UFInput>
                 </div>
               </form>
             </div>
@@ -220,8 +220,7 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Cartão de Crédito"}
-                >
+                  disabled={formPag !== "Cartão de Crédito"}>
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -231,8 +230,7 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Cartão de Débito"}
-                >
+                  disabled={formPag !== "Cartão de Débito"}>
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -242,8 +240,7 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Dinheiro"}
-                >
+                  disabled={formPag !== "Dinheiro"}>
                   <Money /> DINHEIRO
                 </button>
               </div>
@@ -256,10 +253,13 @@ export function ConsultarPedido() {
             <h1>Cafés Selecionados</h1>
           </DivInicial>
           <DivTeste>
-            {dataFake.map((item) => (
-              <CartListCheckout key={item.id} coffee={item} />
-            ))}
+            {itensConsulta.map((itemConsulta) =>
+              dataFake
+                .filter((item) => item.id === itemConsulta.item)
+                .map((item) => <CartListCheckout key={item.id} coffee={item} />)
+            )}
           </DivTeste>
+
           <DivNav>
             <DivValor>
               <div className="div1">

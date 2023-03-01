@@ -182,8 +182,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         formPag,
         setFormPag,
         setCartItems,
-      }}
-    >
+      }}>
       {children}
     </CartContext.Provider>
   );
