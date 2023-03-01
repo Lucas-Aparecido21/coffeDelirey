@@ -33,6 +33,13 @@ export const DivInfo = styled.div`
     font-size: 20px;
     font-weight: 400;
   }
+
+  span {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
 `;
 
 export const DivMinusPlus = styled.div`

@@ -1,8 +1,8 @@
 import axios, { AxiosRequestHeaders } from "axios";
 
-const url = "http://192.168.1.200:3333";
+// const url = "http://192.168.1.200:3333";
 
-// const url = "http://192.168.1.189:3333";
+const url = "http://192.168.1.189:3333";
 
 const headers = (): AxiosRequestHeaders => ({
   Accept: "application/json",

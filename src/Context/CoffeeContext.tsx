@@ -39,6 +39,8 @@ interface CartContextType {
   addItem: (item: CartItem2) => void;
   idCoffee: string;
   setIdCoffee: (value: React.SetStateAction<string>) => void;
+  valorCart: number;
+  setValorCart: (value: React.SetStateAction<number>) => void;
 }
 
 interface CartContextProviderProps {
@@ -61,10 +63,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   });
 
   const [id, setId] = useState<CartItem2[]>([]);
-
+  const [valorCart, setValorCart] = useState(0);
   const addItem = (item: CartItem2) => {
     setId([...id, item]);
   };
+
   const cartQuantity = cartItems.length;
 
   function setItemInStorage(itemToSet: CartItem[]) {
@@ -164,6 +167,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   return (
     <CartContext.Provider
       value={{
+        valorCart,
+        setValorCart,
         idCoffee,
         setIdCoffee,
         id,
@@ -182,7 +187,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         formPag,
         setFormPag,
         setCartItems,
-      }}>
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

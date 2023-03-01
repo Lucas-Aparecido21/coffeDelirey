@@ -22,7 +22,7 @@ interface CadastroPedidoProps {
 export function Orders({ p }: CadastroPedidoProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
-  const { setIdCoffee } = useCart();
+  const { setIdCoffee, valorCart, setValorCart } = useCart();
 
   if (isDelete) {
     api.deletePedidoByID(p.id);
@@ -31,7 +31,7 @@ export function Orders({ p }: CadastroPedidoProps) {
 
   function ConsultarPedido() {
     localStorage.setItem("OrdersCliente", p.cpf_id);
-
+    setValorCart(p.valor);
     setIdCoffee(JSON.stringify(p.id));
   }
 

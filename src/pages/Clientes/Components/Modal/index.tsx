@@ -27,6 +27,7 @@ export function Modal({ isOpen, setIsOpen, isDelete, setIsDelete }: Open) {
             <XCircle />
             Tem certeza que deseja excluir este cliente?
           </h1>
+          <p>Caso tenham pedidos, este cliente não será excluido</p>
           <DivButton>
             <ButtonNo onClick={() => setIsOpen(false)}>Não</ButtonNo>
             <ButtonYes onClick={handleDeleteClient}>Sim</ButtonYes>

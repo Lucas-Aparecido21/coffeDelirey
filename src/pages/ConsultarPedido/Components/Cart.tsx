@@ -2,30 +2,13 @@
 import { CoffeeProps } from "../../../@types/Coffe";
 import { DivCart, ContainerGeral, DivInfo, DivPrice } from "./styles";
 
-import * as api from "../../../services/api";
-import { useEffect } from "react";
-import { useCart } from "../../../hooks/useCart";
-
 interface CartListProps {
   coffee: CoffeeProps;
+  quantidade: number;
 }
 
-export function CartListCheckout({ coffee }: CartListProps) {
-  const coffeeTotal = coffee.price * coffee.quantity;
-  const { idCoffee } = useCart();
-
-  const ConsultaItem = async () => {
-    if (!idCoffee) {
-      return;
-    }
-    const { data } = await api.getItensByIdPedido(idCoffee);
-    coffee.quantity = data.quantidade;
-    console.log(data);
-  };
-
-  useEffect(() => {
-    ConsultaItem();
-  }, []);
+export function CartListCheckout({ coffee, quantidade }: CartListProps) {
+  const coffeeTotal = coffee.price * quantidade;
 
   return (
     <>
@@ -36,7 +19,7 @@ export function CartListCheckout({ coffee }: CartListProps) {
           </div>
           <DivInfo>
             <p>{coffee.name}</p>
-            <span>1</span>
+            <span>Quantidade: {quantidade} </span>
           </DivInfo>
 
           <DivPrice>

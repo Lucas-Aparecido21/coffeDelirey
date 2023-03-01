@@ -154,11 +154,7 @@ export function AlterarCliente() {
               </h2>
               <form action="">
                 <DivName>
-                  <InputNome
-                    placeholder="CPF"
-                    name="cpf"
-                    value={cliente.cpf || ""}
-                  />
+                  <InputNome name="cpf" value={cliente.cpf || ""} />
                   <InputSNome
                     placeholder="Nome"
                     name="nome"

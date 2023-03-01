@@ -35,6 +35,10 @@ export const ContainerModal = styled.div`
     margin-right: 2px;
     vertical-align: sub;
   }
+  p {
+    font-family: "Roboto", sans-serif;
+    color: gray;
+  }
 `;
 
 export const DivButton = styled.div`

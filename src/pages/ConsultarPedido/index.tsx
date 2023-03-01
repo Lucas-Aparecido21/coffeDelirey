@@ -65,13 +65,13 @@ interface Cliente {
 export function ConsultarPedido() {
   let { formPag } = useCart();
   const DELIVERY_PRICE = 3.5;
-  const { cartItemsTotal } = useCart();
-  const cartTotal = DELIVERY_PRICE + cartItemsTotal;
+
+  // const cartTotal = DELIVERY_PRICE + cartItemsTotal;
   const [cliente, setCliente] = useState<Cliente>({} as Cliente);
   const ordersCliente = localStorage.getItem("OrdersCliente");
   const { idCoffee, setIdCoffee } = useCart();
   const [itensConsulta, setItensConsulta] = useState<ItensProps[]>([]);
-
+  const { valorCart, setValorCart } = useCart();
   const ConsultaCliente = async () => {
     if (!ordersCliente) {
       return;
@@ -163,41 +163,48 @@ export function ConsultarPedido() {
                   placeholder="CEP"
                   name="cep"
                   type="text"
-                  value={cliente.cep || ""}></CepInput>
+                  value={cliente.cep || ""}
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
                   name="rua"
                   type="text"
-                  value={cliente.rua || ""}></RuaInput>
+                  value={cliente.rua || ""}
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
                     name="numero"
                     type="text"
-                    value={cliente.numero || ""}></NumeroInput>
+                    value={cliente.numero || ""}
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
                     type="text"
-                    value={cliente.complemento || ""}></ComplementoInput>
+                    value={cliente.complemento || ""}
+                  ></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
                     type="text"
-                    value={cliente.bairro || ""}></BairroInput>
+                    value={cliente.bairro || ""}
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
                     type="text"
-                    value={cliente.cidade || ""}></CidadeInput>
+                    value={cliente.cidade || ""}
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
                     type="text"
-                    value={cliente.uf}></UFInput>
+                    value={cliente.uf}
+                  ></UFInput>
                 </div>
               </form>
             </div>
@@ -220,7 +227,8 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Cartão de Crédito"}>
+                  disabled={formPag !== "Cartão de Crédito"}
+                >
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -230,7 +238,8 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Cartão de Débito"}>
+                  disabled={formPag !== "Cartão de Débito"}
+                >
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -240,7 +249,8 @@ export function ConsultarPedido() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  disabled={formPag !== "Dinheiro"}>
+                  disabled={formPag !== "Dinheiro"}
+                >
                   <Money /> DINHEIRO
                 </button>
               </div>
@@ -256,23 +266,25 @@ export function ConsultarPedido() {
             {itensConsulta.map((itemConsulta) =>
               dataFake
                 .filter((item) => item.id === itemConsulta.item)
-                .map((item) => <CartListCheckout key={item.id} coffee={item} />)
+                .map((item) => (
+                  <CartListCheckout
+                    key={item.id}
+                    coffee={item}
+                    quantidade={itemConsulta.quantidade}
+                  />
+                ))
             )}
           </DivTeste>
 
           <DivNav>
             <DivValor>
-              <div className="div1">
-                <p>Total de itens</p>
-                <span>R${cartItemsTotal.toFixed(2)}</span>
-              </div>
               <div className="div2">
                 <p>Entrega</p>
                 <span>R${DELIVERY_PRICE.toFixed(2)}</span>
               </div>
               <div className="div3">
                 <h2>Total</h2>
-                <span>R$ {cartTotal.toFixed(2)}</span>
+                <span>R$ {valorCart.toFixed(2)}</span>
               </div>
             </DivValor>
           </DivNav>
