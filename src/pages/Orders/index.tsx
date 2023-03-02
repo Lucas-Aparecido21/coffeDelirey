@@ -14,6 +14,7 @@ import {
   DivInfo,
   DivOrders,
   DivSubtitulo,
+  MainSubtitulo,
 } from "./styles";
 
 export interface PedidoProps {
@@ -41,9 +42,13 @@ export function Order() {
   return (
     <>
       <Header />
-      <DivSubtitulo>
-        <h1>Pedidos realizados</h1>
-      </DivSubtitulo>
+
+      <MainSubtitulo>
+        <DivSubtitulo>
+          <h1>Pedidos realizados</h1>
+        </DivSubtitulo>
+      </MainSubtitulo>
+
       <Container>
         <section>
           <ContainerOrders>

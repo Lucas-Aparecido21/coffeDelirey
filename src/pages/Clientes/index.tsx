@@ -1,4 +1,6 @@
+import { UserCirclePlus } from "phosphor-react";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Header } from "../../components/Header";
 import * as api from "../../services/api";
 import { Cadastro } from "./Components/Clientes/Clientes";
@@ -14,6 +16,7 @@ import {
   DivSubtitulo,
   ContainerClientes,
   DivCodCPF,
+  MainSubtitulo,
 } from "./styles";
 
 export interface ClienteProps {
@@ -41,10 +44,17 @@ export function Cliente() {
   return (
     <>
       <Header />
-
-      <DivSubtitulo>
-        <h1>Cadastro de clientes</h1>
-      </DivSubtitulo>
+      <MainSubtitulo>
+        <DivSubtitulo>
+          <h1>Cadastro de clientes</h1>
+          <NavLink to="/CadastrarCliente" style={{ textDecoration: "none" }}>
+            <button>
+              <UserCirclePlus size={26} />
+              Incluir Cliente
+            </button>
+          </NavLink>
+        </DivSubtitulo>
+      </MainSubtitulo>
 
       <Container>
         <section>

@@ -105,17 +105,39 @@ export const DivOrders = styled.div`
   margin-top: 7rem;
 `;
 
+export const MainSubtitulo = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;
 export const DivSubtitulo = styled.div`
   display: flex;
-  width: 400px;
+  width: 70%;
   height: 80px;
-  justify-content: end;
+  justify-content: space-between;
   align-items: flex-end;
   position: relative;
   top: 8rem;
 
   h1 {
     font-family: "Baloo 2", sans-serif;
+  }
+
+  button {
+    all: unset;
+    width: 150px;
+    height: 45px;
+    cursor: pointer;
+    background-color: ${(props) => props.theme["purple-light"]};
+    color: ${(props) => props.theme["purple-dark"]};
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
   }
 `;
 
@@ -173,7 +195,6 @@ export const DivCodValorCad = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  /* background-color: ${(props) => props.theme["base-input"]}; */
 `;
 
 export const DivButtonCad = styled.div`

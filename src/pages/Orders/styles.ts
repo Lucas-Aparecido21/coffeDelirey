@@ -111,12 +111,16 @@ export const DivStatus = styled.div`
 export const DivOrders = styled.div`
   margin-top: 7rem;
 `;
-
+export const MainSubtitulo = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;
 export const DivSubtitulo = styled.div`
   display: flex;
-  width: 400px;
+  width: 70%;
   height: 80px;
-  justify-content: end;
+  justify-content: start;
   align-items: flex-end;
   position: relative;
   top: 8rem;
