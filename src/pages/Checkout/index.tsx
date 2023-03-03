@@ -45,6 +45,7 @@ import { useCart } from "../../hooks/useCart";
 import { useState } from "react";
 import * as api from "../../services/api";
 import { PedidoProps } from "../../../src/@types";
+import { Modal } from "./Components/Modal";
 
 interface Cliente {
   cpf: string;
@@ -69,6 +70,7 @@ export function Checkout() {
   const savedCliente = localStorage.getItem("cliente");
   const [pedido] = useState<PedidoProps>({} as PedidoProps);
   const { id, setId } = useCart();
+  const [isOpen, setIsOpen] = useState(false);
   const [cliente, setCliente] = useState<Cliente>(
     ({} as Cliente) || savedCliente
   );
@@ -121,6 +123,7 @@ export function Checkout() {
   }
 
   const ConsultaCPF = async (event: any) => {
+    saveToLocalStorageCliente();
     const cpf = event.target.value;
 
     try {
@@ -186,6 +189,8 @@ export function Checkout() {
   return (
     <>
       <Header />
+
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
       <Container>
         <section>
           <div>
@@ -219,25 +224,12 @@ export function Checkout() {
                     placeholder="Nome"
                     name="nome"
                     value={cliente.nome || ""}
-                    onChange={(e) =>
-                      setCliente({
-                        ...cliente,
-                        [e.target.name]: e.target.value,
-                      })
-                    }
                   />
                 </DivName>
                 <InputCel
                   placeholder="Celular"
                   name="telefone"
                   value={cliente.telefone || ""}
-                  onChange={(e) =>
-                    setCliente({
-                      ...cliente,
-                      [e.target.name]: e.target.value,
-                    })
-                  }
-                  onBlur={saveToLocalStorageCliente}
                 />
               </form>
             </DivInfo>
@@ -260,12 +252,6 @@ export function Checkout() {
                   type="text"
                   onBlur={ConsultaCEP}
                   value={cliente.cep || ""}
-                  onChange={(e) =>
-                    setCliente({
-                      ...cliente,
-                      [e.target.name]: e.target.value,
-                    })
-                  }
                 ></CepInput>
 
                 <RuaInput
@@ -273,13 +259,6 @@ export function Checkout() {
                   name="rua"
                   type="text"
                   value={cliente.rua || ""}
-                  onChange={(e) =>
-                    setCliente({
-                      ...cliente,
-                      [e.target.name]: e.target.value,
-                    })
-                  }
-                  onBlur={saveToLocalStorageCliente}
                 ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
@@ -287,26 +266,12 @@ export function Checkout() {
                     name="numero"
                     type="text"
                     value={cliente.numero || ""}
-                    onChange={(e) =>
-                      setCliente({
-                        ...cliente,
-                        [e.target.name]: e.target.value,
-                      })
-                    }
-                    onBlur={saveToLocalStorageCliente}
                   ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
                     type="text"
                     value={cliente.complemento || ""}
-                    onChange={(e) =>
-                      setCliente({
-                        ...cliente,
-                        [e.target.name]: e.target.value,
-                      })
-                    }
-                    onBlur={saveToLocalStorageCliente}
                   ></ComplementoInput>
                 </div>
                 <div className="Separador2">
@@ -315,12 +280,6 @@ export function Checkout() {
                     name="bairro"
                     type="text"
                     value={cliente.bairro || ""}
-                    onChange={(e) =>
-                      setCliente({
-                        ...cliente,
-                        [e.target.name]: e.target.value,
-                      })
-                    }
                     onBlur={saveToLocalStorageCliente}
                   ></BairroInput>
                   <CidadeInput
@@ -328,26 +287,12 @@ export function Checkout() {
                     name="cidade"
                     type="text"
                     value={cliente.cidade || ""}
-                    onChange={(e) =>
-                      setCliente({
-                        ...cliente,
-                        [e.target.name]: e.target.value,
-                      })
-                    }
-                    onBlur={saveToLocalStorageCliente}
                   ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
                     type="text"
                     value={cliente.uf}
-                    onChange={(e) =>
-                      setCliente({
-                        ...cliente,
-                        [e.target.name]: e.target.value,
-                      })
-                    }
-                    onBlur={saveToLocalStorageCliente}
                   ></UFInput>
                 </div>
               </form>
