@@ -46,6 +46,7 @@ import { useState } from "react";
 import * as api from "../../services/api";
 import { PedidoProps } from "../../../src/@types";
 import { Modal } from "./Components/Modal";
+import { ModalConfirm } from "./Components/ModalConfirm";
 
 interface Cliente {
   cpf: string;
@@ -71,6 +72,7 @@ export function Checkout() {
   const [pedido] = useState<PedidoProps>({} as PedidoProps);
   const { id, setId } = useCart();
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenConfirm, setIsOpenConfirm] = useState(false);
   const [cliente, setCliente] = useState<Cliente>(
     ({} as Cliente) || savedCliente
   );
@@ -131,20 +133,21 @@ export function Checkout() {
       setCliente((prevState) => {
         return {
           ...prevState,
-          bairro: data.bairro.toString(),
-          cidade: data.cidade.toString(),
-          rua: data.rua.toString(),
-          numero: data.numero.toString(),
-          uf: data.uf.toString(),
-          nome: data.nome.toString(),
-          complemento: data.complemento?.toString(),
-          telefone: data.telefone.toString(),
-          cep: data.cep.toString(),
+          bairro: data.bairro,
+          cidade: data.cidade,
+          rua: data.rua,
+          numero: data.numero,
+          uf: data.uf,
+          nome: data.nome,
+          complemento: data.complemento,
+          telefone: data.telefone,
+          cep: data.cep,
         };
       });
     } catch (error) {
       if (cpfValidacao.isValid(cpf)) {
-        createCliente();
+        // createCliente();
+        setIsOpenConfirm(true);
 
         return;
       }
@@ -191,6 +194,12 @@ export function Checkout() {
       <Header />
 
       <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <ModalConfirm
+        isOpenConfirm={isOpenConfirm}
+        setIsOpenConfirm={setIsOpenConfirm}
+        isOpen={isOpen}
+        setisOpen={setIsOpen}
+      />
       <Container>
         <section>
           <div>
