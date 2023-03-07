@@ -47,6 +47,7 @@ import * as api from "../../services/api";
 import { PedidoProps } from "../../../src/@types";
 import { Modal } from "./Components/Modal";
 import { ModalConfirm } from "./Components/ModalConfirm";
+import Swal from "sweetalert2";
 
 interface Cliente {
   cpf: string;
@@ -146,13 +147,28 @@ export function Checkout() {
       });
     } catch (error) {
       if (cpfValidacao.isValid(cpf)) {
-        // createCliente();
-        setIsOpenConfirm(true);
-
+        Swal.fire({
+          title: "O cadastro do cliente não foi localizado!",
+          text: "Deseja iniciar o cadastro agora?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          cancelButtonText: "Não",
+          confirmButtonText: "Sim, quero cadastrar!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setIsOpen(true);
+          }
+        });
         return;
       }
 
-      alert("CPF não existe");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "O CPF não é valido!",
+      });
     }
   };
 

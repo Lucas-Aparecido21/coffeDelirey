@@ -26,6 +26,8 @@ import { MapPinLine, UserCircle } from "phosphor-react";
 import { useState } from "react";
 import * as api from "../../services/api";
 import { cpf as cpfValidacao } from "cpf-cnpj-validator";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 interface Cliente {
   cpf: string;
@@ -63,29 +65,48 @@ export function CadastrarCliente() {
   function createCliente() {
     api.postCreateCliente(cliente);
   }
-
+  const navigate = useNavigate();
   const ConsultaCPF = async (event: any) => {
     const cpf = event.target.value;
 
     try {
       await api.getClientByCpf(cpf);
-      setIsOpen(true);
-      setModalMensagem("O Cliente com este CPF já existe!");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Já existe um cliente com este CPF!",
+      });
     } catch (error) {
       if (!cpfValidacao.isValid(cpf)) {
-        setIsOpen(true);
-        setModalMensagem("O CPF informado é invalido!");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "O CPF informado não é válido!",
+        });
         return;
       }
     }
   };
 
   function handleConfirmClient() {
-    if (cliente.cpf === "") {
-      setIsOpen(true);
-      setModalMensagem("CPF não pode ser vazio!");
+    if (!cliente) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Preencha os dados obrigatórios!",
+      });
     }
+
     createCliente();
+
+    Swal.fire({
+      icon: "success",
+      title: "Cadastro salvo com sucesso",
+      showConfirmButton: true,
+      preConfirm: () => {
+        navigate(-1);
+      },
+    });
   }
 
   console.log(cliente);

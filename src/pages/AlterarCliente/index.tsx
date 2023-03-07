@@ -25,6 +25,8 @@ import { MapPinLine, UserCircle } from "phosphor-react";
 import { useEffect, useState } from "react";
 import * as api from "../../services/api";
 import { Modal } from "./Components/Modal";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 interface Cliente {
   cpf: string;
@@ -58,6 +60,7 @@ export function AlterarCliente() {
         });
       });
   };
+  const navigate = useNavigate();
   const idCliente = localStorage.getItem("idCliente");
   const ConsultaCliente = async () => {
     if (!idCliente) {
@@ -87,55 +90,89 @@ export function AlterarCliente() {
 
   async function handleConfirmClient() {
     if (cliente.bairro === "") {
-      alert("O bairro do cliente não pode ser vazio");
+      Swal.fire({
+        icon: "error",
+        title: "O campo bairro não pode ser vazio",
+      });
       return;
     }
     if (cliente.cidade === "") {
-      alert("A cidade do cliente não pode ser vazio");
+      Swal.fire({
+        icon: "error",
+        title: "O campo cidade não pode ser vazio",
+      });
       return;
     }
     if (cliente.rua === "") {
-      alert("A rua do cliente não pode ser vazio");
+      Swal.fire({
+        icon: "error",
+        title: "O campo rua não pode ser vazio",
+      });
       return;
     }
     if (cliente.numero === "") {
-      alert("O numero do cliente não pode ser vazio");
+      Swal.fire({
+        icon: "error",
+        title: "O campo numero não pode ser vazio",
+      });
       return;
     }
     if (cliente.telefone === "") {
-      alert("O telefone do cliente não pode ser vazio");
+      Swal.fire({
+        icon: "error",
+        title: "O campo telefone não pode ser vazio",
+      });
       return;
     }
     if (cliente.cidade === "") {
-      alert("A cidade do cliente não pode ser vazio");
+      Swal.fire({
+        icon: "error",
+        title: "O campo cidade não pode ser vazio",
+      });
       return;
     }
     if (cliente.uf === "") {
-      alert("A UF do cliente não pode ser vazio");
+      Swal.fire({
+        icon: "error",
+        title: "O campo uf não pode ser vazio",
+      });
       return;
     }
     if (cliente.cep === "") {
-      alert("O CEP do cliente não pode ser vazio");
+      Swal.fire({
+        icon: "error",
+        title: "O campo cep não pode ser vazio",
+      });
       return;
     }
     if (cliente.nome === "") {
-      alert("O nome do cliente não pode ser vazio");
+      Swal.fire({
+        icon: "error",
+        title: "O campo nome não pode ser vazio",
+      });
       return;
     }
-    setIsOpen(true);
+    Swal.fire({
+      icon: "success",
+      title: "Cadastro atualizado com sucesso!",
+      confirmButtonText: "OK",
+      preConfirm: () => {
+        navigate(-1);
+      },
+    });
     if (!idCliente) {
       return;
     }
 
     await api.postAtualizaCliente(idCliente, {
-      nome: cliente.nome.toString(),
-      cep: cliente.cep.toString(),
-      cidade: cliente.cidade.toString(),
-      telefone: cliente.telefone.toString(),
-      rua: cliente.rua.toString(),
-      uf: cliente.uf.toString(),
-      bairro: cliente.bairro.toString(),
-      numero: cliente.numero.toString(),
+      nome: cliente.nome,
+      cep: cliente.cep,
+      cidade: cliente.cidade,
+      telefone: cliente.telefone,
+      rua: cliente.rua,
+      uf: cliente.uf,
+      bairro: cliente.bairro,
+      numero: cliente.numero,
     });
   }
 

@@ -33,6 +33,8 @@ import {
 } from "phosphor-react";
 import React, { useState } from "react";
 import * as api from "../../../../services/api";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 interface Cliente {
   cpf: string;
   nome: string;
@@ -77,7 +79,16 @@ export function Modal({ isOpen, setIsOpen }: Open) {
 
   function createCliente() {
     api.postCreateCliente(cliente);
+    Swal.fire({
+      icon: "success",
+      title: "Cliente cadastrado com sucesso!",
+      confirmButtonText: "OK",
+      preConfirm: () => {
+        setIsOpen(false);
+      },
+    });
   }
+
   const ConsultaCPF = async (event: any) => {
     saveToLocalStorageCliente();
     const cpf = event.target.value;
@@ -108,7 +119,6 @@ export function Modal({ isOpen, setIsOpen }: Open) {
   };
   return (
     <>
-      {/* <Container style={{ display: isOpen ? "none" : "flex" }}> */}
       <Container style={{ display: isOpen ? "flex" : "none" }}>
         <DivTitulo>
           <h1>

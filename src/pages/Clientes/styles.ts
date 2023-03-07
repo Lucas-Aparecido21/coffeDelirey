@@ -25,6 +25,8 @@ export const ContainerClientes = styled.div`
   width: 1400px;
   height: 700px;
   margin-top: 20px;
+  margin-bottom: 30px;
+
   background-color: ${(props) => props.theme["base-card"]};
   border-radius: 6px;
   display: flex;
@@ -102,7 +104,8 @@ export const DivButton = styled.div`
 `;
 
 export const DivOrders = styled.div`
-  margin-top: 7rem;
+  margin-top: 90px;
+  margin-bottom: 40px;
 `;
 
 export const MainSubtitulo = styled.div`

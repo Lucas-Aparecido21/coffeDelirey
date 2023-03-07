@@ -1,6 +1,7 @@
 import { PencilSimple, Scroll, Trash } from "phosphor-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 import { ClienteProps } from "../..";
 import * as api from "../../../../services/api";
 import { Modal } from "../Modal";
@@ -28,9 +29,30 @@ export function Cadastro({ c }: CadastroProps) {
   function AlteraCliente() {
     localStorage.setItem("idCliente", c.cpf);
   }
-  if (isDelete) {
-    api.deleteClienteByCpf(c.cpf);
-    window.location.reload();
+
+  function handleDeleteClient() {
+    Swal.fire({
+      title: "Tem certeza que deseja deletar este cliente?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Não",
+      confirmButtonText: "Sim, desejo deletar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        api.deleteClienteByCpf(c.cpf);
+        Swal.fire({
+          icon: "success",
+          title: "Processo concluido!",
+          text: "Cliente deletado com sucesso!",
+          confirmButtonText: "OK",
+          preConfirm: () => {
+            window.location.reload();
+          },
+        });
+      }
+    });
   }
   return (
     <>
@@ -63,7 +85,7 @@ export function Cadastro({ c }: CadastroProps) {
               <PencilSimple />
             </button>
           </NavLink>
-          <button onClickCapture={() => setIsOpen(true)} id="excluir">
+          <button onClickCapture={handleDeleteClient} id="excluir">
             <Trash />
           </button>
           <NavLink
