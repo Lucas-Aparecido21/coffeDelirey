@@ -38,7 +38,7 @@ import {
   Money,
   UserCircle,
 } from "phosphor-react";
-// import { useForm } from "react-hook-form";
+
 import { CartListCheckout } from "./Components/Cart";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
@@ -80,30 +80,47 @@ export function Checkout() {
 
   const [valueNav, setValueNav] = useState("/Checkout");
 
-  const ConsultaCEP = (event: any) => {
+  const ConsultaCEP = async (event: any) => {
     const cep = event.target.value;
+    try {
+      const { data } = await api.viaCep(cep);
 
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCliente({
-          ...cliente,
-          rua: data.logradouro,
-          bairro: data.bairro,
-          cidade: data.localidade,
-          uf: data.uf,
-        });
+      setCliente({
+        ...cliente,
+        rua: data.logradouro,
+        bairro: data.bairro,
+        cidade: data.localidade,
+        uf: data.uf,
       });
+      console.log(data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "O CEP digitado não foi localizado!",
+      });
+    }
   };
 
   function saveToLocalStorageCliente() {
     localStorage.setItem("cliente", JSON.stringify(cliente));
+    saveToLocalStorageClienteToSucess();
   }
 
   useEffect(() => {
     const savedCliente = localStorage.getItem("cliente");
     if (savedCliente !== null) {
       setCliente(JSON.parse(savedCliente));
+    }
+  }, []);
+
+  function saveToLocalStorageClienteToSucess() {
+    localStorage.setItem("clienteSucess", JSON.stringify(cliente));
+  }
+
+  useEffect(() => {
+    const savedClienteToSucess = localStorage.getItem("clienteSucess");
+    if (savedClienteToSucess !== null) {
+      setCliente(JSON.parse(savedClienteToSucess));
     }
   }, []);
 
@@ -125,8 +142,22 @@ export function Checkout() {
     api.postCreateCliente(cliente);
   }
 
+  function removeClientInput() {
+    // setCliente({
+    //   ...cliente,
+    //   cpf: "",
+    //   nome: "",
+    //   telefone: "",
+    //   cep: "",
+    //   cidade: "",
+    //   bairro: "",
+    //   rua: "",
+    //   numero: "",
+    //   complemento: "",
+    // });
+  }
+
   const ConsultaCPF = async (event: any) => {
-    saveToLocalStorageCliente();
     const cpf = event.target.value;
 
     try {
@@ -200,7 +231,9 @@ export function Checkout() {
       createPedido();
       createCliente();
       setCartItems([]);
-      setValueNav("/Sucess");
+      localStorage.removeItem("cliente");
+      setValueNav("/sucess");
+      removeClientInput();
       setId([]);
     }
   }

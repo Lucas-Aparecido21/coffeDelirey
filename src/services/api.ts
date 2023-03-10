@@ -8,6 +8,7 @@ import {
   PedidoProps,
   ItensProps,
   AtuCliente,
+  ClientePropsViaCep,
 } from "../@types";
 import { CartItem2 } from "../Context/CoffeeContext";
 
@@ -54,6 +55,8 @@ const getItensByIdPedido = (id_pedido: string): AxiosPromise<ItensProps> =>
   xhr.get(`itens/${id_pedido}`);
 /* ITENS DO PEDIDO*/
 
+const viaCep = (cep: string): AxiosPromise<ClientePropsViaCep> =>
+  xhr.get(`https://viacep.com.br/ws/${cep}/json/`);
 export {
   getClientByCpf,
   getClient,
@@ -66,4 +69,5 @@ export {
   postCreatePedido,
   postCreateItens,
   getItensByIdPedido,
+  viaCep,
 };

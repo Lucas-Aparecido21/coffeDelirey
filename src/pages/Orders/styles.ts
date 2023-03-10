@@ -25,6 +25,7 @@ export const ContainerOrders = styled.div`
   width: 1400px;
   height: 700px;
   margin-top: 20px;
+  margin-bottom: 20px;
   background-color: ${(props) => props.theme["base-card"]};
   border-radius: 6px;
   display: flex;

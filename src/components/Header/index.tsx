@@ -35,7 +35,7 @@ export function Header() {
 
   let separator = ",";
   if (!enderecoObj.cidade) {
-    enderecoObj.cidade = "Insira seu Endereço";
+    enderecoObj.cidade = "Insira o Endereço";
     separator = " ";
   }
 
@@ -52,7 +52,8 @@ export function Header() {
           <NavLink
             to="/Clientes"
             title="Clientes"
-            style={{ textDecoration: "none", color: "#4B2995" }}>
+            style={{ textDecoration: "none", color: "#4B2995" }}
+          >
             <UserCircle />
           </NavLink>
         </ClientesButton>
@@ -60,14 +61,16 @@ export function Header() {
           <NavLink
             to="/Orders"
             title="Pedidos"
-            style={{ textDecoration: "none", color: "#4B2995" }}>
+            style={{ textDecoration: "none", color: "#4B2995" }}
+          >
             <Scroll />
           </NavLink>
         </OrdersButton>
         <NavLink
           to="/Checkout"
           title="Insira seu endereço"
-          style={{ textDecoration: "none" }}>
+          style={{ textDecoration: "none" }}
+        >
           <Locale>
             <img src={Icon} alt="LocaleIcon" />
             {enderecoObj.cidade}
@@ -80,7 +83,8 @@ export function Header() {
           <NavLink
             to="/Checkout"
             title="Checkout"
-            style={{ textDecoration: "none" }}>
+            style={{ textDecoration: "none" }}
+          >
             <img src={CheckoutIcon} alt="CheckoutIcon" />
           </NavLink>
         </Checkout>

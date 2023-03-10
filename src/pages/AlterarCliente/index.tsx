@@ -44,22 +44,27 @@ interface Cliente {
 export function AlterarCliente() {
   const [cliente, setCliente] = useState<Cliente>({} as Cliente);
   const [isOpen, setIsOpen] = useState(false);
-
-  const ConsultaCEP = (event: any) => {
+  const ConsultaCEP = async (event: any) => {
     const cep = event.target.value;
+    try {
+      const { data } = await api.viaCep(cep);
 
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCliente({
-          ...cliente,
-          rua: data.logradouro,
-          bairro: data.bairro,
-          cidade: data.localidade,
-          uf: data.uf,
-        });
+      setCliente({
+        ...cliente,
+        rua: data.logradouro,
+        bairro: data.bairro,
+        cidade: data.localidade,
+        uf: data.uf,
       });
+      console.log(data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "O CEP digitado não foi localizado!",
+      });
+    }
   };
+
   const navigate = useNavigate();
   const idCliente = localStorage.getItem("idCliente");
   const ConsultaCliente = async () => {

@@ -1,4 +1,4 @@
-import { UserCirclePlus } from "phosphor-react";
+import { MagnifyingGlass, UserCirclePlus } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Header } from "../../components/Header";
@@ -17,6 +17,10 @@ import {
   ContainerClientes,
   DivCodCPF,
   MainSubtitulo,
+  DivSearchBar,
+  ButtonSearch,
+  ButtonCreateClient,
+  InputSearchBar,
 } from "./styles";
 
 export interface ClienteProps {
@@ -28,6 +32,7 @@ export interface ClienteProps {
 
 export function Cliente() {
   const [cliente, setCliente] = useState<ClienteProps[]>([]);
+
   const getCliente = async () => {
     try {
       const { data } = await api.getClient();
@@ -47,11 +52,24 @@ export function Cliente() {
       <MainSubtitulo>
         <DivSubtitulo>
           <h1>Cadastro de clientes</h1>
+
+          {/* <DivSearchBar>
+            <select name="clientes" id="clientes">
+              <option value="CPF">CPF</option>
+              <option value="Nome">Nome</option>
+              <option value="Telefone">Telefone</option>
+            </select>
+
+            <InputSearchBar type="text" placeholder="Pesquisar..." />
+            <ButtonSearch>
+              <MagnifyingGlass size={28} weight="light" />
+            </ButtonSearch>
+          </DivSearchBar> */}
           <NavLink to="/CadastrarCliente" style={{ textDecoration: "none" }}>
-            <button>
+            <ButtonCreateClient>
               <UserCirclePlus size={26} />
               Incluir Cliente
-            </button>
+            </ButtonCreateClient>
           </NavLink>
         </DivSubtitulo>
       </MainSubtitulo>
