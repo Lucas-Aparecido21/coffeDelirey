@@ -36,6 +36,8 @@ const getPedido = (): AxiosPromise<Pedido[]> => xhr.get(`pedidos/`);
 const getPedidoByID = (id: number): AxiosPromise<PedidoProps> =>
   xhr.get(`pedidos/${id}`);
 
+const getPedidoByClient = (cpf_id: string): AxiosPromise<PedidoProps[]> =>
+  xhr.get(`pedidos/${cpf_id}`);
 const postCreatePedido = (
   params: PedidoProps,
   cpf_id: string
@@ -65,6 +67,7 @@ export {
   postAtualizaCliente,
   getPedido,
   getPedidoByID,
+  getPedidoByClient,
   deletePedidoByID,
   postCreatePedido,
   postCreateItens,

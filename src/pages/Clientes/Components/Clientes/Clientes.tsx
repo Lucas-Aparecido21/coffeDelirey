@@ -30,29 +30,39 @@ export function Cadastro({ c }: CadastroProps) {
     localStorage.setItem("idCliente", c.cpf);
   }
 
-  function handleDeleteClient() {
-    Swal.fire({
-      title: "Tem certeza que deseja deletar este cliente?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      cancelButtonText: "Não",
-      confirmButtonText: "Sim, desejo deletar!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        api.deleteClienteByCpf(c.cpf);
-        Swal.fire({
-          icon: "success",
-          title: "Processo concluido!",
-          text: "Cliente deletado com sucesso!",
-          confirmButtonText: "OK",
-          preConfirm: () => {
-            window.location.reload();
-          },
-        });
-      }
-    });
+  async function handleDeleteClient() {
+    try {
+      await api.getPedidoByClient(c.cpf);
+
+      Swal.fire({
+        icon: "error",
+        title: "Este cliente possui pedidos realizados!",
+        text: "Para deletar o cliente, primeiro cancele os pedidos atuais!",
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "Tem certeza que deseja deletar este cliente?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Não",
+        confirmButtonText: "Sim, desejo deletar!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          api.deleteClienteByCpf(c.cpf);
+          Swal.fire({
+            icon: "success",
+            title: "Processo concluido!",
+            text: "Cliente deletado com sucesso!",
+            confirmButtonText: "OK",
+            preConfirm: () => {
+              window.location.reload();
+            },
+          });
+        }
+      });
+    }
   }
   return (
     <>
@@ -79,8 +89,7 @@ export function Cadastro({ c }: CadastroProps) {
         <DivButton>
           <NavLink
             to="/AlterarCliente"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="alterar" onClick={AlteraCliente}>
               <PencilSimple />
             </button>
@@ -90,8 +99,7 @@ export function Cadastro({ c }: CadastroProps) {
           </button>
           <NavLink
             to="/ConsultarCliente"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="consultar" onClick={ConsultaCliente}>
               <Scroll />
             </button>

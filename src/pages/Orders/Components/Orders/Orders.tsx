@@ -89,8 +89,7 @@ export function Orders({ p }: CadastroPedidoProps) {
 
           <NavLink
             to="/ConsultarPedido"
-            style={{ textDecoration: "none", color: "black" }}
-          >
+            style={{ textDecoration: "none", color: "black" }}>
             <button id="consultar" onClick={ConsultarPedido}>
               <Scroll />
             </button>
