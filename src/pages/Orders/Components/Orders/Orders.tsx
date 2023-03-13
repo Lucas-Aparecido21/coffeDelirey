@@ -1,6 +1,6 @@
 import moment from "moment";
 import { Scroll, Trash } from "phosphor-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { PedidoProps } from "../..";
@@ -20,9 +20,14 @@ interface CadastroPedidoProps {
   p: PedidoProps;
 }
 
+interface Cliente {
+  nome: string;
+}
+
 export function Orders({ p }: CadastroPedidoProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+  const [cliente, setCliente] = useState<Cliente>({} as Cliente);
   const { setIdCoffee, setValorCart } = useCart();
 
   function handleDeleteOrder() {
@@ -56,6 +61,20 @@ export function Orders({ p }: CadastroPedidoProps) {
     setIdCoffee(JSON.stringify(p.id));
   }
 
+  const getCliente = async () => {
+    if (!p.cpf_id) {
+      return;
+    }
+    const { data } = await api.getClientByCpf(p.cpf_id);
+    setCliente({
+      ...cliente,
+      nome: data.nome,
+    });
+  };
+  useEffect(() => {
+    getCliente();
+  }, []);
+
   return (
     <>
       <Modal
@@ -72,7 +91,7 @@ export function Orders({ p }: CadastroPedidoProps) {
           {moment(p.created_at).format("DD/MM/YYYY")}
         </DivDatapedido>
         <DivCodCliente>
-          <p>{p.cpf_id}</p>
+          <p>{cliente.nome}</p>
         </DivCodCliente>
         <DivCodValor>
           <p>
@@ -89,7 +108,8 @@ export function Orders({ p }: CadastroPedidoProps) {
 
           <NavLink
             to="/ConsultarPedido"
-            style={{ textDecoration: "none", color: "black" }}>
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <button id="consultar" onClick={ConsultarPedido}>
               <Scroll />
             </button>

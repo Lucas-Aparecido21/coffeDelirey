@@ -66,15 +66,16 @@ export function Checkout() {
   let { setFormPag, formPag } = useCart();
   const DELIVERY_PRICE = 3.5;
   const { cartItems, cartItemsTotal } = useCart();
-
+  const savedCliente = localStorage.getItem("cliente");
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
   const { setCartItems } = useCart();
-  // const savedCliente = localStorage.getItem("cliente");
   const [pedido] = useState<PedidoProps>({} as PedidoProps);
   const { id, setId } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
-  const [cliente, setCliente] = useState<Cliente>({} as Cliente);
+  const [cliente, setCliente] = useState<Cliente>(
+    ({} as Cliente) || savedCliente
+  );
 
   const [valueNav, setValueNav] = useState("/Checkout");
 
@@ -111,6 +112,19 @@ export function Checkout() {
     }
   }, []);
 
+  if (!savedCliente) {
+    cliente.cpf = "";
+    cliente.nome = "";
+    cliente.telefone = "";
+    cliente.cep = 0;
+    cliente.uf = "";
+    cliente.numero = "";
+    cliente.rua = "";
+    cliente.cidade = "";
+    cliente.bairro = "";
+    cliente.complemento = "";
+  }
+
   function saveToLocalStorageClienteToSucess() {
     localStorage.setItem("clienteSucess", JSON.stringify(cliente));
   }
@@ -140,22 +154,8 @@ export function Checkout() {
     api.postCreateCliente(cliente);
   }
 
-  function removeClientInput() {
-    // setCliente({
-    //   ...cliente,
-    //   cpf: "",
-    //   nome: "",
-    //   telefone: "",
-    //   cep: "",
-    //   cidade: "",
-    //   bairro: "",
-    //   rua: "",
-    //   numero: "",
-    //   complemento: "",
-    // });
-  }
-
   const ConsultaCPF = async (event: any) => {
+    saveToLocalStorageCliente();
     const cpf = event.target.value;
 
     try {
@@ -188,6 +188,7 @@ export function Checkout() {
         }).then((result) => {
           if (result.isConfirmed) {
             setIsOpen(true);
+            localStorage.setItem("cpf", cliente.cpf);
           }
         });
         return;
@@ -202,24 +203,11 @@ export function Checkout() {
   };
 
   function handleClick() {
-    if (cliente.cpf === "") {
-      alert("As Informações pessoais são obrigatórias");
-      return;
-    }
-    if (cliente.nome === "") {
-      alert("As Informações pessoais são obrigatórias");
-      return;
-    }
-    if (cliente.telefone === "") {
-      alert("As Informações pessoais são obrigatórias");
-      return;
-    }
-    if (cliente.rua === "") {
-      alert("O Endereço de entrega é obrigatório");
-      return;
-    }
-    if (cliente.numero === "") {
-      alert("O Numero do endereço é obrigatório");
+    if (!cliente.cpf) {
+      Swal.fire({
+        icon: "error",
+        title: "O CPF não pode ser vazio",
+      });
       return;
     }
 
@@ -229,13 +217,11 @@ export function Checkout() {
       createPedido();
       createCliente();
       setCartItems([]);
-      localStorage.removeItem("cliente");
       setValueNav("/sucess");
-      removeClientInput();
+      localStorage.removeItem("cliente");
       setId([]);
     }
   }
-
   return (
     <>
       <Header />
@@ -263,7 +249,7 @@ export function Checkout() {
               <form action="">
                 <DivName>
                   <InputNome
-                    placeholder="CPF"
+                    placeholder="CPF (somente números)"
                     name="cpf"
                     type="number"
                     value={cliente.cpf || ""}
@@ -280,6 +266,7 @@ export function Checkout() {
                     placeholder="Nome"
                     name="nome"
                     value={cliente.nome || ""}
+                    onBlur={saveToLocalStorageCliente}
                   />
                 </DivName>
                 <InputCel
@@ -303,7 +290,7 @@ export function Checkout() {
 
               <form>
                 <CepInput
-                  placeholder="CEP"
+                  placeholder="CEP (somente números)"
                   name="cep"
                   type="text"
                   onBlur={ConsultaCEP}
@@ -336,7 +323,6 @@ export function Checkout() {
                     name="bairro"
                     type="text"
                     value={cliente.bairro || ""}
-                    onBlur={saveToLocalStorageCliente}
                   ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"

@@ -34,7 +34,7 @@ import {
 import React, { useState } from "react";
 import * as api from "../../../../services/api";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+
 interface Cliente {
   cpf: string;
   nome: string;
@@ -53,14 +53,12 @@ interface Open {
 }
 
 export function Modal({ isOpen, setIsOpen }: Open) {
-  const savedCliente = localStorage.getItem("cliente");
-  const [cliente, setCliente] = useState<Cliente>(
-    ({} as Cliente) || savedCliente
-  );
-
-  function saveToLocalStorageCliente() {
-    localStorage.setItem("cliente", JSON.stringify(cliente));
+  const [cliente, setCliente] = useState<Cliente>({} as Cliente);
+  const cpfLocal = localStorage.getItem("cpf");
+  if (cpfLocal) {
+    cliente.cpf = cpfLocal;
   }
+
   const ConsultaCEP = async (event: any) => {
     const cep = event.target.value;
     try {
@@ -84,7 +82,7 @@ export function Modal({ isOpen, setIsOpen }: Open) {
   function createCliente() {
     api.postCreateCliente(cliente);
   }
-  const navigate = useNavigate();
+
   const ConsultaCPF = async (event: any) => {
     const cpf = event.target.value;
 
@@ -196,7 +194,8 @@ export function Modal({ isOpen, setIsOpen }: Open) {
           <button
             onClick={() => {
               setIsOpen(false);
-            }}>
+            }}
+          >
             <XCircle size={28} />
           </button>
         </DivTitulo>

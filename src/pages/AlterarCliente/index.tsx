@@ -94,69 +94,63 @@ export function AlterarCliente() {
   }, [idCliente]);
 
   async function handleConfirmClient() {
-    // if (cliente.bairro === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "O campo bairro não pode ser vazio",
-    //   });
-    //   return;
-    // }
-    // if (cliente.cidade === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "O campo cidade não pode ser vazio",
-    //   });
-    //   return;
-    // }
-    // if (cliente.rua === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "O campo rua não pode ser vazio",
-    //   });
-    //   return;
-    // }
-    // if (cliente.numero === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "O campo numero não pode ser vazio",
-    //   });
-    //   return;
-    // }
-    // if (cliente.telefone === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "O campo telefone não pode ser vazio",
-    //   });
-    //   return;
-    // }
-    // if (cliente.cidade === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "O campo cidade não pode ser vazio",
-    //   });
-    //   return;
-    // }
-    // if (cliente.uf === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "O campo uf não pode ser vazio",
-    //   });
-    //   return;
-    // }
-    // if (cliente.cep === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "O campo cep não pode ser vazio",
-    //   });
-    //   return;
-    // }
-    // if (cliente.nome === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "O campo nome não pode ser vazio",
-    //   });
-    //   return;
-    // }
+    if (!cliente.nome) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo nome é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.telefone) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo telefone é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.bairro) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo bairro é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.cep) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo cep é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.numero) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo numero é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.rua) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo rua é obrigatório!",
+      });
+      return;
+    }
+
+    if (!cliente.uf) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo uf é obrigatório!",
+      });
+      return;
+    }
 
     if (!idCliente) {
       return;
@@ -172,17 +166,16 @@ export function AlterarCliente() {
       bairro: cliente.bairro.toString(),
       numero: cliente.numero.toString(),
     });
-    console.log(cliente.nome);
+    Swal.fire({
+      icon: "success",
+      title: "Cadastro atualizado com sucesso!",
+      confirmButtonText: "OK",
+      preConfirm: () => {
+        navigate(-1);
+      },
+    });
   }
 
-  // Swal.fire({
-  //   icon: "success",
-  //   title: "Cadastro atualizado com sucesso!",
-  //   confirmButtonText: "OK",
-  //   preConfirm: () => {
-  //     navigate(-1);
-  //   },
-  // });
   return (
     <>
       <Header />
@@ -239,7 +232,7 @@ export function AlterarCliente() {
 
               <form>
                 <CepInput
-                  placeholder="CEP"
+                  placeholder="CEP  (somente números)"
                   name="cep"
                   type="text"
                   onBlur={ConsultaCEP}
@@ -249,7 +242,8 @@ export function AlterarCliente() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></CepInput>
+                  }
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -261,7 +255,8 @@ export function AlterarCliente() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></RuaInput>
+                  }
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -273,7 +268,8 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></NumeroInput>
+                    }
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -284,7 +280,8 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></ComplementoInput>
+                    }
+                  ></ComplementoInput>
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
@@ -295,7 +292,8 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></BairroInput>
+                    }
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -306,7 +304,8 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></CidadeInput>
+                    }
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -317,7 +316,8 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></UFInput>
+                    }
+                  ></UFInput>
                 </div>
               </form>
             </div>

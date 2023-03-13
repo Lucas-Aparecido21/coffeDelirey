@@ -211,7 +211,7 @@ export function CadastrarCliente() {
               <form action="">
                 <DivName>
                   <InputNome
-                    placeholder="CPF"
+                    placeholder="CPF  (somente números)"
                     name="cpf"
                     value={cliente.cpf || ""}
                     onChange={(e) =>
@@ -262,7 +262,7 @@ export function CadastrarCliente() {
 
               <form>
                 <CepInput
-                  placeholder="CEP"
+                  placeholder="CEP  (somente números)"
                   name="cep"
                   type="text"
                   onBlur={ConsultaCEP}
@@ -272,7 +272,8 @@ export function CadastrarCliente() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></CepInput>
+                  }
+                ></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -284,7 +285,8 @@ export function CadastrarCliente() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }></RuaInput>
+                  }
+                ></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -296,7 +298,8 @@ export function CadastrarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></NumeroInput>
+                    }
+                  ></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -307,7 +310,8 @@ export function CadastrarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></ComplementoInput>
+                    }
+                  ></ComplementoInput>
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
@@ -318,7 +322,8 @@ export function CadastrarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></BairroInput>
+                    }
+                  ></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -329,7 +334,8 @@ export function CadastrarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></CidadeInput>
+                    }
+                  ></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -340,7 +346,8 @@ export function CadastrarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }></UFInput>
+                    }
+                  ></UFInput>
                 </div>
               </form>
             </div>

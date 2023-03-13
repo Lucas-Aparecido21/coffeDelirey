@@ -85,7 +85,9 @@ export const DivInfoPessoais = styled.div`
 export const DivSubTitulo = styled.div`
   display: flex;
   margin-left: 1rem;
+  align-items: center;
   gap: 6px;
+  margin-top: 10px;
   h1 {
     font-size: 20px;
   }
@@ -137,6 +139,7 @@ export const InputNome = styled(BaseInput)`
 
 export const InputTelefone = styled(BaseInput)`
   width: 30%;
+  margin-bottom: 20px;
 `;
 /* INF. PESSOAIS */
 
@@ -149,11 +152,13 @@ export const DivEndereco = styled.div`
   background-color: #f3f2f2;
   display: flex;
   justify-content: center;
+
   flex-direction: column;
 `;
 
 export const DivSubTituloEnd = styled.div`
   display: flex;
+  align-items: center;
   margin-left: 1rem;
   margin-top: 1rem;
   gap: 6px;
@@ -186,6 +191,7 @@ export const DivBairro = styled.div`
   margin-top: 10px;
   margin-left: 1rem;
   gap: 16px;
+  margin-bottom: 20px;
 `;
 
 export const InputCEP = styled(BaseInput)`
