@@ -125,23 +125,84 @@ export const DivSubtitulo = styled.div`
   h1 {
     font-family: "Baloo 2", sans-serif;
   }
+`;
 
-  button {
-    all: unset;
-    width: 150px;
+export const ButtonCreateClient = styled.button`
+  all: unset;
+  width: 150px;
+  height: 45px;
+  cursor: pointer;
+  background-color: ${(props) => props.theme["purple-light"]};
+  color: ${(props) => props.theme["purple-dark"]};
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+`;
+
+export const DivSearchBar = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: end;
+
+  select {
     height: 45px;
-    cursor: pointer;
     background-color: ${(props) => props.theme["purple-light"]};
     color: ${(props) => props.theme["purple-dark"]};
     border-radius: 8px;
-    text-decoration: none;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
     font-size: 16px;
+    border: none;
+    padding: 0 14px;
+    text-align: center;
   }
+`;
+
+export const InputSearchBar = styled.input`
+  all: unset;
+  width: 50%;
+  height: 45px;
+  background-color: ${(props) => props.theme["purple-light"]};
+  color: ${(props) => props.theme["purple-dark"]};
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  margin-left: 8px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding: 0 16px;
+  ::placeholder {
+  }
+`;
+
+export const ButtonSearch = styled.button`
+  all: unset;
+  all: unset;
+  width: 40px;
+  height: 45px;
+  cursor: pointer;
+  background-color: ${(props) => props.theme["purple-light"]};
+  color: ${(props) => props.theme["purple-dark"]};
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 `;
 
 export const DivOrdersCad = styled.nav`

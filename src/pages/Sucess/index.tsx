@@ -18,7 +18,7 @@ interface MyType {
 export function Sucess() {
   const { formPag } = useCart();
 
-  const enderecoCli = localStorage.getItem("cliente");
+  const enderecoCli = localStorage.getItem("clienteSucess");
 
   let enderecoObj: MyType = {};
   if (enderecoCli) {
@@ -38,7 +38,8 @@ export function Sucess() {
                 fontWeight: "400",
                 fontSize: "22px",
                 color: "#403937",
-              }}>
+              }}
+            >
               Agora é só aguardar que logo o café chegará até você
             </span>
 

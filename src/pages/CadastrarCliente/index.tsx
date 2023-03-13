@@ -47,21 +47,44 @@ export function CadastrarCliente() {
   const [isOpen, setIsOpen] = useState(false);
   const [modalMensagem, setModalMensagem] = useState("");
 
-  const ConsultaCEP = (event: any) => {
+  const ConsultaCEP = async (event: any) => {
     const cep = event.target.value;
 
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCliente({
-          ...cliente,
-          rua: data.logradouro,
-          bairro: data.bairro,
-          cidade: data.localidade,
-          uf: data.uf,
-        });
+    if (cep.length < 8) {
+      Swal.fire({
+        icon: "error",
+        title: "O CEP não pode ser menor que 8 caracteres",
       });
+      return;
+    }
+
+    if (cep.length > 8) {
+      Swal.fire({
+        icon: "error",
+        title: "O CEP não pode ser maior que 8 caracteres",
+      });
+      return;
+    }
+
+    try {
+      const { data } = await api.viaCep(cep);
+
+      setCliente({
+        ...cliente,
+        rua: data.logradouro,
+        bairro: data.bairro,
+        cidade: data.localidade,
+        uf: data.uf,
+      });
+      console.log(data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "O CEP digitado não foi localizado!",
+      });
+    }
   };
+
   function createCliente() {
     api.postCreateCliente(cliente);
   }
