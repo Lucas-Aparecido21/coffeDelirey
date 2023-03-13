@@ -1,5 +1,6 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import { useState } from "react";
+import Swal from "sweetalert2";
 import { CoffeeProps } from "../../../../@types/Coffe";
 import { useCart } from "../../../../hooks/useCart";
 
@@ -30,14 +31,26 @@ export const Card = ({ coffee }: CardProps) => {
 
   function handleAddToCart() {
     if (quantity === 0) {
-      alert("Insira uma quantidade para prosseguir");
+      Swal.fire({
+        icon: "error",
+        title: "Insira uma quantidade para adicionar ao carrinho",
+      });
     } else {
       const coffeeToAdd = {
         ...coffee,
         quantity,
       };
+
       addCoffeeToCart(coffeeToAdd);
       setQuantity((state) => (state = 0));
+
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Item adicionado com sucesso!",
+        showConfirmButton: false,
+        timer: 1200,
+      });
     }
 
     const handleAddToCart = (id: string, quantidade: string) => {

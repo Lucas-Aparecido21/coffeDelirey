@@ -69,14 +69,12 @@ export function Checkout() {
 
   const cartTotal = DELIVERY_PRICE + cartItemsTotal;
   const { setCartItems } = useCart();
-  const savedCliente = localStorage.getItem("cliente");
+  // const savedCliente = localStorage.getItem("cliente");
   const [pedido] = useState<PedidoProps>({} as PedidoProps);
   const { id, setId } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
-  const [cliente, setCliente] = useState<Cliente>(
-    ({} as Cliente) || savedCliente
-  );
+  const [cliente, setCliente] = useState<Cliente>({} as Cliente);
 
   const [valueNav, setValueNav] = useState("/Checkout");
 
