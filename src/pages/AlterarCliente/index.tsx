@@ -89,93 +89,95 @@ export function AlterarCliente() {
   }, [idCliente]);
 
   async function handleConfirmClient() {
-    if (cliente.bairro === "") {
-      Swal.fire({
-        icon: "error",
-        title: "O campo bairro não pode ser vazio",
-      });
-      return;
-    }
-    if (cliente.cidade === "") {
-      Swal.fire({
-        icon: "error",
-        title: "O campo cidade não pode ser vazio",
-      });
-      return;
-    }
-    if (cliente.rua === "") {
-      Swal.fire({
-        icon: "error",
-        title: "O campo rua não pode ser vazio",
-      });
-      return;
-    }
-    if (cliente.numero === "") {
-      Swal.fire({
-        icon: "error",
-        title: "O campo numero não pode ser vazio",
-      });
-      return;
-    }
-    if (cliente.telefone === "") {
-      Swal.fire({
-        icon: "error",
-        title: "O campo telefone não pode ser vazio",
-      });
-      return;
-    }
-    if (cliente.cidade === "") {
-      Swal.fire({
-        icon: "error",
-        title: "O campo cidade não pode ser vazio",
-      });
-      return;
-    }
-    if (cliente.uf === "") {
-      Swal.fire({
-        icon: "error",
-        title: "O campo uf não pode ser vazio",
-      });
-      return;
-    }
-    if (cliente.cep === "") {
-      Swal.fire({
-        icon: "error",
-        title: "O campo cep não pode ser vazio",
-      });
-      return;
-    }
-    if (cliente.nome === "") {
-      Swal.fire({
-        icon: "error",
-        title: "O campo nome não pode ser vazio",
-      });
-      return;
-    }
-    Swal.fire({
-      icon: "success",
-      title: "Cadastro atualizado com sucesso!",
-      confirmButtonText: "OK",
-      preConfirm: () => {
-        navigate(-1);
-      },
-    });
+    // if (cliente.bairro === "") {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "O campo bairro não pode ser vazio",
+    //   });
+    //   return;
+    // }
+    // if (cliente.cidade === "") {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "O campo cidade não pode ser vazio",
+    //   });
+    //   return;
+    // }
+    // if (cliente.rua === "") {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "O campo rua não pode ser vazio",
+    //   });
+    //   return;
+    // }
+    // if (cliente.numero === "") {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "O campo numero não pode ser vazio",
+    //   });
+    //   return;
+    // }
+    // if (cliente.telefone === "") {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "O campo telefone não pode ser vazio",
+    //   });
+    //   return;
+    // }
+    // if (cliente.cidade === "") {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "O campo cidade não pode ser vazio",
+    //   });
+    //   return;
+    // }
+    // if (cliente.uf === "") {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "O campo uf não pode ser vazio",
+    //   });
+    //   return;
+    // }
+    // if (cliente.cep === "") {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "O campo cep não pode ser vazio",
+    //   });
+    //   return;
+    // }
+    // if (cliente.nome === "") {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "O campo nome não pode ser vazio",
+    //   });
+    //   return;
+    // }
+
     if (!idCliente) {
       return;
     }
 
     await api.postAtualizaCliente(idCliente, {
-      nome: cliente.nome,
-      cep: cliente.cep,
-      cidade: cliente.cidade,
-      telefone: cliente.telefone,
-      rua: cliente.rua,
-      uf: cliente.uf,
-      bairro: cliente.bairro,
-      numero: cliente.numero,
+      nome: cliente.nome.toString(),
+      cep: cliente.cep.toString(),
+      cidade: cliente.cidade.toString(),
+      telefone: cliente.telefone.toString(),
+      rua: cliente.rua.toString(),
+      uf: cliente.uf.toString(),
+      bairro: cliente.bairro.toString(),
+      numero: cliente.numero.toString(),
     });
+    console.log(cliente.nome);
   }
 
+  // Swal.fire({
+  //   icon: "success",
+  //   title: "Cadastro atualizado com sucesso!",
+  //   confirmButtonText: "OK",
+  //   preConfirm: () => {
+  //     navigate(-1);
+  //   },
+  // });
   return (
     <>
       <Header />
@@ -242,8 +244,7 @@ export function AlterarCliente() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }
-                ></CepInput>
+                  }></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
@@ -255,8 +256,7 @@ export function AlterarCliente() {
                       ...cliente,
                       [e.target.name]: e.target.value,
                     })
-                  }
-                ></RuaInput>
+                  }></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
@@ -268,8 +268,7 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></NumeroInput>
+                    }></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
@@ -280,8 +279,7 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></ComplementoInput>
+                    }></ComplementoInput>
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
@@ -292,8 +290,7 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></BairroInput>
+                    }></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
@@ -304,8 +301,7 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></CidadeInput>
+                    }></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
@@ -316,8 +312,7 @@ export function AlterarCliente() {
                         ...cliente,
                         [e.target.name]: e.target.value,
                       })
-                    }
-                  ></UFInput>
+                    }></UFInput>
                 </div>
               </form>
             </div>

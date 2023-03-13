@@ -76,47 +76,110 @@ export function Modal({ isOpen, setIsOpen }: Open) {
         });
       });
   };
-
   function createCliente() {
     api.postCreateCliente(cliente);
+  }
+  const navigate = useNavigate();
+  const ConsultaCPF = async (event: any) => {
+    const cpf = event.target.value;
+
+    try {
+      await api.getClientByCpf(cpf);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Já existe um cliente com este CPF!",
+      });
+    } catch (error) {
+      if (!cpfValidacao.isValid(cpf)) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "O CPF informado não é válido!",
+        });
+        return;
+      }
+    }
+  };
+  function handleConfirmClient() {
+    if (!cliente.cpf) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo CPF é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.nome) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo nome é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.telefone) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo telefone é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.bairro) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo bairro é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.cep) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo cep é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.numero) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo numero é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.rua) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo rua é obrigatório!",
+      });
+      return;
+    }
+
+    if (!cliente.uf) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo uf é obrigatório!",
+      });
+      return;
+    }
+
+    createCliente();
+
     Swal.fire({
       icon: "success",
-      title: "Cliente cadastrado com sucesso!",
-      confirmButtonText: "OK",
+      title: "Cadastro salvo com sucesso",
+      showConfirmButton: true,
       preConfirm: () => {
         setIsOpen(false);
       },
     });
   }
 
-  const ConsultaCPF = async (event: any) => {
-    saveToLocalStorageCliente();
-    const cpf = event.target.value;
-
-    try {
-      const { data } = await api.getClientByCpf(cpf);
-      setCliente((prevState) => {
-        return {
-          ...prevState,
-          bairro: data.bairro.toString(),
-          cidade: data.cidade.toString(),
-          rua: data.rua.toString(),
-          numero: data.numero.toString(),
-          uf: data.uf.toString(),
-          nome: data.nome.toString(),
-          complemento: data.complemento?.toString(),
-          telefone: data.telefone.toString(),
-          cep: data.cep.toString(),
-        };
-      });
-    } catch (error) {
-      if (cpfValidacao.isValid(cpf)) {
-        return;
-      }
-
-      alert("CPF não existe");
-    }
-  };
   return (
     <>
       <Container style={{ display: isOpen ? "flex" : "none" }}>
@@ -128,8 +191,7 @@ export function Modal({ isOpen, setIsOpen }: Open) {
           <button
             onClick={() => {
               setIsOpen(false);
-            }}
-          >
+            }}>
             <XCircle size={28} />
           </button>
         </DivTitulo>
@@ -284,7 +346,7 @@ export function Modal({ isOpen, setIsOpen }: Open) {
         </DivEndereco>
 
         <DivButton>
-          <Button onClick={createCliente}>Confirmar</Button>
+          <Button onClick={handleConfirmClient}>Confirmar</Button>
         </DivButton>
       </Container>
     </>
