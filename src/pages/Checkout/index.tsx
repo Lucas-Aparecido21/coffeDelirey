@@ -296,48 +296,41 @@ export function Checkout() {
                   name="cep"
                   type="text"
                   onBlur={ConsultaCEP}
-                  value={cliente.cep || ""}
-                ></CepInput>
+                  value={cliente.cep || ""}></CepInput>
 
                 <RuaInput
                   placeholder="Rua"
                   name="rua"
                   type="text"
-                  value={cliente.rua || ""}
-                ></RuaInput>
+                  value={cliente.rua || ""}></RuaInput>
                 <div className="Separador1">
                   <NumeroInput
                     placeholder="Número"
                     name="numero"
                     type="text"
-                    value={cliente.numero || ""}
-                  ></NumeroInput>
+                    value={cliente.numero || ""}></NumeroInput>
                   <ComplementoInput
                     placeholder="Complemento (opcional)"
                     name="complemento"
                     type="text"
-                    value={cliente.complemento || ""}
-                  ></ComplementoInput>
+                    value={cliente.complemento || ""}></ComplementoInput>
                 </div>
                 <div className="Separador2">
                   <BairroInput
                     placeholder="Bairro"
                     name="bairro"
                     type="text"
-                    value={cliente.bairro || ""}
-                  ></BairroInput>
+                    value={cliente.bairro || ""}></BairroInput>
                   <CidadeInput
                     placeholder="Cidade"
                     name="cidade"
                     type="text"
-                    value={cliente.cidade || ""}
-                  ></CidadeInput>
+                    value={cliente.cidade || ""}></CidadeInput>
                   <UFInput
                     placeholder="UF"
                     name="uf"
                     type="text"
-                    value={cliente.uf}
-                  ></UFInput>
+                    value={cliente.uf}></UFInput>
                 </div>
               </form>
             </div>
@@ -363,8 +356,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Crédito"))}>
                   <CreditCard /> CARTÃO DE CRÉDITO
                 </button>
                 <button
@@ -374,8 +366,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}
-                >
+                  onClick={() => setFormPag((formPag = "Cartão de Débito"))}>
                   <Bank /> CARTÃO DE DÉBITO
                 </button>
                 <button
@@ -385,8 +376,7 @@ export function Checkout() {
                         ? `2px solid #4B2995`
                         : "2px solid transparent",
                   }}
-                  onClick={() => setFormPag((formPag = "Dinheiro"))}
-                >
+                  onClick={() => setFormPag((formPag = "Dinheiro"))}>
                   <Money /> DINHEIRO
                 </button>
               </div>
