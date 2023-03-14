@@ -12,7 +12,7 @@ import Icon from "../../assets/Locale.svg";
 import CheckoutIcon from "../../assets/Checkout.svg";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
-import { Scroll, UserCircle } from "phosphor-react";
+import { Scroll, Timer, UserCircle } from "phosphor-react";
 
 interface MyType {
   cep?: string;
@@ -62,8 +62,9 @@ export function Header() {
             to="/Orders"
             title="Pedidos"
             style={{ textDecoration: "none", color: "#4B2995" }}
+            className="orderButton"
           >
-            <Scroll />
+            <Timer />
           </NavLink>
         </OrdersButton>
         <NavLink

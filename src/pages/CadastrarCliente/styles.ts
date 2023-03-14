@@ -242,6 +242,7 @@ export const DivBotao = styled.div`
   display: flex;
   width: 1000px;
   justify-content: center;
+  margin-bottom: 20px;
 `;
 
 export const Confirmar = styled.button`

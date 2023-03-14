@@ -71,7 +71,6 @@ export function Modal({ isOpen, setIsOpen }: Open) {
         cidade: data.localidade,
         uf: data.uf,
       });
-      console.log(data);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -129,19 +128,19 @@ export function Modal({ isOpen, setIsOpen }: Open) {
       });
       return;
     }
-    if (!cliente.bairro) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Campo bairro é obrigatório!",
-      });
-      return;
-    }
     if (!cliente.cep) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Campo cep é obrigatório!",
+      });
+      return;
+    }
+    if (!cliente.rua) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo rua é obrigatório!",
       });
       return;
     }
@@ -153,11 +152,20 @@ export function Modal({ isOpen, setIsOpen }: Open) {
       });
       return;
     }
-    if (!cliente.rua) {
+    if (!cliente.bairro) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Campo rua é obrigatório!",
+        text: "Campo bairro é obrigatório!",
+      });
+      return;
+    }
+
+    if (!cliente.cidade) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Campo cidade é obrigatório!",
       });
       return;
     }

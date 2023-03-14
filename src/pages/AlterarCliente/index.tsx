@@ -56,7 +56,6 @@ export function AlterarCliente() {
         cidade: data.localidade,
         uf: data.uf,
       });
-      console.log(data);
     } catch (error) {
       Swal.fire({
         icon: "error",

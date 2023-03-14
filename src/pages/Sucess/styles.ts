@@ -101,6 +101,7 @@ export const DivHome = styled.div`
     margin-top: 18px;
     width: 400px;
     height: 70px;
+    cursor: pointer;
     background-color: ${(props) => props.theme["yellow-base"]};
     font-size: 18px;
     font-family: "Roboto", sans-serif;

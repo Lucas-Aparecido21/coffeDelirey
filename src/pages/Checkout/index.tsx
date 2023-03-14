@@ -91,7 +91,6 @@ export function Checkout() {
         cidade: data.localidade,
         uf: data.uf,
       });
-      console.log(data);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -116,7 +115,7 @@ export function Checkout() {
     cliente.cpf = "";
     cliente.nome = "";
     cliente.telefone = "";
-    cliente.cep = 0;
+    cliente.cep = "";
     cliente.uf = "";
     cliente.numero = "";
     cliente.rua = "";
@@ -212,7 +211,10 @@ export function Checkout() {
     }
 
     if (cartItemsTotal === 0) {
-      alert("Insira algum item no carrinho antes de concluir a compra");
+      Swal.fire({
+        icon: "error",
+        title: "Insira algum item no carrinho antes de concluir a compra",
+      });
     } else {
       createPedido();
       createCliente();
