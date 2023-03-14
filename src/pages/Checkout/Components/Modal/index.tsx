@@ -61,6 +61,23 @@ export function Modal({ isOpen, setIsOpen }: Open) {
 
   const ConsultaCEP = async (event: any) => {
     const cep = event.target.value;
+
+    if (cep.length < 8) {
+      Swal.fire({
+        icon: "error",
+        title: "O CEP não pode ser menor que 8 caracteres",
+      });
+      return;
+    }
+
+    if (cep.length > 8) {
+      Swal.fire({
+        icon: "error",
+        title: "O CEP não pode ser maior que 8 caracteres",
+      });
+      return;
+    }
+
     try {
       const { data } = await api.viaCep(cep);
 
@@ -194,8 +211,7 @@ export function Modal({ isOpen, setIsOpen }: Open) {
           <button
             onClick={() => {
               setIsOpen(false);
-            }}
-          >
+            }}>
             <XCircle size={28} />
           </button>
         </DivTitulo>
