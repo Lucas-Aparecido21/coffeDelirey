@@ -4,6 +4,7 @@ import {
   CoffeListContainer,
   Container,
   DivCoffee,
+  DivContainerCoffee,
   DivInfo,
   ImagemCafe,
 } from "./styles";
@@ -55,15 +56,14 @@ export function Home() {
       </Container>
 
       <CoffeListContainer>
-        <section>
-          <h1>Nossos Cafés</h1>
-
+        {/* <h1>Nossos Cafés</h1> */}
+        <DivContainerCoffee>
           <DivCoffee>
             {dataFake.map((coffee) => (
               <Card key={coffee.id} coffee={coffee} />
             ))}
           </DivCoffee>
-        </section>
+        </DivContainerCoffee>
       </CoffeListContainer>
     </>
   );

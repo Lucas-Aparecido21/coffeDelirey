@@ -40,8 +40,9 @@ export const CardDiv = styled.div`
   border-top-right-radius: 50px;
   border-bottom-left-radius: 50px;
   box-shadow: ${(props) => props.theme["base-label"]} 3px 3px 18px;
-  /* :hover {
-  } */
+  @media (max-width: 350px) {
+    transform: scale(0.8);
+  }
 `;
 
 export const Description = styled.p`
